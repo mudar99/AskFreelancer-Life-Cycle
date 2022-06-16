@@ -1,0 +1,1319 @@
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+* {
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+#Logo {
+  max-width: 100%;
+  max-height: 60px;
+}
+
+.card-signin {
+  border: 0;
+  -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  background: -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(rgba(17, 24, 39, 0.575)), to(#111827));
+  background: linear-gradient(to bottom, #00000000, rgba(17, 24, 39, 0.575), #111827);
+  -webkit-box-shadow: 5px 20px 50px #000;
+          box-shadow: 5px 20px 50px #000;
+}
+
+.card-signin input[type="checkbox"] {
+  -webkit-transform: scale(1.6);
+          transform: scale(1.6);
+}
+
+.card-signin .btn {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 1rem;
+}
+
+.card-signin input {
+  border-radius: 10px;
+  margin: 15px auto;
+  border: 0;
+  -webkit-box-shadow: 0 0 15px 4px 2e6499;
+          box-shadow: 0 0 15px 4px 2e6499;
+  color: #86898d;
+  background-color: #1f2937;
+  padding: 10px;
+  height: auto;
+}
+
+.card-signin input:focus {
+  color: #86898d;
+  background-color: #1f2937;
+  -webkit-box-shadow: 0 0 5px 1px rgba(38, 131, 218, 0.747);
+          box-shadow: 0 0 5px 1px rgba(38, 131, 218, 0.747);
+}
+
+.card-signin hr {
+  background-color: #eee;
+}
+
+.card-signin a {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.card-signin a:hover {
+  cursor: pointer;
+  color: red;
+  font-size: larger;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.card-signin label {
+  color: #eee;
+}
+
+.Cover_Photo {
+  background-image: url("../Images/Cover5.jpg");
+  height: 120vh;
+  width: 100%;
+  background-position: right;
+  background-size: cover;
+}
+
+#starNav {
+  list-style-type: none;
+  background-color: #1f2937;
+  width: 100%;
+}
+
+#starNav h1 {
+  color: #eee;
+}
+
+#starNav h1:hover {
+  cursor: default;
+}
+
+#starNav .btn {
+  color: #86898d;
+}
+
+#starNav .btn:hover {
+  color: #eee;
+}
+
+#starNav .nav li {
+  margin: auto 5px;
+}
+
+#starNav .nav li a {
+  color: #86898d;
+}
+
+#starNav .nav li a:hover {
+  color: #eee;
+  text-decoration: none;
+}
+
+#starNav a {
+  color: #86898d;
+}
+
+#starNav a:hover {
+  color: #eee;
+}
+
+.Signup {
+  border: 0;
+  background-color: #111827;
+}
+
+.Signup input {
+  color: #86898d;
+  background-color: #1f2937;
+}
+
+.Signup input:hover {
+  color: #eee;
+  background-color: #111827;
+}
+
+.Signup h3 {
+  color: #eee;
+}
+
+footer {
+  -webkit-box-shadow: 0 0 10px 1px #1f2937;
+          box-shadow: 0 0 10px 1px #1f2937;
+  background-color: #111827;
+}
+
+footer section {
+  color: #86898d;
+}
+
+footer .Links a:hover {
+  background-color: #eee;
+}
+
+footer .Links a:hover i {
+  color: #000;
+}
+
+footer .Links a i {
+  color: #eee;
+}
+
+footer h6,
+footer span {
+  color: #eee;
+}
+
+.lightMode .card-signin {
+  -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  background: rgba(132, 13, 13, 0);
+  -webkit-box-shadow: 5px 20px 50px #000;
+          box-shadow: 5px 20px 50px #000;
+}
+
+.lightMode .card-signin input {
+  -webkit-box-shadow: 0 0 15px 4px 2e6499;
+          box-shadow: 0 0 15px 4px 2e6499;
+  color: #525252;
+  background-color: #ffffff;
+}
+
+.lightMode .card-signin input:focus {
+  color: #525252;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 0 5px 1px rgba(81, 77, 77, 0.747);
+          box-shadow: 0 0 5px 1px rgba(81, 77, 77, 0.747);
+}
+
+.lightMode .card-signin hr {
+  background-color: #000;
+}
+
+.lightMode .card-signin .card-title {
+  color: #525252;
+}
+
+.lightMode .card-signin label {
+  color: #000;
+}
+
+.lightMode .Cover_Photo {
+  background-image: url("../Images/Cover7.jpg");
+}
+
+.lightMode #starNav {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.lightMode #starNav h1 {
+  color: #86898d;
+}
+
+.lightMode #starNav .btn {
+  color: #525252;
+}
+
+.lightMode #starNav .btn:hover {
+  color: #000;
+}
+
+.lightMode #starNav .nav li a {
+  color: #525252;
+}
+
+.lightMode #starNav .nav li a:hover {
+  color: #000;
+}
+
+.lightMode #starNav a {
+  color: #525252;
+}
+
+.lightMode #starNav a:hover {
+  color: #000;
+}
+
+.lightMode .Signup {
+  background-color: rgba(132, 13, 13, 0);
+}
+
+.lightMode .Signup input {
+  color: #525252;
+  background-color: rgba(132, 13, 13, 0);
+}
+
+.lightMode .Signup input:hover {
+  color: #000;
+  background-color: rgba(132, 13, 13, 0);
+}
+
+.lightMode .Signup h3 {
+  color: #2e2e2e;
+}
+
+.lightMode footer {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: white;
+}
+
+.lightMode footer section {
+  color: #525252;
+}
+
+.lightMode footer .Links a:hover {
+  background-color: #86898d;
+}
+
+.lightMode footer .Links a:hover i {
+  color: #eee;
+}
+
+.lightMode footer .Links a i {
+  color: #000;
+}
+
+.lightMode footer h6,
+.lightMode footer span {
+  color: #000;
+}
+
+#navbar {
+  background-color: #1f2937;
+}
+
+#navbar a {
+  color: #86898d;
+}
+
+#navbar a:hover {
+  color: #eee;
+  text-decoration: none;
+}
+
+.goBtn {
+  float: right;
+}
+
+#about {
+  margin-top: 150px;
+}
+
+#about p {
+  color: #86898d;
+}
+
+#about h1 {
+  color: #eee;
+}
+
+#projects .CodeIcon {
+  color: #86898d;
+}
+
+#projects p {
+  color: #86898d;
+}
+
+#projects h1 {
+  color: #eee;
+}
+
+#skills .skills {
+  background-color: #1f2937;
+}
+
+#skills .ChipIcon {
+  color: #86898d;
+}
+
+#skills p {
+  color: #86898d;
+}
+
+#skills h1 {
+  color: #eee;
+}
+
+#testimonials .TerminalIcon {
+  color: #86898d;
+}
+
+#testimonials .UsersIcon {
+  color: #86898d;
+}
+
+#testimonials p {
+  color: #86898d;
+}
+
+#testimonials h1 {
+  color: #eee;
+}
+
+#testimonials .testimonials {
+  background-color: #1f2937;
+}
+
+#testimonials .testimonials img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+#testimonials .testimonials h1 {
+  color: #eee;
+}
+
+#contact {
+  margin-bottom: 200px;
+}
+
+#contact .BriefcaseIcon {
+  color: #86898d;
+}
+
+#contact p {
+  color: #86898d;
+}
+
+#contact input {
+  background-color: #1f2937;
+}
+
+#contact h1 {
+  color: #eee;
+}
+
+/* **************** Gallery **************** */
+.Gallery {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.imagebox {
+  background: #111827;
+  padding: 0px;
+  text-align: center;
+  width: 100%;
+}
+
+.imagebox img {
+  opacity: 1;
+  -webkit-transition: 0.5s opacity;
+  transition: 0.5s opacity;
+}
+
+.imagebox .imagebox-bar {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  bottom: 0px;
+  color: white;
+  font-size: 1.2em;
+  left: 0px;
+  padding: 10px 15px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.imagebox img:hover {
+  opacity: 0.7;
+}
+
+.imagebox:hover .imagebox-bar {
+  padding-bottom: 10%;
+}
+
+.info {
+  color: #86898d;
+  background-color: #1f2937;
+  min-height: 202px;
+}
+
+#deleteProjectBTN {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: red;
+  cursor: pointer;
+}
+
+/* **************** PopUp modal **************** */
+.modal-editInfo {
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+
+.modal-editInfo div {
+  border-radius: 10px;
+}
+
+.modal-editInfo div .modal-content {
+  background-color: #111827;
+}
+
+.modal-editInfo div select {
+  color: #eee;
+  background-color: #1f2937;
+}
+
+.modal-editInfo div select option, .modal-editInfo div select:focus {
+  background-color: #1f2937;
+  color: #eee;
+}
+
+.modal-editInfo div h5,
+.modal-editInfo div p {
+  color: #eee;
+}
+
+/* **************** TextArea **************** */
+.form-control,
+.form-control:focus {
+  background-color: #1f2937;
+  color: #86898d;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px;
+  background-color: #111827;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #eee;
+}
+
+.small-ratings {
+  color: #eee;
+}
+
+.small-ratings i {
+  padding: 4px;
+}
+
+.small-ratings .rating-color {
+  color: #fbc634;
+}
+
+@media only screen and (max-width: 1000px) {
+  .imagebox .imagebox-bar {
+    font-size: 1em;
+    padding: 5px 15px;
+  }
+  .imagebox:hover .imagebox-bar {
+    padding-bottom: 7%;
+  }
+}
+
+.lightMode {
+  /* **************** Gallery **************** */
+  /* **************** PopUp modal **************** */
+  /* **************** TextArea **************** */
+}
+
+.lightMode #navbar {
+  background-color: #eee;
+}
+
+.lightMode #navbar a {
+  color: #414a4c;
+}
+
+.lightMode #navbar a:hover {
+  color: #738678;
+}
+
+.lightMode #about p {
+  color: #414a4c;
+}
+
+.lightMode #about h1 {
+  color: #808080;
+}
+
+.lightMode #projects .CodeIcon {
+  color: #808080;
+}
+
+.lightMode #projects p {
+  color: #414a4c;
+}
+
+.lightMode #projects h1 {
+  color: #808080;
+}
+
+.lightMode #skills .skills {
+  background-color: white;
+}
+
+.lightMode #skills .ChipIcon {
+  color: #808080;
+}
+
+.lightMode #skills p {
+  color: #414a4c;
+}
+
+.lightMode #skills h1 {
+  color: #808080;
+}
+
+.lightMode #testimonials .TerminalIcon {
+  color: #414a4c;
+}
+
+.lightMode #testimonials .UsersIcon {
+  color: #808080;
+}
+
+.lightMode #testimonials p {
+  color: #414a4c;
+}
+
+.lightMode #testimonials h1 {
+  color: #808080;
+}
+
+.lightMode #testimonials .testimonials {
+  background-color: white;
+}
+
+.lightMode #contact .BriefcaseIcon {
+  color: #808080;
+}
+
+.lightMode #contact p {
+  color: #414a4c;
+}
+
+.lightMode #contact input {
+  background-color: white;
+}
+
+.lightMode #contact h1 {
+  color: #808080;
+}
+
+.lightMode .imagebox {
+  background: #738678;
+}
+
+.lightMode .imagebox .imagebox-bar {
+  background-color: #808080;
+  color: white;
+}
+
+.lightMode .info {
+  color: #414a4c;
+  background-color: white;
+}
+
+.lightMode .modal-editInfo div .modal-content {
+  background-color: white;
+}
+
+.lightMode .modal-editInfo div select {
+  background-color: white;
+}
+
+.lightMode .modal-editInfo div select option, .lightMode .modal-editInfo div select:focus {
+  background-color: white;
+  color: #414a4c;
+}
+
+.lightMode .modal-editInfo h5,
+.lightMode .modal-editInfo p {
+  color: #414a4c;
+}
+
+.lightMode .form-control,
+.lightMode .form-control:focus {
+  background-color: white;
+  color: #414a4c;
+}
+
+.lightMode textarea::-webkit-scrollbar {
+  background-color: white;
+}
+
+.initialize {
+  background-color: #1f2937;
+  color: #86898d;
+}
+
+.initialize label {
+  font-size: 22px;
+}
+
+.initialize small {
+  font-size: 12px;
+}
+
+.initialize input[type="checkbox"] {
+  -webkit-transform: scale(1.8);
+          transform: scale(1.8);
+}
+
+.initialize h2,
+.initialize h4,
+.initialize h3,
+.initialize p {
+  color: #eee;
+}
+
+.Multiselect .chip {
+  background-color: #86898d;
+}
+
+.Multiselect .option,
+.Multiselect .notFound {
+  color: #86898d;
+  background-color: #1f2937;
+}
+
+.Multiselect .option:hover,
+.Multiselect .notFound:hover {
+  color: #eee;
+  background-color: #111827;
+}
+
+.Multiselect .optionListContainer {
+  width: 50%;
+}
+
+.lightMode .initialize {
+  background-color: #fefefe;
+  color: #525252;
+}
+
+.lightMode .initialize h2,
+.lightMode .initialize h4,
+.lightMode .initialize h3,
+.lightMode .initialize p {
+  color: #86898d;
+}
+
+.lightMode .initialize select,
+.lightMode .initialize input,
+.lightMode .initialize textarea {
+  background-color: #fefefe;
+}
+
+.lightMode .initialize select option,
+.lightMode .initialize input option,
+.lightMode .initialize textarea option {
+  color: #525252;
+}
+
+.lightMode .Multiselect .chip {
+  background-color: #28a745;
+}
+
+.lightMode .Multiselect .option,
+.lightMode .Multiselect .notFound {
+  color: #525252;
+  background-color: #fefefe;
+}
+
+.lightMode .Multiselect .option:hover,
+.lightMode .Multiselect .notFound:hover {
+  color: #eee;
+  background-color: #28a745;
+}
+
+.Filter {
+  float: right;
+  width: 30%;
+}
+
+.Filter .card {
+  padding: 10px;
+  background-color: #1f2937;
+}
+
+.Filter .card div {
+  color: #86898d;
+}
+
+.Filter .custom-range::-webkit-slider-thumb {
+  background: #28a745;
+}
+
+#searchIcon {
+  display: none;
+}
+
+.puplisher-form {
+  float: left;
+  width: 68%;
+  margin-bottom: 10px;
+  background-color: #1f2937;
+}
+
+.puplisher-form input,
+.puplisher-form label {
+  color: #86898d;
+}
+
+.Post {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 68%;
+  background-color: #1f2937;
+}
+
+.Post p,
+.Post small,
+.Post label {
+  color: #86898d;
+}
+
+.Post #delete {
+  color: #86898d;
+}
+
+.Post #delete:hover {
+  cursor: pointer;
+  color: #de1515;
+}
+
+.Post #edit {
+  color: #86898d;
+}
+
+.Post #edit:hover {
+  cursor: pointer;
+  color: #28a745;
+}
+
+.Post .header-img img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.Post .Offer input {
+  background-color: #111827;
+}
+
+.Post .Offer input:focus {
+  background-color: #111827;
+}
+
+.Post .Offer h4 {
+  color: #86898d;
+}
+
+.Post .Offer textarea {
+  color: #86898d;
+  background-color: #111827;
+}
+
+.Post .Offer textarea:focus {
+  color: #86898d;
+  background-color: #111827;
+}
+
+.Post .Offer .dues:hover {
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 992px) {
+  .Filter {
+    width: 100%;
+    display: none;
+  }
+  .Post,
+  .puplisher-form {
+    width: 100%;
+  }
+  #searchIcon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.filepond--wrapper {
+  padding: 10px;
+}
+
+.filepond--wrapper p {
+  color: #86898d;
+}
+
+.filepond--root .filepond--image-preview {
+  background: #111827;
+}
+
+.filepond--root {
+  max-height: 40em;
+}
+
+.filepond--credits {
+  display: none;
+}
+
+.notification-photo {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+.lightMode .Filter .card {
+  background-color: white;
+}
+
+.lightMode .Filter .card div {
+  color: #525252;
+}
+
+.lightMode .puplisher-form {
+  background-color: white;
+}
+
+.lightMode .puplisher-form input,
+.lightMode .puplisher-form label {
+  color: #525252;
+}
+
+.lightMode .Post {
+  background-color: white;
+}
+
+.lightMode .Post p,
+.lightMode .Post small,
+.lightMode .Post label {
+  color: #525252;
+}
+
+.lightMode .Post .Offer {
+  background-color: white;
+}
+
+.lightMode .Post .Offer input {
+  background-color: white;
+}
+
+.lightMode .Post .Offer input:focus {
+  background-color: white;
+}
+
+.lightMode .Post .Offer h4 {
+  color: #525252;
+}
+
+.lightMode .Post .Offer textarea {
+  color: #525252;
+  background-color: white;
+}
+
+.lightMode .Post .Offer textarea:focus {
+  color: #525252;
+  background-color: white;
+}
+
+.lightMode .filepond--wrapper p {
+  color: #525252;
+}
+
+.cms-login h4,
+.cms-login h6 {
+  color: #86898d;
+}
+
+.sidenav {
+  background-color: rgba(238, 238, 238, 0.778);
+  height: 100%;
+  width: 12%;
+  position: fixed;
+  right: 0px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  display: block;
+}
+
+.sidenav li {
+  font-size: 15px;
+  text-align: right;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: black;
+  padding: 10%;
+  margin-right: 2%;
+  display: block;
+}
+
+.sidenav li:hover {
+  color: #525252;
+  text-decoration: none;
+  background-color: rgba(3, 1, 0, 0.11);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.Category {
+  width: 75%;
+  margin-left: 3%;
+}
+
+#cmsNav {
+  background-color: rgba(238, 238, 238, 0.778);
+}
+
+#cmsNav .nav {
+  margin-right: 170px;
+}
+
+#cmsNav .nav li {
+  margin: auto 5px;
+}
+
+#cmsNav .nav li a {
+  color: black;
+}
+
+#cmsNav .nav li a:hover {
+  color: #525252;
+  text-decoration: none;
+}
+
+#cmsNav a {
+  color: #86898d;
+}
+
+#cmsNav a:hover {
+  color: #eee;
+}
+
+@media only screen and (max-width: 1200px) {
+  .sidenav {
+    right: -90px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .sidenav {
+    width: 0%;
+  }
+  .Category {
+    width: auto;
+  }
+}
+
+.col-inside-lg {
+  padding: 20px;
+}
+
+.decor-default {
+  background-color: #ffffff;
+}
+
+.chat {
+  overflow: auto;
+  height: 100vh;
+  margin: 40px auto;
+}
+
+.chat-users h6 {
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.chat-users .user {
+  position: relative;
+  padding: 0 0 0 50px;
+  display: block;
+  cursor: pointer;
+  margin: 0 0 20px;
+  padding: 5px;
+}
+
+.chat-users .user .avatar {
+  top: 0;
+  left: 0;
+  margin: 5px;
+}
+
+.chat-users .user .name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-users .user .mood {
+  font: 12px sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-users .user:hover {
+  background-color: #7266ba;
+  color: #eee;
+}
+
+.chat .chat-body h6 {
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.chat .chat-body .answer {
+  position: relative;
+  max-width: 600px;
+  overflow: hidden;
+  clear: both;
+}
+
+.chat .chat-body .answer .avatar {
+  bottom: 36px;
+}
+
+.chat .chat-body .answer .name {
+  font-size: 14px;
+  line-height: 36px;
+}
+
+.chat .chat-body .answer .text {
+  padding: 12px;
+  font-size: 16px;
+  line-height: 26px;
+  position: relative;
+}
+
+.chat .chat-body .answer .text:before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  border: 18px solid transparent;
+  border-bottom-width: 0;
+}
+
+.chat .chat-body .answer .time {
+  font-size: 16px;
+  line-height: 36px;
+  position: relative;
+  padding-bottom: 1px;
+}
+
+.chat .chat-body .answer.right {
+  padding: 0 58px 0 0;
+  text-align: right;
+  float: right;
+}
+
+.chat .chat-body .answer.right .avatar {
+  right: 0;
+}
+
+.chat .chat-body .answer.right .avatar .status {
+  left: 4px;
+}
+
+.chat .chat-body .answer.right .text {
+  background: #7266ba;
+  color: #ffffff;
+  border-radius: 8px 8px 0 8px;
+}
+
+.chat .chat-body .answer.right .text:before {
+  right: -30px;
+  border-left-color: #7266ba;
+  border-left-width: 12px;
+}
+
+.chat .chat-body .answer.right .time {
+  padding-right: 12px;
+  color: #333333;
+}
+
+.chat .chat-body .answer.left {
+  padding: 0 0 0 58px;
+  text-align: left;
+  float: left;
+}
+
+.chat .chat-body .answer.left .avatar {
+  left: 0;
+}
+
+.chat .chat-body .answer.left .text {
+  background: #ebebeb;
+  color: #333333;
+  border-radius: 8px 8px 8px 0;
+}
+
+.chat .chat-body .answer.left .text:before {
+  left: -30px;
+  border-right-color: #ebebeb;
+  border-right-width: 12px;
+}
+
+.chat .chat-body .answer.left .time {
+  padding-left: 12px;
+  color: #333333;
+}
+
+.chat .avatar {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+
+.chat .avatar img {
+  display: block;
+  border-radius: 20px;
+  height: 100%;
+}
+
+#notfound {
+  position: relative;
+  height: 100vh;
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 410px;
+  width: 100%;
+  text-align: center;
+}
+
+.notfound .notfound-404 {
+  height: 280px;
+  position: relative;
+  z-index: -1;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 230px;
+  margin: 0px;
+  font-weight: 900;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background: url("../Images/bg.jpg") no-repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: cover;
+  background-position: center;
+}
+
+.notfound h2 {
+  font-family: "Montserrat", sans-serif;
+  color: #000;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
+.notfound p {
+  font-family: "Montserrat", sans-serif;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+.notfound a {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: #0046d5;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 40px;
+  color: #fff;
+  font-weight: 700;
+  -webkit-box-shadow: 0px 4px 15px -5px #0046d5;
+  box-shadow: 0px 4px 15px -5px #0046d5;
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 {
+    height: 142px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 112px;
+  }
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-family: "Droid Arabic Naskh", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #86898d;
+}
+
+::-moz-selection {
+  color: #eee;
+  background: #86898d;
+}
+
+::selection {
+  color: #eee;
+  background: #86898d;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f2f3f4;
+}
+
+body .lightMode {
+  background-color: #f2f3f4;
+}
+
+body .darkMode {
+  background-color: #111827;
+}
+/*# sourceMappingURL=style.css.map */

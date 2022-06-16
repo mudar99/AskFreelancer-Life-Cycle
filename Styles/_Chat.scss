@@ -1,0 +1,152 @@
+.col-inside-lg {
+  padding: 20px;
+}
+.decor-default {
+  background-color: #ffffff;
+}
+.chat {
+  overflow: auto;
+  height: 100vh;
+  margin: 40px auto;
+  &-users {
+    h6 {
+      font-size: 20px;
+      margin: 0 0 20px;
+    }
+    .user {
+      position: relative;
+      padding: 0 0 0 50px;
+      display: block;
+      cursor: pointer;
+      margin: 0 0 20px;
+      padding: 5px;
+      .avatar {
+        top: 0;
+        left: 0;
+        margin: 5px; 
+      }
+      .name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .mood {
+        font: 12px sans-serif;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &:hover{
+        background-color: #7266ba;
+        color: #eee;
+      }
+    }
+  }
+  .chat-body {
+    h6 {
+      font-size: 20px;
+      margin: 0 0 20px;
+    }
+    
+    
+    .answer {
+
+
+      position: relative;
+      max-width: 600px;
+      overflow: hidden;
+      clear: both;
+      .avatar {
+        bottom: 36px;
+      }
+      .name {
+        font-size: 14px;
+        line-height: 36px;
+      }
+      .text {
+        padding: 12px;
+        font-size: 16px;
+        line-height: 26px;
+        position: relative;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: 0;
+          border: 18px solid transparent;
+          border-bottom-width: 0;
+        }
+      }
+      .time {
+        font-size: 16px;
+        line-height: 36px;
+        position: relative;
+        padding-bottom: 1px;
+      }
+      
+      &.right {
+        padding: 0 58px 0 0;
+        text-align: right;
+        float: right;
+        .avatar {
+          right: 0;
+          .status {
+            left: 4px;
+          }
+        }
+        .text {
+          background: #7266ba;
+          color: #ffffff;
+          border-radius: 8px 8px 0 8px;
+          &:before {
+            right: -30px;
+            border-left-color: #7266ba;
+            border-left-width: 12px;
+          }
+        }
+        .time {
+          padding-right: 12px;
+          color: #333333;
+        }
+      }
+
+      &.left {
+        padding: 0 0 0 58px;
+        text-align: left;
+        float: left;
+        .avatar {
+          left: 0;
+        }
+        .text {
+          background: #ebebeb;
+          color: #333333;
+          border-radius: 8px 8px 8px 0;
+        }
+        .text:before {
+          left: -30px;
+          border-right-color: #ebebeb;
+          border-right-width: 12px;
+        }
+        .time {
+          padding-left: 12px;
+          color: #333333;
+        }
+      }
+    }
+
+    
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    img {
+      display: block;
+      border-radius: 20px;
+      height: 100%;
+    }
+  }
+}
+
+

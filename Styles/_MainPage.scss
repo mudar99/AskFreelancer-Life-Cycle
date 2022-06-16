@@ -1,0 +1,177 @@
+.MainPage{
+   
+}
+.Filter {
+  float: right;
+  width: 30%;
+  .card {
+    padding: 10px;
+    background-color: $navbar-body-color;
+    div {
+      color: $font-color;
+    }
+  }
+  .custom-range::-webkit-slider-thumb {
+    background: #28a745;
+  }
+}
+#searchIcon {
+  display: none;
+}
+.puplisher-form {
+  float: left;
+  width: 68%;
+  margin-bottom: 10px;
+  background-color: $navbar-body-color;
+  input,
+  label {
+    color: $font-color;
+  }
+}
+.Post {
+  display: flex;
+  width: 68%;
+  background-color: $navbar-body-color;
+  p,
+  small,
+  label {
+    color: $font-color;
+  }
+  #delete {
+    color: $font-color;
+    &:hover {
+      cursor: pointer;
+      color: #de1515;
+    }
+  }
+  #edit {
+    color: $font-color;
+    &:hover {
+      cursor: pointer;
+      color: #28a745;
+    }
+  }
+  .header-img {
+    img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+    }
+  }
+  .Offer {
+    input {
+      background-color: $profile-body-color;
+      &:focus {
+        background-color: $profile-body-color;
+      }
+    }
+    h4 {
+      color: $font-color;
+    }
+    textarea {
+      color: $font-color;
+      background-color: $profile-body-color;
+      &:focus {
+        color: $font-color;
+        background-color: $profile-body-color;
+      }
+    }
+    .dues {
+      &:hover {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 992px) {
+  .Filter {
+    width: 100%;
+    display: none;
+  }
+  .Post,
+  .puplisher-form {
+    width: 100%;
+  }
+  #searchIcon {
+    display: flex;
+  }
+}
+
+.filepond--wrapper {
+  padding: 10px;
+  p {
+    color: $font-color;
+  }
+}
+.filepond--root .filepond--image-preview {
+  background: $profile-body-color;
+}
+.filepond--root {
+  max-height: 40em;
+}
+.filepond--credits {
+  display: none;
+}
+.notification-photo {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+
+@mixin themable($theme-name, $container-bg, $text, $input-bg, $hover-color) {
+  .#{$theme-name} {
+    .Filter {
+      .card {
+        background-color: $container-bg;
+        div {
+          color: $text;
+        }
+      }
+    }
+
+    .puplisher-form {
+      background-color: $container-bg;
+      input,
+      label {
+        color: $text;
+      }
+    }
+    .Post {
+      background-color: $container-bg;
+      p,
+      small,
+      label {
+        color: $text;
+      }
+      .Offer {
+        background-color: $container-bg;
+        input {
+          background-color: $container-bg;
+          &:focus {
+            background-color: $container-bg;
+          }
+        }
+        h4 {
+          color: $text;
+        }
+        textarea {
+          color: $text;
+          background-color: $container-bg;
+          &:focus {
+            color: $text;
+            background-color: $container-bg;
+          }
+        }
+      }
+    }
+    .filepond--wrapper {
+      p {
+        color: $text;
+      }
+    }
+  }
+}
+
+@include themable(lightMode, white, rgb(82, 82, 82), #ffffff, #000);

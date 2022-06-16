@@ -1,0 +1,93 @@
+.initialize {
+  background-color: $navbar-body-color;
+  color: $font-color;
+  label {
+    font-size: 22px;
+  }
+  small {
+    font-size: 12px;
+  }
+  input[type="checkbox"] {
+    transform: scale(1.8);
+  }
+  h2,
+  h4,
+  h3,
+  p {
+    color: #eee;
+  }
+}
+
+.Multiselect {
+  .chip {
+    background-color: $font-color;
+  }
+  .option,
+  .notFound {
+    color: $font-color;
+    background-color: $navbar-body-color;
+    &:hover {
+      color: #eee;
+      background-color: $profile-body-color;
+    }
+  }
+  .optionListContainer {
+    width: 50%;
+  }
+}
+
+// @media screen and (max-width: 700px) {
+
+// }
+
+@mixin themable(
+  $theme-name,
+  $container-bg,
+  $text,
+  $input-bg,
+  $info-color
+) {
+  .#{$theme-name} {
+    .initialize {
+      background-color: $container-bg;
+      color: $text;
+      h2,
+      h4,
+      h3,
+      p {
+        color: $info-color;
+      }
+      select,
+      input,
+      textarea {
+        background-color: $container-bg;
+        option {
+          color: $text;
+        }
+      }
+    }
+    .Multiselect {
+      .chip {
+        background-color: #28a745;
+      }
+      .option,
+      .notFound {
+        color: $text;
+        background-color: $container-bg;
+        &:hover {
+          color: #eee;
+          background-color: #28a745;
+        }
+      }
+    }
+  }
+}
+
+@include themable(
+  lightMode,
+  rgb(254, 254, 254),
+  rgb(82, 82, 82),
+  #ffffff,
+  #86898d
+);
+// @include themable(darkMode, #e4ada7, #d88880, #cc6359, #fff, #481b16);

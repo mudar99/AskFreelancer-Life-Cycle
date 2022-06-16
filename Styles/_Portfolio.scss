@@ -1,0 +1,352 @@
+#navbar {
+  background-color: $navbar-body-color;
+  a {
+    color: $font-color;
+    &:hover {
+      color: #eee;
+      text-decoration: none;
+    }
+  }
+}
+
+.goBtn {
+  float: right;
+}
+#about {
+  margin-top: 150px;
+  p {
+    color: $font-color;
+  }
+  h1 {
+    color: #eee;
+  }
+}
+#projects {
+  .CodeIcon {
+    color: $font-color;
+  }
+  p {
+    color: $font-color;
+  }
+  h1 {
+    color: #eee;
+  }
+}
+#skills {
+  .skills {
+    background-color: $navbar-body-color;
+  }
+  .ChipIcon {
+    color: $font-color;
+  }
+  p {
+    color: $font-color;
+  }
+  h1 {
+    color: #eee;
+  }
+}
+#testimonials {
+  .TerminalIcon {
+    color: $font-color;
+  }
+  .UsersIcon {
+    color: $font-color;
+  }
+  p {
+    color: $font-color;
+  }
+  h1 {
+    color: #eee;
+  }
+  .testimonials {
+    background-color: $navbar-body-color;
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+    h1 {
+      color: #eee;
+    }
+  }
+}
+#contact {
+  margin-bottom: 200px;
+  .BriefcaseIcon {
+    color: $font-color;
+  }
+  p {
+    color: $font-color;
+  }
+  input {
+    background-color: $navbar-body-color;
+  }
+  h1 {
+    color: #eee;
+  }
+}
+
+/* **************** Gallery **************** */
+
+.Gallery {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.imagebox {
+  // min-height: 304px;
+  background: $profile-body-color;
+  padding: 0px;
+  text-align: center;
+  width: 100%;
+
+  img {
+    opacity: 1;
+    transition: 0.5s opacity;
+    //  height: 200px;
+  }
+}
+.imagebox {
+  .imagebox-bar {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    bottom: 0px;
+    color: white;
+    font-size: 1.2em;
+    left: 0px;
+    padding: 10px 15px;
+    transition: 0.5s;
+    width: 100%;
+  }
+}
+
+.imagebox {
+  img:hover {
+    opacity: 0.7;
+  }
+}
+
+.imagebox:hover {
+  .imagebox-bar {
+    padding-bottom: 10%;
+  }
+}
+.info {
+  color: $font-color;
+  background-color: $navbar-body-color;
+  min-height: 202px;
+}
+#deleteProjectBTN { 
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%); 
+    color: red;  
+    cursor: pointer;  
+}
+
+/* **************** PopUp modal **************** */
+.modal-editInfo {
+  transition: 0.4s ease-in-out;
+  backdrop-filter: blur(8px);
+
+  div {
+    border-radius: 10px;
+    .modal-content {
+      background-color: $profile-body-color;
+    }
+    select {
+      color: #eee;
+      option,
+      &:focus {
+        background-color: $navbar-body-color;
+        color: #eee;
+      }
+
+      background-color: $navbar-body-color;
+    }
+    h5,
+    p {
+      color: #eee;
+    }
+  }
+}
+
+/* **************** TextArea **************** */
+.form-control,
+.form-control:focus {
+  background-color: $navbar-body-color;
+  color: $font-color;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px;
+  background-color: $profile-body-color;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #eee;
+}
+
+.small-ratings {
+  color: #eee;
+  i {
+    padding: 4px;
+  }
+  .rating-color {
+    color: #fbc634;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .imagebox {
+    .imagebox-bar {
+      font-size: 1em;
+      padding: 5px 15px;
+    }
+    &:hover {
+      .imagebox-bar {
+        padding-bottom: 7%;
+      }
+    }
+  }
+}
+
+@mixin themable(
+  $theme-name,
+  $container-bg,
+  $title,
+  $text,
+  $hover-color,
+  $iconColor
+) {
+  .#{$theme-name} {
+    #navbar {
+      background-color: #eee;
+      a {
+        color: $text;
+        &:hover {
+          color: $hover-color;
+        }
+      }
+    }
+
+    #about {
+      p {
+        color: $text;
+      }
+      h1 {
+        color: $title;
+      }
+    }
+    #projects {
+      .CodeIcon {
+        color: $iconColor;
+      }
+      p {
+        color: $text;
+      }
+      h1 {
+        color: $title;
+      }
+    }
+    #skills {
+      .skills {
+        background-color: $container-bg;
+      }
+      .ChipIcon {
+        color: $iconColor;
+      }
+      p {
+        color: $text;
+      }
+      h1 {
+        color: $title;
+      }
+    }
+    #testimonials {
+      .TerminalIcon {
+        color: $text;
+      }
+      .UsersIcon {
+        color: $iconColor;
+      }
+      p {
+        color: $text;
+      }
+      h1 {
+        color: $title;
+      }
+      .testimonials {
+        background-color: $container-bg;
+      }
+    }
+    #contact {
+      .BriefcaseIcon {
+        color: $iconColor;
+      }
+      p {
+        color: $text;
+      }
+      input {
+        background-color: $container-bg;
+      }
+      h1 {
+        color: $title;
+      }
+    }
+
+    /* **************** Gallery **************** */
+
+    .imagebox {
+      background: $hover-color;
+    }
+    .imagebox {
+      .imagebox-bar {
+        background-color: $iconColor;
+        color: white;
+      }
+    }
+
+    .info {
+      color: $text;
+      background-color: $container-bg;
+    }
+
+    /* **************** PopUp modal **************** */
+    .modal-editInfo {
+      div {
+        .modal-content {
+          background-color: $container-bg;
+        }
+        select {
+          option,
+          &:focus {
+            background-color: $container-bg;
+            color: $text;
+          }
+          background-color: $container-bg;
+        }
+      }
+      h5,
+      p {
+        color: $text;
+      }
+    }
+
+    /* **************** TextArea **************** */
+    .form-control,
+    .form-control:focus {
+      background-color: $container-bg;
+      color: $text;
+    }
+
+    textarea::-webkit-scrollbar {
+      background-color: $container-bg;
+    }
+  }
+}
+// @include themable(lightMode, white, #253529, #414a4c, #738678, #997a8d);
+@include themable(lightMode, white, #808080, #414a4c, #738678, #808080);

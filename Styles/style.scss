@@ -1,0 +1,43 @@
+@import "vars", "Register", "Portfolio", "Initialize", "MainPage", "CMS" , "Chat" , "404";
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-family: "Droid Arabic Naskh", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+html::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+html::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: $font-color;
+}
+::selection {
+  color: #eee;
+  background: #86898d;
+}
+body {
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: rgb(242, 243, 244);
+  .lightMode {
+    background-color: rgb(242, 243, 244);
+  }
+  .darkMode {
+    background-color: $profile-body-color;
+  }
+}
+
+ 
+
+

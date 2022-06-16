@@ -1,0 +1,254 @@
+* {
+  transition: 0.2s ease-out;
+}
+#Logo{
+  max-width: 100%;
+  max-height: 60px;
+}
+.card-signin {
+  input[type="checkbox"] {
+    transform: scale(1.6);
+  }
+  border: 0;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  background: $mainTheme2;
+  box-shadow: 5px 20px 50px #000;
+  .btn {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 1rem;
+  }
+  
+  input {
+    border-radius: 10px;
+    margin: 15px auto;
+    border: 0;
+    box-shadow: 0 0 15px 4px 2e6499;
+    color: $font-color;
+    background-color: $navbar-body-color;
+    padding: 10px;
+    height: auto;
+    &:focus  {
+      color: $font-color;
+      background-color: $navbar-body-color;
+      box-shadow: 0 0 5px 1px rgba(38, 131, 218, 0.747);
+    }
+  }
+  hr {
+    background-color: #eee;
+  }
+  a {
+    transition: 0.2s;
+    &:hover {
+      cursor: pointer;
+      color: red;
+      font-size: larger;
+      transition: 0.2s;
+    }
+  }
+  label {
+    color: #eee;
+  }
+}
+
+.Cover_Photo {
+  background-image: url("../Images/Cover5.jpg");
+  height: 120vh;
+  width: 100%;
+  background-position: right;
+  background-size: cover;
+}
+
+//navBar Design
+#starNav {
+  list-style-type: none;
+  background-color: $navbar-body-color;
+  // position: absolute;
+  width: 100%;
+  h1 {
+    color: #eee;
+    &:hover {
+      cursor: default;
+    }
+  }
+  .btn {
+    color: $font-color;
+    &:hover {
+      color: #eee;
+    }
+  }
+  .nav {
+    li {
+      margin: auto 5px;
+      a {
+        color: $font-color;
+        &:hover {
+          color: #eee;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  a {
+    color: $font-color;
+    &:hover {
+      color: #eee;
+    }
+  }
+}
+
+//Signup
+.Signup {
+  border: 0;
+  background-color: $profile-body-color;
+  input {
+    color: $font-color;
+    background-color: $navbar-body-color;
+    &:hover {
+      color: #eee;
+      background-color: $profile-body-color;
+    }
+  }
+  h3 {
+    color: #eee;
+  }
+}
+
+footer {
+  box-shadow: 0 0 10px 1px rgb(31, 41, 55);
+  background-color: $profile-body-color;
+  section {
+    color: $font-color;
+  }
+
+  .Links {
+    a {
+      &:hover {
+        background-color: #eee;
+        i {
+          color: #000;
+        }
+      }
+      i {
+        color: #eee;
+      }
+    }
+  }
+  h6,
+  span {
+    color: #eee;
+  }
+}
+
+@mixin themable($theme-name, $container-bg, $text, $input-bg, $hover-color) {
+  .#{$theme-name} {
+    .card-signin {
+      box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+      background: $container-bg;
+      box-shadow: 5px 20px 50px #000;
+      input {
+        box-shadow: 0 0 15px 4px 2e6499;
+        color: $text;
+        background-color: $input-bg;
+        &:focus {
+          color: $text;
+          background-color: $input-bg;
+          box-shadow: 0 0 5px 1px rgba(81, 77, 77, 0.747);
+        }
+      }
+      hr {
+        background-color: #000;
+      }
+      .card-title {
+        color: $text;
+      }
+      label {
+        color: #000;
+      }
+    }
+
+    .Cover_Photo {
+      background-image: url("../Images/Cover7.jpg");
+    }
+
+    //navBar Design
+    #starNav {
+      background-color: rgba(255, 255, 255, 0);
+      h1 {
+        color: #86898d;
+      }
+      .btn {
+        color: $text;
+        &:hover {
+          color: $hover-color;
+        }
+      }
+      .nav {
+        li {
+          a {
+            color: $text;
+            &:hover {
+              color: $hover-color;
+            }
+          }
+        }
+      }
+      a {
+        color: $text;
+        &:hover {
+          color: $hover-color;
+        }
+      }
+    }
+
+    //Signup
+    .Signup {
+      background-color: $container-bg;
+      input {
+        color: $text;
+        background-color: $container-bg;
+        &:hover {
+          color: #000;
+          background-color: $container-bg;
+        }
+      }
+      h3 {
+        color: rgb(46, 46, 46);
+      }
+    }
+
+    footer {
+      box-shadow: none;
+      background-color: white;
+      section {
+        color: $text;
+      }
+      .Links {
+        a {
+          &:hover {
+            background-color: $font-color;
+            i {
+              color: #eee;
+            }
+          }
+          i {
+            color: #000;
+          }
+        }
+      }
+      h6,
+      span {
+        color: #000;
+      }
+    }
+  }
+}
+
+@include themable(
+  lightMode,
+  rgba(132, 13, 13, 0),
+  rgb(82, 82, 82),
+  #ffffff,
+  #000
+);
+// @include themable(darkMode, #e4ada7, #d88880, #cc6359, #fff, #481b16);
