@@ -9,6 +9,8 @@ import Footer from '../Register/Footer'
 import Navbar from "./components/Navbar";
 import { Helmet } from "react-helmet";
 import axios from "axios";
+import { PrepareAccountAPI } from '../API';
+
 
 class Initialize extends Component {
 
@@ -23,7 +25,8 @@ class Initialize extends Component {
     Job: "",
     Spe: "",
     Skills: [],
-    url: 'http://127.0.0.1:8000/api/account'
+    url: PrepareAccountAPI,
+    token: localStorage.getItem('LoginToken')
   }
   FreelancerCallback = (childData) => { this.setState({ isFreelancer: childData }) }
   ClientCallback = (childData) => { this.setState({ isClient: childData }) }
@@ -36,7 +39,6 @@ class Initialize extends Component {
   MonthCallback = (childData) => { this.setState({ Month: childData }) }
   YearCallback = (childData) => { this.setState({ Year: childData }) }
 
-
   saveHandler = e => {
     e.preventDefault();
     // console.log("Bio: " + this.state.Bio)
@@ -44,7 +46,7 @@ class Initialize extends Component {
     // console.log("isClient: " + this.state.isClient)
     // console.log("isFreelancer: " + this.state.isFreelancer)
     // console.log("Job: " + this.state.Job)
-    // console.log("Specification: " + this.state.Spe)
+    //  console.log("Specification: " + this.state.Spe.id)
     // console.log("Skills: " + this.state.Skills)
     // console.log("Date: " + this.state.Year + '-' + this.state.Month + '-' + + this.state.Day)
 
@@ -56,12 +58,11 @@ class Initialize extends Component {
       type: type,
       phone_number: this.state.PhoneNumber,
       profissionName: this.state.Job,
-      speciality: this.state.Spe,
+      speciality: this.state.Spe.name,
       bio: this.state.Bio,
       Skills: this.state.Skills,
       birthday: BirthDate
     }
-
     axios.post(this.state.url, params).then(
       res => {
         this.setState({ respone: res.data });
@@ -71,6 +72,18 @@ class Initialize extends Component {
         }
       }).catch(err => console.error(err));
   }
+  componentDidMount() {
+    //Sending User Token
+    axios.defaults.headers = {
+      Authorization: `Bearer ${this.state.token}`,
+    }
+    axios.post(this.state.url, axios.defaults.headers).then(
+      res => {
+        this.setState({ respone: res.data });
+        console.log(res.data);
+      }).catch(err => console.error(err));
+  }
+
   render() {
     return (
       <div className="lightMode">
@@ -83,7 +96,7 @@ class Initialize extends Component {
             this.state.isFreelancer &&
             <>
               <Job_Spe SpeHandling={this.SpeCallback} JobHandling={this.JobCallback} />
-              <SkillsInit selectHandling={this.SkillsCallback} />
+              <SkillsInit selectedSpe = {this.state.Spe.id} selectHandling={this.SkillsCallback} />
             </>
           }
           <Bio BioHandling={this.BioCallback} />

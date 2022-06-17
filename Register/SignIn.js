@@ -5,6 +5,7 @@ import LoadingIcon from "../LoadingIcon";
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import FacebookLogin from "react-facebook-login";
+import { loginAPI } from '../API';
 
 class SignIn extends Component {
 
@@ -12,7 +13,7 @@ class SignIn extends Component {
     email: "",
     password: "",
     loading: false,
-    url: "http://127.0.0.1:8000/api/login",
+    url: loginAPI,
     login: false,
     data: [],
     picture: "",
@@ -34,6 +35,7 @@ class SignIn extends Component {
     let params = {
       email: this.state.email,
       password: this.state.password,
+      // headers: { Authorization: `Bearer ${token}` }
     }
     this.setState({ loading: true });
     axios.post(this.state.url, params).then(
@@ -44,6 +46,8 @@ class SignIn extends Component {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
           setTimeout(function () {
+            localStorage.setItem('LoginToken', res.data.data.token)
+            console.log(localStorage.getItem('LoginToken'))
             window.location.href = "/Initialize"
           }, 1000);
         }
@@ -102,7 +106,7 @@ class SignIn extends Component {
                 <div className="card-body p-5" >
                   <div className="card-title text-center mb-5"><UserIcon height={60} /></div>
                   <form className="" onSubmit={this.submitHandler}>
-                    <input type="email" id="inputEmail" className="form-control w-100 text-right" placeholder="البريد الالكتروني" onChange={this.emailHandler} required autoComplete="off" />
+                    <input type="email" id="inputEmail" className="form-control w-100 text-right" placeholder="البريد الالكتروني" onChange={this.emailHandler} required autoComplete="on" />
                     <input type="password" id="inputPassword" className="form-control w-100 text-right" placeholder="كلمة المرور" onChange={this.passHandler} required />
                     <div className="text-right container ">
                       <label className="p-3">

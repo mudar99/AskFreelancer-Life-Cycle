@@ -10,7 +10,7 @@ class Card extends Component {
         this.setState(prevState => ({
             stateOn: !prevState.stateOn,
         }));
-    }
+    } 
     deleteProject = e => {
     }
     render() {

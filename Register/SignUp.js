@@ -3,6 +3,7 @@ import { Toast } from 'primereact/toast';
 import axios from "axios";
 import LoadingIcon from "../LoadingIcon";
 import { Button } from 'primereact/button';
+import { RegisterAPI } from '../API';
 
 class SignUp extends Component {
   state = {
@@ -11,7 +12,7 @@ class SignUp extends Component {
     email: "",
     password: "",
     confPassword: "",
-    url: "http://127.0.0.1:8000/api/register",
+    url: RegisterAPI,
     loading: false,
   }
   registerHandler = (e) => {
@@ -28,6 +29,7 @@ class SignUp extends Component {
       res => {
         this.setState({ respone: res.data });
         console.log(res.data);
+        localStorage.setItem('RegisterToken', res.data.data.token)
         if (res.data.status == true) {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
