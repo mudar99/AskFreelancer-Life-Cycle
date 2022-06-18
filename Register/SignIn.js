@@ -17,6 +17,7 @@ class SignIn extends Component {
     login: false,
     data: [],
     picture: "",
+    RememberMe: false,
   }
   passHandler = (e) => {
     let pass = e.target.value;
@@ -32,6 +33,9 @@ class SignIn extends Component {
   }
   submitHandler = (e) => {
     e.preventDefault();
+    if (this.state.RememberMe) {
+      localStorage.setItem('RememberMe', this.state.RememberMe)
+    }
     let params = {
       email: this.state.email,
       password: this.state.password,
@@ -57,7 +61,6 @@ class SignIn extends Component {
         }
       }).catch(err => console.error(err));
   }
-
   showSuccess = (msg) => {
     this.toastSuccess.show({ severity: 'success', summary: 'نجاح', detail: msg, life: 3000 });
   }
@@ -91,6 +94,12 @@ class SignIn extends Component {
       picture: "",
     });
   };
+  componentDidMount() {
+    //Sending User Token
+    if (localStorage.getItem('RememberMe')) {
+      window.location.href = "/Initialize"
+    }
+  }
   render() {
     return (
       <div className="Cover_Photo" id="#login">
@@ -112,7 +121,7 @@ class SignIn extends Component {
                       <label className="p-3">
                         حفظ كلمة المرور
                       </label>
-                      <input type="checkbox" />
+                      <input type="checkbox" onChange={e => { this.setState({ RememberMe: !this.state.RememberMe }); }} />
                     </div>
                     <Button className="p-button-success w-100" type="submit"  >
                       <div className="container">
@@ -133,18 +142,18 @@ class SignIn extends Component {
                     {/* <button className="btn btn-primary btn-block text-uppercase" type="submit">
                       <i className="fa fa-facebook mr-2"></i> Facebook التسجيل عبر</button> */}
 
-                    {!this.state.login && ( 
+                    {!this.state.login && (
                       <div className="mt-2">
-                      <FacebookLogin
-                        appId="880300036697565"
-                        textButton=" الدخول من خلال فيسبوك"
-                        cssClass="btn btn-primary btn-block text-uppercase"
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        scope="public_profile,email,user_friends"
-                        callback={this.responseFacebook}
-                        icon="fa-facebook"
-                      />  
+                        <FacebookLogin
+                          appId="880300036697565"
+                          textButton=" الدخول من خلال فيسبوك"
+                          cssClass="btn btn-primary btn-block text-uppercase"
+                          autoLoad={false}
+                          fields="name,email,picture"
+                          scope="public_profile,email,user_friends"
+                          callback={this.responseFacebook}
+                          icon="fa-facebook"
+                        />
                       </div>
                     )}
 

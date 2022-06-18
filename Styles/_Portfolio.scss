@@ -1,25 +1,123 @@
+#about {
+  .card {
+    background-color:  $navbar-body-color;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    span,h5,p{
+      color: #eee;
+    }
+  }
+
+  .card:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #a5ebb5;
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom;
+  }
+
+  .card:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #28a745;
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom;
+  }
+  .card:hover::after {
+    transform: scaleY(1);
+  }
+  .fonts {
+    font-size: 1rem;
+  }
+  img {
+    width: 50%;
+  }
+  .social-list {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+  }
+  .social-list li {
+    padding: 10px;
+    font-size: 19px;
+  }
+  //Facebook
+  .social-list li:nth-child(1) {
+    color: #4267b2;
+  }
+  //Twitter
+  .social-list li:nth-child(2) {
+    color: #1da1f2;
+  }
+  //Instagram
+  .social-list li:nth-child(3) {
+    color: #c13584;
+  }
+  //LinkedIN
+  .social-list li:nth-child(4) {
+    color: #0e76a8;
+  }
+  //Google
+  .social-list li:nth-child(5) {
+    color: #ff3e30;
+  }
+  .buttons button:nth-child(1) {
+    border: 1px solid #28a745 !important;
+    color: #28a745;
+    height: 40px;
+  }
+
+  .buttons button:nth-child(1):hover {
+    border: 1px solid #28a745 !important;
+    color: #fff;
+    height: 40px;
+    background-color: #28a745;
+  }
+
+  .buttons button:nth-child(2) {
+    border: 1px solid #28a745 !important;
+    background-color: #28a745;
+    color: #fff;
+    height: 40px;
+  }
+}
 #navbar {
   background-color: $navbar-body-color;
   a {
+    transition: 0.1s ease-in;
     color: $font-color;
     &:hover {
+      transition: 0.1s ease-out;
       color: #eee;
       text-decoration: none;
+    }
+  }
+  .dropdown-menu {
+    margin-left: -61px;
+    margin-top: 20px;
+    background-color: $navbar-body-color;
+    .dropdown-item:hover {
+      background-color: $navbar-body-color;
+      color: #eee;
     }
   }
 }
 
 .goBtn {
   float: right;
-}
-#about {
-  margin-top: 150px;
-  p {
-    color: $font-color;
-  }
-  h1 {
-    color: #eee;
-  }
 }
 #projects {
   .CodeIcon {
@@ -136,14 +234,14 @@
   background-color: $navbar-body-color;
   min-height: 202px;
 }
-#deleteProjectBTN { 
-    position: absolute;
-    top: 2%;
-    right: 2%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%); 
-    color: red;  
-    cursor: pointer;  
+#deleteProjectBTN {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: red;
+  cursor: pointer;
 }
 
 /* **************** PopUp modal **************** */
@@ -172,7 +270,13 @@
     }
   }
 }
-
+.AboutEdit,
+.ProjectsEdit {
+  h6 {
+    color: $font-color;
+  }
+  background-color: $navbar-body-color;
+}
 /* **************** TextArea **************** */
 .form-control,
 .form-control:focus {
@@ -231,16 +335,25 @@ textarea::-webkit-scrollbar-thumb {
           color: $hover-color;
         }
       }
+      .dropdown-menu {
+        background-color: #eee;
+        color: black;
+        .dropdown-item:hover {
+          background-color: #eee;
+          color: $iconColor;
+        }
+      }
     }
 
     #about {
-      p {
-        color: $text;
-      }
-      h1 {
-        color: $title;
+      .card {
+        background-color:  white;
+        span,h5,p{
+          color: $text ;
+        }
       }
     }
+
     #projects {
       .CodeIcon {
         color: $iconColor;
@@ -346,6 +459,13 @@ textarea::-webkit-scrollbar-thumb {
     textarea::-webkit-scrollbar {
       background-color: $container-bg;
     }
+  }
+  .AboutEdit,
+  .ProjectsEdit {
+    h6 {
+      color: $text;
+    }
+    background-color: $container-bg;
   }
 }
 // @include themable(lightMode, white, #253529, #414a4c, #738678, #997a8d);

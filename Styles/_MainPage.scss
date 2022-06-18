@@ -2,6 +2,7 @@
    
 }
 .Filter {
+  z-index: 99;
   float: right;
   width: 30%;
   .card {
@@ -173,5 +174,5 @@
     }
   }
 }
-
+ 
 @include themable(lightMode, white, rgb(82, 82, 82), #ffffff, #000);

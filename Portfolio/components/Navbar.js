@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { SearchCircleIcon, ChatIcon, BellIcon, UserIcon, BriefcaseIcon, HomeIcon } from "@heroicons/react/outline";
-import { PencilIcon } from '@heroicons/react/outline'
+import { UserCircleIcon, ChevronDownIcon } from '@heroicons/react/outline'
 import AboutEdit from "../Editing/AboutEdit"
+import Logout from "../../Main Page/components/Logout";
 
 class Navbar extends Component {
     state = {
@@ -50,24 +51,31 @@ class Navbar extends Component {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon "></span>
                 </button>
+
                 <div className="collapse navbar-collapse flex-row-reverse text-right" id="navbarNav">
 
-                    <ul className=" text-right navbar-nav">
-                        <li><a href="#testimonials" className="mr-3 ml-3">تقييم العملاء</a></li>
-                        <li><a href="#skills" className="mr-3 ml-3">المهارات</a></li>
-                        <li><a href="#projects" className="mr-3 ml-3">الأعمال السابقة</a></li>
-                        <li><a href="#" className="mr-3 ml-3">مراسلة <ChatIcon height={25} /></a></li>
-                        <li><a href="#" className="mr-3 ml-3">رئيسي <HomeIcon height={25} /></a></li>
-                        {/* <li>
-                            <a href="#" data-toggle="modal" data-target=".modal-editInfo"
-                                className="mr-3 ml-3" > تعديل <PencilIcon height={20} />
-                            </a>
-                        </li> */}
-                        <a href="#about" className="pl-4 d-none d-lg-flex font-weight-bold text-success border-left">مضر أبو فخر</a>
-                    </ul>
+                    <ul className="dropdown text-right navbar-nav text-center">
+                        <div className="d-lg-flex d-none">
+                            <a className="" role="button" data-toggle="dropdown" ><ChevronDownIcon height={25} /></a>
+                            <div className="dropdown-menu p-1 " aria-labelledby="dropdownMenuLink">
+                                <a className="dropdown-item" href="#testimonials">تقييم العملاء</a>
+                                <a className="dropdown-item" href="#skills">المهارات</a>
+                                <a className="dropdown-item" href="#projects" >الأعمال السابقة</a>
+                            </div>
+                        </div>
+                        <li className="mr-3 ml-3 "><Logout/></li><hr/>
+                        <li><a href="#" className="mr-3 ml-3">مراسلة <ChatIcon height={25} /></a></li><hr/>
+                        <li><a href="#" className="mr-3 ml-3">رئيسي <HomeIcon height={25} /></a></li><hr/>
 
+                        <div className="d-block d-lg-none  ">
+                            <li><a className="mr-3 ml-3" href="#testimonials">تقييم العملاء</a></li><hr/>
+                            <li><a className="mr-3 ml-3" href="#skills">المهارات</a></li><hr/>
+                            <li><a className="mr-3 ml-3" href="#projects" >الأعمال السابقة</a></li>
+                        </div>
+                        <li></li><a href="#about" className="pl-4 mt-1 d-none d-lg-flex font-weight-bold text-success border-left"><UserCircleIcon height={25} className="mr-2" />مضر أبو فخر</a>
+                    </ul>
                 </div>
-                
+
             </nav>
         );
     }

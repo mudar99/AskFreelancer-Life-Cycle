@@ -4,9 +4,9 @@ class ProjectsEdit extends Component {
 
     render() {
         return (
-            <div>
+            <div className="">
                 <div className="form-group wrapper">
-                    <h6 className="p-2 bg-success rounded text-center">
+                    <h6 className="p-2 rounded text-center">
                          إضافة مشروع أو عمل سابق
                     </h6>
                     <p className=" mt-5 text-right ">
@@ -27,7 +27,7 @@ class ProjectsEdit extends Component {
                         <h6 className="mt-2 text-right">
                             :إضافة صورة للمشروع
                         </h6>
-                        <input id="pick-img" type="file" className="text-dark" onChange={this.ImgHandler} />
+                        <input id="pick-img" type="file" className="text-secondary" onChange={this.ImgHandler} />
                     </div>
                     <div className="container mt-3">
                         <h6 className="mt-2 text-right">

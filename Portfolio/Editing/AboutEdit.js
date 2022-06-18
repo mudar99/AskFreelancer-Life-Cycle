@@ -4,7 +4,7 @@ class AboutEdit extends Component {
 
     render() {
         return (
-            <div>
+            <div className="">
                 <div className="form-group wrapper">
                     <p className=" mt-3 text-right">
                         :تعديل النبذة التعريفية

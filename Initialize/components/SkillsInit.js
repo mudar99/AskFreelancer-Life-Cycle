@@ -16,19 +16,16 @@ class SkillsInit extends Component {
   }
   selectHandler = (e) => {
     let selecting = this.state.multiselectRef.current.getSelectedItems();
-    let values = [];
-    for (let i = 0; i < selecting.length; i++) {
-      values[i] = selecting[i].value;
-    }
-    this.state.selectedItems = values
-    this.props.selectHandling(values);
+    this.setState({selectedItems : selecting})
+    console.log('Selected Items')
+    console.log(this.state.selectedItems)
+    this.props.selectHandling(selecting);
   }
   getItems = e => {
-    // console.log("Parent ID: "+this.props.selectedSpe)
     axios.get(this.state.url+this.props.selectedSpe).then(
       res => {
         if (res.data.status == true) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           this.setState({ loading: false });
           this.setState({ skills: res.data.data });
         } else {
@@ -36,13 +33,13 @@ class SkillsInit extends Component {
         }
       }).catch(err => console.error(err));
   }
+  dd = e => {alert('asd')}
   render() {
     return (
       <div>
         <h4 className="mb-5 container ">: اختيار المهارات</h4>
         <div onClick={this.getItems}>
           <Multiselect
-            onChange={this.getItems}
             className="Multiselect container mb-5"
             options={this.state.skills}
             displayValue="name"

@@ -1,9 +1,4 @@
 @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
-* {
-  -webkit-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
-}
-
 #Logo {
   max-width: 100%;
   max-height: 60px;
@@ -282,33 +277,149 @@ footer span {
   color: #000;
 }
 
+#about .card {
+  background-color: #1f2937;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+#about .card span, #about .card h5, #about .card p {
+  color: #eee;
+}
+
+#about .card:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #a5ebb5;
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+}
+
+#about .card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #28a745;
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+}
+
+#about .card:hover::after {
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+}
+
+#about .fonts {
+  font-size: 1rem;
+}
+
+#about img {
+  width: 50%;
+}
+
+#about .social-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0;
+}
+
+#about .social-list li {
+  padding: 10px;
+  font-size: 19px;
+}
+
+#about .social-list li:nth-child(1) {
+  color: #4267b2;
+}
+
+#about .social-list li:nth-child(2) {
+  color: #1da1f2;
+}
+
+#about .social-list li:nth-child(3) {
+  color: #c13584;
+}
+
+#about .social-list li:nth-child(4) {
+  color: #0e76a8;
+}
+
+#about .social-list li:nth-child(5) {
+  color: #ff3e30;
+}
+
+#about .buttons button:nth-child(1) {
+  border: 1px solid #28a745 !important;
+  color: #28a745;
+  height: 40px;
+}
+
+#about .buttons button:nth-child(1):hover {
+  border: 1px solid #28a745 !important;
+  color: #fff;
+  height: 40px;
+  background-color: #28a745;
+}
+
+#about .buttons button:nth-child(2) {
+  border: 1px solid #28a745 !important;
+  background-color: #28a745;
+  color: #fff;
+  height: 40px;
+}
+
 #navbar {
   background-color: #1f2937;
 }
 
 #navbar a {
+  -webkit-transition: 0.1s ease-in;
+  transition: 0.1s ease-in;
   color: #86898d;
 }
 
 #navbar a:hover {
+  -webkit-transition: 0.1s ease-out;
+  transition: 0.1s ease-out;
   color: #eee;
   text-decoration: none;
 }
 
+#navbar .dropdown-menu {
+  margin-left: -61px;
+  margin-top: 20px;
+  background-color: #1f2937;
+}
+
+#navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #1f2937;
+  color: #eee;
+}
+
 .goBtn {
   float: right;
-}
-
-#about {
-  margin-top: 150px;
-}
-
-#about p {
-  color: #86898d;
-}
-
-#about h1 {
-  color: #eee;
 }
 
 #projects .CodeIcon {
@@ -477,6 +588,16 @@ footer span {
   color: #eee;
 }
 
+.AboutEdit,
+.ProjectsEdit {
+  background-color: #1f2937;
+}
+
+.AboutEdit h6,
+.ProjectsEdit h6 {
+  color: #86898d;
+}
+
 /* **************** TextArea **************** */
 .form-control,
 .form-control:focus {
@@ -534,12 +655,22 @@ textarea::-webkit-scrollbar-thumb {
   color: #738678;
 }
 
-.lightMode #about p {
-  color: #414a4c;
+.lightMode #navbar .dropdown-menu {
+  background-color: #eee;
+  color: black;
 }
 
-.lightMode #about h1 {
+.lightMode #navbar .dropdown-menu .dropdown-item:hover {
+  background-color: #eee;
   color: #808080;
+}
+
+.lightMode #about .card {
+  background-color: white;
+}
+
+.lightMode #about .card span, .lightMode #about .card h5, .lightMode #about .card p {
+  color: #414a4c;
 }
 
 .lightMode #projects .CodeIcon {
@@ -648,6 +779,16 @@ textarea::-webkit-scrollbar-thumb {
   background-color: white;
 }
 
+.AboutEdit,
+.ProjectsEdit {
+  background-color: white;
+}
+
+.AboutEdit h6,
+.ProjectsEdit h6 {
+  color: #414a4c;
+}
+
 .initialize {
   background-color: #1f2937;
   color: #86898d;
@@ -734,6 +875,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .Filter {
+  z-index: 99;
   float: right;
   width: 30%;
 }

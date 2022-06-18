@@ -30,7 +30,7 @@ class Projects extends Component {
                 <div className=" modal fade modal-editProjects" >
                     <div className="modal-dialog modal-dialog-centered modal-md ">
                         <div className="modal-content ">
-                            <div className="container">
+                            <div className="container ProjectsEdit">
                                 <div id="card-body" className="card-body">
                                 <ProjectsEdit />
                                 </div>

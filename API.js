@@ -4,3 +4,4 @@ export const RegisterAPI = `${local}/register`
 export const PrepareAccountAPI = `${local}/account`
 export const AllParentsCategoriesAPI = `${local}/category/parents`
 export const ChildCategoriesOfParentAPI = `${local}/category/child/`
+export const GetProfileInfo = `${local}/profile`

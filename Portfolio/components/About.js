@@ -5,53 +5,37 @@ import AboutEdit from "../Editing/AboutEdit";
 class About extends Component {
     render() {
         return (
-            <section id="about" >
-                <div className="container d-block d-xl-flex ">
-
-                    <div className="profile-img mt-3">
-                        <img
-                            className="container "
-                            alt="Profile-Image"
-                            src="/Img/Cover.jpg"
-                        />
-                    </div>
-
-                    <div className="Content container p-3 text-right">
-
-                        <h1>
-                            .مرحباً أنا مضر
-                            <br />مختص في هندسة البرمحيات
-                        </h1>
-                        <p className="">
-                            انا هادي كريم،22 سنة،مصمم جرافيك خبرة كثر من اربع سنوات فى مجال التصميم اسعى دائما للتطور والافضل , وأعمل دائماً وجاهداً لأكون في مستوى عالِ من الإحترافيه والمهارة في هذا المجال الرائع.استخدم مستقل ك منصة لعرض مواهبي واستثمارها بشكل صحيح شكرا لزيارة حسابي.
-                        </p>
-                        <div className="mt-5 ">
-                            <a href="#" data-toggle="modal" data-target=".modal-editAbout" className="m-4 text-success">
-                                <PencilIcon height={20} />
-                            </a>
-                            <a href="#contact" className="">
-                                <button className="btn btn-success ">العمل معي</button>
-                            </a>
-                            <a href="#projects" className="ml-4 ">
-                                <button className="btn btn-secondary">مشاريعي السابقة</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className=" modal fade modal-editAbout" >
-                    <div className="modal-dialog modal-dialog-centered modal-md ">
-                        <div className="modal-content ">
-                            <div className="container">
-                                <div id="card-body" className="card-body">
-                                    <AboutEdit /> 
+                <div id="about" className="container mt-5">
+                    <div className="row d-flex justify-content-center">
+                        <div className="col-md-10">
+                            <div className="card p-3 py-4">
+                                <div className="text-center">
+                                    <img src="/Img/3.png" className="rounded-circle" />
+                                </div>
+                                <div className="text-center mt-4">
+                                    <span className="bg-secondary p-1 px-4 rounded text-white ">Pro</span>
+                                    <h5 className="mt-3 mb-0">{this.props.Fname} {this.props.Lname}</h5>
+                                    <span><medium className="text-success">Specalization: </medium>{this.props.Specalization}</span><br />
+                                    <span><medium className="text-success">ProfissionName: </medium>{this.props.ProfissionName}</span>
+                                    <div className="px-4 mt-2">
+                                        <p className="fonts">{this.props.Bio}</p>
+                                    </div>
+                                    <ul className="social-list">
+                                        <li><i className="fa fa-facebook"></i></li>
+                                        <li><i className="fa fa-twitter"></i></li>
+                                        <li><i className="fa fa-instagram"></i></li>
+                                        <li><i className="fa fa-linkedin"></i></li>
+                                        <li><i className="fa fa-google"></i></li>
+                                    </ul>
+                                    <div className="buttons">
+                                        <button className="btn btn-outline-primary px-4 mr-2">مراسلة</button>
+                                        <button className="btn btn-primary px-4 ml-2">التواصل</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
         );
     }
 }
