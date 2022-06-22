@@ -15,8 +15,8 @@ class About extends Component {
                                 <div className="text-center mt-4">
                                     <span className="bg-secondary p-1 px-4 rounded text-white ">Pro</span>
                                     <h5 className="mt-3 mb-0">{this.props.Fname} {this.props.Lname}</h5>
-                                    <span><medium className="text-success">Specalization: </medium>{this.props.Specalization}</span><br />
-                                    <span><medium className="text-success">ProfissionName: </medium>{this.props.ProfissionName}</span>
+                                    <span><big className="text-success">Specalization: </big>{this.props.Specalization}</span><br />
+                                    <span><big className="text-success">ProfissionName: </big>{this.props.ProfissionName}</span>
                                     <div className="px-4 mt-2">
                                         <p className="fonts">{this.props.Bio}</p>
                                     </div>

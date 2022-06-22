@@ -285,7 +285,9 @@ footer span {
   border-radius: 8px;
 }
 
-#about .card span, #about .card h5, #about .card p {
+#about .card span,
+#about .card h5,
+#about .card p {
   color: #eee;
 }
 
@@ -394,6 +396,55 @@ footer span {
   background-color: #1f2937;
 }
 
+#navbar .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#navbar .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 33px;
+  right: -60px;
+  background-color: #1f2937;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+#navbar .dropdown .dropdown-content a {
+  color: #86898d;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+#navbar .dropdown .dropdown-content a:hover {
+  color: #eee;
+  background-color: #1f2937;
+}
+
+#navbar .dropdown .dropdown-content .dropdown-item {
+  cursor: pointer;
+}
+
+#navbar .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#navbar .dropdown #setting {
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+#navbar .dropdown #setting:hover {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
 #navbar a {
   -webkit-transition: 0.1s ease-in;
   transition: 0.1s ease-in;
@@ -407,15 +458,9 @@ footer span {
   text-decoration: none;
 }
 
-#navbar .dropdown-menu {
-  margin-left: -61px;
-  margin-top: 20px;
-  background-color: #1f2937;
-}
-
-#navbar .dropdown-menu .dropdown-item:hover {
-  background-color: #1f2937;
-  color: #eee;
+#navbar .nav-link:hover,
+#navbar #LogOutBtn {
+  cursor: pointer;
 }
 
 .goBtn {
@@ -589,12 +634,12 @@ footer span {
 }
 
 .AboutEdit,
-.ProjectsEdit {
+.ProjectsEdit, .PasswordEdit {
   background-color: #1f2937;
 }
 
 .AboutEdit h6,
-.ProjectsEdit h6 {
+.ProjectsEdit h6, .PasswordEdit h6 {
   color: #86898d;
 }
 
@@ -665,11 +710,26 @@ textarea::-webkit-scrollbar-thumb {
   color: #808080;
 }
 
+.lightMode #navbar .dropdown .dropdown-content {
+  background-color: #f9f9f9;
+}
+
+.lightMode #navbar .dropdown .dropdown-content a {
+  color: black;
+}
+
+.lightMode #navbar .dropdown .dropdown-content a:hover {
+  color: black;
+  background-color: #f1f1f1;
+}
+
 .lightMode #about .card {
   background-color: white;
 }
 
-.lightMode #about .card span, .lightMode #about .card h5, .lightMode #about .card p {
+.lightMode #about .card span,
+.lightMode #about .card h5,
+.lightMode #about .card p {
   color: #414a4c;
 }
 
@@ -780,12 +840,12 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .AboutEdit,
-.ProjectsEdit {
+.ProjectsEdit, .PasswordEdit {
   background-color: white;
 }
 
 .AboutEdit h6,
-.ProjectsEdit h6 {
+.ProjectsEdit h6, .PasswordEdit h6 {
   color: #414a4c;
 }
 

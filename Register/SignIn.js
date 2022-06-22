@@ -33,13 +33,10 @@ class SignIn extends Component {
   }
   submitHandler = (e) => {
     e.preventDefault();
-    if (this.state.RememberMe) {
-      localStorage.setItem('RememberMe', this.state.RememberMe)
-    }
+    localStorage.setItem('RememberMe', this.state.RememberMe)
     let params = {
       email: this.state.email,
       password: this.state.password,
-      // headers: { Authorization: `Bearer ${token}` }
     }
     this.setState({ loading: true });
     axios.post(this.state.url, params).then(
@@ -50,14 +47,14 @@ class SignIn extends Component {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
           setTimeout(function () {
-            localStorage.setItem('LoginToken', res.data.data.token)
-            console.log(localStorage.getItem('LoginToken'))
+            localStorage.setItem('userToken', res.data.data.token)
+            console.log(localStorage.getItem('userToken'))
             window.location.href = "/Initialize"
           }, 1000);
         }
         else {
-          this.setState({ loading: false }); this.showError(res.data.message);
-          // document.getElementById("errMsg").innerHTML = res.data.message
+          this.setState({ loading: false });
+          this.showError(res.data.message);
         }
       }).catch(err => console.error(err));
   }
@@ -95,8 +92,7 @@ class SignIn extends Component {
     });
   };
   componentDidMount() {
-    //Sending User Token
-    if (localStorage.getItem('RememberMe')) {
+    if (localStorage.getItem('RememberMe') === 'true' && localStorage.getItem('userToken') !== null) {
       window.location.href = "/Initialize"
     }
   }
@@ -106,7 +102,6 @@ class SignIn extends Component {
 
         <Toast ref={(el) => this.toastSuccess = el} position="bottom-right" />
         <Toast ref={(el) => this.toastFailure = el} position="bottom-right" />
-
 
         <div className="container">
           <div className="row ">
@@ -121,7 +116,7 @@ class SignIn extends Component {
                       <label className="p-3">
                         حفظ كلمة المرور
                       </label>
-                      <input type="checkbox" onChange={e => { this.setState({ RememberMe: !this.state.RememberMe }); }} />
+                      <input type="checkbox" onChange={e => { this.setState({ RememberMe: e.target.checked });}} />
                     </div>
                     <Button className="p-button-success w-100" type="submit"  >
                       <div className="container">
@@ -134,7 +129,6 @@ class SignIn extends Component {
                       <LoadingIcon size="25px" loading={this.state.loading} />
                     </button> */}
 
-                    <h6 id="errMsg" className="text-right text-danger mt-3"  ></h6>
 
                     <hr className="my-4 " />
                     <button className="btn btn-danger btn-block text-uppercase" type="submit">

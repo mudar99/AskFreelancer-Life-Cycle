@@ -75,6 +75,11 @@ class MainPage extends Component {
     console.log("Posts " + Posts)
 
   }
+  componentDidMount() {
+    if (localStorage.getItem('userToken') == "") {
+      window.location.href = "/"
+    }
+  }
   render() {
     const Posts = this._getMainPosts();
     return (

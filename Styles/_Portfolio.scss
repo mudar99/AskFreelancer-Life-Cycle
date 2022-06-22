@@ -1,11 +1,13 @@
 #about {
   .card {
-    background-color:  $navbar-body-color;
+    background-color: $navbar-body-color;
     border: none;
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    span,h5,p{
+    span,
+    h5,
+    p {
       color: #eee;
     }
   }
@@ -95,6 +97,42 @@
   }
 }
 #navbar {
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 33px;
+      right: -60px;
+      background-color: $navbar-body-color;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      a {
+        color: $font-color;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        &:hover {
+          color: #eee;
+          background-color: $navbar-body-color;
+        }
+      }
+      .dropdown-item {
+        cursor: pointer;
+      }
+    }
+    &:hover .dropdown-content {
+      display: block;
+    }
+    #setting {
+      transition: transform 0.2s ease-in-out;
+    }
+    #setting:hover {
+      transform: rotate(60deg);
+    }
+  }
   background-color: $navbar-body-color;
   a {
     transition: 0.1s ease-in;
@@ -105,14 +143,9 @@
       text-decoration: none;
     }
   }
-  .dropdown-menu {
-    margin-left: -61px;
-    margin-top: 20px;
-    background-color: $navbar-body-color;
-    .dropdown-item:hover {
-      background-color: $navbar-body-color;
-      color: #eee;
-    }
+  .nav-link:hover,
+  #LogOutBtn {
+    cursor: pointer;
   }
 }
 
@@ -271,7 +304,7 @@
   }
 }
 .AboutEdit,
-.ProjectsEdit {
+.ProjectsEdit, .PasswordEdit{
   h6 {
     color: $font-color;
   }
@@ -343,13 +376,27 @@ textarea::-webkit-scrollbar-thumb {
           color: $iconColor;
         }
       }
+      .dropdown {
+        .dropdown-content {
+          background-color: #f9f9f9;
+          a {
+            color: black;
+            &:hover {
+              color: black;
+              background-color: #f1f1f1;
+            }
+          }
+        }
+      }
     }
 
     #about {
       .card {
-        background-color:  white;
-        span,h5,p{
-          color: $text ;
+        background-color: white;
+        span,
+        h5,
+        p {
+          color: $text;
         }
       }
     }
@@ -461,7 +508,7 @@ textarea::-webkit-scrollbar-thumb {
     }
   }
   .AboutEdit,
-  .ProjectsEdit {
+  .ProjectsEdit , .PasswordEdit {
     h6 {
       color: $text;
     }

@@ -5,3 +5,6 @@ export const PrepareAccountAPI = `${local}/account`
 export const AllParentsCategoriesAPI = `${local}/category/parents`
 export const ChildCategoriesOfParentAPI = `${local}/category/child/`
 export const GetProfileInfo = `${local}/profile`
+export const LogoutAPI = `${local}/logout`
+export const ChangePasswordAPI = `${local}/password/change`
+export const AddProjectAPI = `${local}/projects`

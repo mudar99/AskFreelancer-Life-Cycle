@@ -25,7 +25,7 @@ class Initialize extends Component {
     Spe: "",
     Skills: [],
     url: PrepareAccountAPI,
-    token: localStorage.getItem('LoginToken')
+    token: localStorage.getItem('userToken')
   }
   FreelancerCallback = (childData) => { this.setState({ isFreelancer: childData }) }
   ClientCallback = (childData) => { this.setState({ isClient: childData }) }
@@ -72,8 +72,8 @@ class Initialize extends Component {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
           setTimeout(function () {
-            localStorage.setItem('LoginToken', res.data.data.token)
-            console.log(localStorage.getItem('LoginToken'))
+            localStorage.setItem('userToken', res.data.data.token)
+            console.log(localStorage.getItem('userToken'))
             window.location.href = "/mainPage"
           }, 1000);
         }
@@ -84,9 +84,13 @@ class Initialize extends Component {
       }).catch(err => console.error(err));
   }
   componentDidMount() {
+    if (localStorage.getItem('userToken') == "") {
+      window.location.href = "/"
+    }
     axios.defaults.headers = {
       Authorization: `Bearer ${this.state.token}`,
     }
+    console.log(this.state.token);
     axios.post(this.state.url, axios.defaults.headers).then(
       res => {
         this.setState({ respone: res.data });

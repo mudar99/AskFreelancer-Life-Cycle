@@ -29,7 +29,7 @@ class SignUp extends Component {
       res => {
         this.setState({ respone: res.data });
         console.log(res.data);
-        localStorage.setItem('RegisterToken', res.data.data.token)
+        localStorage.setItem('userToken', res.data.data.token)
         if (res.data.status == true) {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);

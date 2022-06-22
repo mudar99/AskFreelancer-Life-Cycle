@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BadgeCheckIcon, ChipIcon } from "@heroicons/react/solid";
-import { skills } from "./data";
 class Skills extends Component {
   render() {
     return (
@@ -17,13 +16,13 @@ class Skills extends Component {
               possimus est.
             </p>
           </div>
-          <div className="row">
-            {skills.map((skill) => (
-              <div key={skill} className="p-2 col-md-6">
+          <div className="row"> 
+            {this.props.Skills.map((skill) => (
+              <div key={skill.id} className="p-2 col-md-6">
                 <div className="skills rounded p-4 ">
                   <BadgeCheckIcon height={20} className="text-success mr-4 " />
                   <span className=" ">
-                    {skill}
+                    {skill.name}
                   </span>
                 </div>
               </div>

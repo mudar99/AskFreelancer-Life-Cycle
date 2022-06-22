@@ -14,10 +14,15 @@ class Profile extends Component {
     state = {
         url: GetProfileInfo,
         loading: true,
-        info: [],
-        token: localStorage.getItem('LoginToken'),
+        userInfo: [],
+        skillsInfo: [],
+        token: localStorage.getItem('userToken'),
+
     }
-    componentDidMount() {
+    componentDidMount() { 
+        if(localStorage.getItem('userToken') == ""){
+            window.location.href = "/"
+        }
         axios.defaults.headers = {
             Authorization: `Bearer ${this.state.token}`,
         }
@@ -26,24 +31,28 @@ class Profile extends Component {
                 if (res.data.status == true) {
                     console.log(res.data.data)
                     this.setState({ loading: false });
-                    this.setState({ info: res.data.data });
+                    this.setState({
+                        userInfo: res.data.data.user,
+                        skillsInfo: res.data.data.skills
+                    });
                 } else {
                     this.setState({ loading: true });
                 }
             }).catch(err => console.error(err));
     }
-    ss = e => {
-        e.preventDefault();
-        console.log(this.state.info.first_name)
-    }
     render() {
         return (
             <main className="Profile lightMode">
                 <Helmet title='Ask Freelancer | Profile' />
-                <Navbar /> 
-                <About ProfissionName={this.state.info.profissionName} Fname = {this.state.info.first_name} Lname = {this.state.info.last_name} Specalization = {this.state.info.speciality} Bio = {this.state.info.bio}/>
+                <Navbar Fname={this.state.userInfo.first_name}/>
+                <About
+                    ProfissionName={this.state.userInfo.profissionName}
+                    Fname={this.state.userInfo.first_name}
+                    Lname={this.state.userInfo.last_name}
+                    Specalization={this.state.userInfo.speciality}
+                    Bio={this.state.userInfo.bio}/>
                 <Projects />
-                <Skills />
+                <Skills Skills={this.state.skillsInfo} />
                 <Testimonials />
                 <Contact />
                 <Footer />
