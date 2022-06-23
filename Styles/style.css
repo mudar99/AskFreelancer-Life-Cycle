@@ -483,6 +483,10 @@ footer span {
   background-color: #1f2937;
 }
 
+#skills .skills span {
+  color: #86898d;
+}
+
 #skills .ChipIcon {
   color: #86898d;
 }
@@ -553,7 +557,7 @@ footer span {
 
 .imagebox {
   background: #111827;
-  padding: 0px;
+  padding: 1px;
   text-align: center;
   width: 100%;
 }
@@ -562,6 +566,7 @@ footer span {
   opacity: 1;
   -webkit-transition: 0.5s opacity;
   transition: 0.5s opacity;
+  height: 250px;
 }
 
 .imagebox .imagebox-bar {
@@ -591,15 +596,19 @@ footer span {
   min-height: 202px;
 }
 
-#deleteProjectBTN {
+.deleteProjectBTN {
   position: absolute;
-  top: 2%;
+  top: 3%;
   right: 2%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  color: red;
+  color: #28a745;
   cursor: pointer;
+}
+
+.deleteProjectBTN:hover {
+  color: red;
 }
 
 /* **************** PopUp modal **************** */
@@ -633,13 +642,15 @@ footer span {
   color: #eee;
 }
 
-.AboutEdit,
-.ProjectsEdit, .PasswordEdit {
+.darkMode .AboutEdit,
+.darkMode .ProjectsEdit,
+.darkMode .PasswordEdit {
   background-color: #1f2937;
 }
 
-.AboutEdit h6,
-.ProjectsEdit h6, .PasswordEdit h6 {
+.darkMode .AboutEdit h6,
+.darkMode .ProjectsEdit h6,
+.darkMode .PasswordEdit h6 {
   color: #86898d;
 }
 
@@ -672,6 +683,12 @@ textarea::-webkit-scrollbar-thumb {
   color: #fbc634;
 }
 
+@media only screen and (max-width: 1100px) {
+  .imagebox img {
+    height: auto;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   .imagebox .imagebox-bar {
     font-size: 1em;
@@ -679,6 +696,15 @@ textarea::-webkit-scrollbar-thumb {
   }
   .imagebox:hover .imagebox-bar {
     padding-bottom: 7%;
+  }
+  .imagebox img {
+    height: 190px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .imagebox img {
+    height: 280px;
   }
 }
 
@@ -799,6 +825,7 @@ textarea::-webkit-scrollbar-thumb {
 
 .lightMode .imagebox {
   background: #738678;
+  background-color: white;
 }
 
 .lightMode .imagebox .imagebox-bar {

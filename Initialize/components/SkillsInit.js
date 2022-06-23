@@ -33,7 +33,6 @@ class SkillsInit extends Component {
         }
       }).catch(err => console.error(err));
   }
-  dd = e => {alert('asd')}
   render() {
     return (
       <div>

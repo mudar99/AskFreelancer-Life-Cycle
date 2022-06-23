@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { SearchCircleIcon, ChatIcon, BellIcon, UserIcon, BriefcaseIcon, HomeIcon } from "@heroicons/react/outline";
-import { UserCircleIcon , CogIcon, EyeIcon } from '@heroicons/react/outline'
+import { UserCircleIcon, CogIcon, EyeIcon } from '@heroicons/react/outline'
 import AboutEdit from "../Editing/AboutEdit"
 import Logout from "../../Main Page/components/Logout";
 import ChangePassword from "./ChangePassword";
@@ -72,22 +72,22 @@ class Navbar extends Component {
                             <a className="mr-3 ml-3" role="button"><CogIcon id="setting" height={25} /></a>
                             <div class="dropdown-content">
                                 <a className="dropdown-item" data-toggle="modal" data-target=".modal-changePassword">تغيير كلمة المرور </a>
-                                <a className="dropdown-item" href="#skills">تأكيد الحساب</a>
+                                <a className="dropdown-item" href="#skills">توثيق الهوية</a>
                                 <a className="dropdown-item" href="#projects" >.....</a>
                             </div>
                         </div>
 
-                        <div className="d-block d-lg-none  ">
-                            <li><a className="mr-3 ml-3" href="#testimonials">تقييم العملاء</a></li><hr />
-                            <li><a className="mr-3 ml-3" href="#skills">المهارات</a></li><hr />
-                            <li><a className="mr-3 ml-3" href="#projects" >الأعمال السابقة</a></li>
+                        <div className="d-block d-lg-none">
+                            <a href="#" data-toggle="modal" data-target=".modal-changePassword">تغيير كلمة المرور </a><hr />
+                            <a href="#">توثيق الهوية</a><hr />
+                            <a href="#" >.....</a>
                         </div>
                         <li><a href="#about" className="pl-4 mt-1 d-none d-lg-flex font-weight-bold text-success border-left"><UserCircleIcon height={25} className="mr-2" />
                             <h6 className="m-1">{this.props.Fname}</h6>
                         </a></li>
                     </ul>
                 </div>
-                
+
                 <div className=" modal fade modal-changePassword" >
                     <div className="modal-dialog modal-dialog-centered modal-md ">
                         <div className="modal-content ">
