@@ -48,7 +48,6 @@ class SignIn extends Component {
           this.showSuccess(res.data.message);
           setTimeout(function () {
             localStorage.setItem('userToken', res.data.data.token)
-            console.log(localStorage.getItem('userToken'))
             window.location.href = "/Initialize"
           }, 1000);
         }

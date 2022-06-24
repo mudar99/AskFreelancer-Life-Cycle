@@ -42,7 +42,7 @@ class Profile extends Component {
     }
     render() {
         return (
-            <main className="Profile lightMode">
+            <main className="Profile darkMode">
                 <Helmet title='Ask Freelancer | Profile' />
                 <Navbar Fname={this.state.userInfo.first_name}/>
                 <About

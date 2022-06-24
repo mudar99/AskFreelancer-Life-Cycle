@@ -10,3 +10,8 @@ export const ChangePasswordAPI = `${local}/api/password/change`
 export const AddProjectAPI = `${local}/api/projects`
 export const GetPrtojectsAPI = `${local}/api/projects`
 export const DeletePrtojectAPI = `${local}/api/projects/`
+export const CmsLoginAPI = `${local}/api/CMS/login`
+export const CmsLogoutAPI = `${local}/api/CMS/logout`
+export const ChangeCMSPasswordAPI = `${local}/api/CMS/password/change`
+
+

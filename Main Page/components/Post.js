@@ -27,7 +27,7 @@ class Post extends Component {
                         </div>
                     </div>
                     <div className="container">
-                        <p className="post-text p-3 mt-2 text-right">{this.props.text}</p>
+                        <p className="post-text p-3 mt-2 container text-wrap">{this.props.text}</p>
                     </div>
                     {
                         this.props.postDoc.map((element) => (

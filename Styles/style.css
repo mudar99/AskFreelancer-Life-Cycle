@@ -461,6 +461,11 @@ footer span {
 #navbar .nav-link:hover,
 #navbar #LogOutBtn {
   cursor: pointer;
+  color: #86898d;
+}
+
+#navbar #LogOutBtn:hover {
+  color: #eee;
 }
 
 .goBtn {
@@ -566,7 +571,7 @@ footer span {
   opacity: 1;
   -webkit-transition: 0.5s opacity;
   transition: 0.5s opacity;
-  height: 250px;
+  height: 260px;
 }
 
 .imagebox .imagebox-bar {
@@ -644,13 +649,15 @@ footer span {
 
 .darkMode .AboutEdit,
 .darkMode .ProjectsEdit,
-.darkMode .PasswordEdit {
+.darkMode .PasswordEdit,
+.darkMode .VerifyID {
   background-color: #1f2937;
 }
 
 .darkMode .AboutEdit h6,
 .darkMode .ProjectsEdit h6,
-.darkMode .PasswordEdit h6 {
+.darkMode .PasswordEdit h6,
+.darkMode .VerifyID h6 {
   color: #86898d;
 }
 
@@ -704,7 +711,13 @@ textarea::-webkit-scrollbar-thumb {
 
 @media only screen and (max-width: 800px) {
   .imagebox img {
-    height: 280px;
+    height: 220px;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .imagebox img {
+    height: 350px;
   }
 }
 
@@ -747,6 +760,14 @@ textarea::-webkit-scrollbar-thumb {
 .lightMode #navbar .dropdown .dropdown-content a:hover {
   color: black;
   background-color: #f1f1f1;
+}
+
+.lightMode #navbar #LogOutBtn {
+  color: #414a4c;
+}
+
+.lightMode #navbar #LogOutBtn:hover {
+  color: #738678;
 }
 
 .lightMode #about .card {
@@ -867,12 +888,14 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .AboutEdit,
-.ProjectsEdit, .PasswordEdit {
+.ProjectsEdit,
+.PasswordEdit {
   background-color: white;
 }
 
 .AboutEdit h6,
-.ProjectsEdit h6, .PasswordEdit h6 {
+.ProjectsEdit h6,
+.PasswordEdit h6 {
   color: #414a4c;
 }
 
@@ -1176,6 +1199,10 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .sidenav li {
+  list-style: none;
+}
+
+.sidenav li .Link {
   font-size: 15px;
   text-align: right;
   -webkit-transition: 0.2s;
@@ -1186,12 +1213,54 @@ textarea::-webkit-scrollbar-thumb {
   display: block;
 }
 
-.sidenav li:hover {
+.sidenav li:not(:first-child):hover {
   color: #525252;
   text-decoration: none;
   background-color: rgba(3, 1, 0, 0.11);
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  cursor: pointer;
+}
+
+.sidenav li:last-child {
+  margin-top: 60vh;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.sidenav li:last-child:hover {
+  background-color: inherit;
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.sidenav .dropdown-content {
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: auto;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.sidenav .dropdown-content a {
+  text-align: center;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.sidenav .dropdown-content a:hover {
+  color: black;
+}
+
+.sidenav .dropdown-content .dropdown-item {
+  cursor: pointer;
 }
 
 .Category {
@@ -1230,7 +1299,10 @@ textarea::-webkit-scrollbar-thumb {
 
 @media only screen and (max-width: 1200px) {
   .sidenav {
-    right: -90px;
+    right: -95px;
+  }
+  .Category {
+    width: 100%;
   }
 }
 
@@ -1239,7 +1311,7 @@ textarea::-webkit-scrollbar-thumb {
     width: 0%;
   }
   .Category {
-    width: auto;
+    width: 100%;
   }
 }
 

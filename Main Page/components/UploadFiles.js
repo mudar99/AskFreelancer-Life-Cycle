@@ -68,13 +68,7 @@ class UploadFiles extends Component {
                     oninit={() => this.handleInit()}
                     allowFileTypeValidation={true}
                     acceptedFileTypes={['image/png', 'image/jpeg', 'application/pdf', 'video/mp4']}
-                    labelIdle={
-                        `<div>
-                        <p>
-                        إسحب و أفلت ملفاتك أو تصفح
-                        </p>
-                    </div>`
-                    }
+                    labelIdle={ `<div><p>إسحب و أفلت ملفاتك أو تصفح</p></div>`}
                     onupdatefiles={this.filesCallback}
                 />
                 {/* <div className="users">

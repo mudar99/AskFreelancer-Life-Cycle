@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Notifications from "../Notifications/Notifications";
 import { UserIcon, BellIcon, LogoutIcon } from '@heroicons/react/outline'; 
 import Logout from "./Logout";
+import {LogoutAPI} from '../../API';
 
 
 class Nav extends Component {
@@ -33,7 +34,7 @@ class Nav extends Component {
                     <div className="collapse navbar-collapse flex-row-reverse text-right" id="navbarNav">
                         <ul className="navbar-nav ">
                             <li className="nav-item active ">
-                            <a className="nav-link " ><Logout/></a>
+                            <a className="nav-link " ><Logout remember="RememberMe" startPage='/' parentUrl = {LogoutAPI} Token = 'userToken'/></a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link " data-toggle="modal" data-target=".bd-notifications">الإشعارات <BellIcon height={25} /></a>

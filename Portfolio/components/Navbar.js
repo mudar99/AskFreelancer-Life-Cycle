@@ -4,6 +4,8 @@ import { UserCircleIcon, CogIcon, EyeIcon } from '@heroicons/react/outline'
 import AboutEdit from "../Editing/AboutEdit"
 import Logout from "../../Main Page/components/Logout";
 import ChangePassword from "./ChangePassword";
+import {LogoutAPI} from '../../API';
+import ID_Verification from "./ID_Verification";
 
 class Navbar extends Component {
     state = {
@@ -64,15 +66,15 @@ class Navbar extends Component {
                                 <a className="dropdown-item" href="#projects" >الأعمال السابقة</a>
                             </div>
                         </div>
-                        <li className="mr-3 ml-3 "><Logout /></li><hr />
+                        <li className="mr-3 ml-3 " ><Logout remember="RememberMe" startPage='/' parentUrl = {LogoutAPI} Token = 'userToken'/></li><hr />
                         <li><a href="#" className="mr-3 ml-3">مراسلة <ChatIcon height={25} /></a></li><hr />
-                        <li><a href="#" className="mr-3 ml-3">رئيسي <HomeIcon height={25} /></a></li><hr />
+                        <li><a href="/MainPage" className="mr-3 ml-3">رئيسي <HomeIcon height={25} /></a></li><hr />
 
                         <div className="dropdown d-lg-flex d-none">
                             <a className="mr-3 ml-3" role="button"><CogIcon id="setting" height={25} /></a>
                             <div class="dropdown-content">
-                                <a className="dropdown-item" data-toggle="modal" data-target=".modal-changePassword">تغيير كلمة المرور </a>
-                                <a className="dropdown-item" href="#skills">توثيق الهوية</a>
+                                <a className=" " data-toggle="modal" data-target=".modal-changePassword">تغيير كلمة المرور </a>
+                                <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a>
                                 <a className="dropdown-item" href="#projects" >.....</a>
                             </div>
                         </div>
@@ -94,6 +96,18 @@ class Navbar extends Component {
                             <div className="container PasswordEdit">
                                 <div id="card-body" className="card-body">
                                     <ChangePassword />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=" modal fade modal-VerifyID" >
+                    <div className="modal-dialog modal-dialog-centered modal-lg ">
+                        <div className="modal-content ">
+                            <div className="container VerifyID">
+                                <div id="card-body" className="card-body">
+                                    <ID_Verification />
                                 </div>
                             </div>
                         </div>

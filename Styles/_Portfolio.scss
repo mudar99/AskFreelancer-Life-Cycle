@@ -1,5 +1,4 @@
-
-  #about {
+#about {
   .card {
     background-color: $navbar-body-color;
     border: none;
@@ -147,6 +146,10 @@
   .nav-link:hover,
   #LogOutBtn {
     cursor: pointer;
+    color: $font-color;
+  }
+  #LogOutBtn:hover {
+    color: #eee;
   }
 }
 
@@ -166,7 +169,7 @@
 }
 #skills {
   .skills {
-    span{
+    span {
       color: $font-color;
     }
     background-color: $navbar-body-color;
@@ -238,7 +241,7 @@
   img {
     opacity: 1;
     transition: 0.5s opacity;
-    height: 250px;
+    height: 260px;
   }
 }
 .imagebox {
@@ -280,7 +283,7 @@
   color: #28a745;
   cursor: pointer;
   &:hover {
-    color: red; 
+    color: red;
   }
 }
 
@@ -311,18 +314,17 @@
   }
 }
 
-.darkMode{
+.darkMode {
   .AboutEdit,
   .ProjectsEdit,
-  .PasswordEdit{
+  .PasswordEdit,
+  .VerifyID {
     h6 {
       color: $font-color;
     }
     background-color: $navbar-body-color;
   }
 }
-
- 
 
 /* **************** TextArea **************** */
 .form-control,
@@ -353,7 +355,7 @@ textarea::-webkit-scrollbar-thumb {
 
 @media only screen and (max-width: 1100px) {
   .imagebox {
-    img{
+    img {
       height: auto;
     }
   }
@@ -369,19 +371,25 @@ textarea::-webkit-scrollbar-thumb {
         padding-bottom: 7%;
       }
     }
-    img{
+    img {
       height: 190px;
     }
   }
 }
 @media only screen and (max-width: 800px) {
   .imagebox {
-    img{
-      height: 280px;
+    img {
+      height: 220px;
     }
   }
 }
-
+@media only screen and (max-width: 770px) {
+  .imagebox {
+    img {
+      height: 350px;
+    }
+  }
+}
 @mixin themable(
   $theme-name,
   $container-bg,
@@ -417,6 +425,12 @@ textarea::-webkit-scrollbar-thumb {
               background-color: #f1f1f1;
             }
           }
+        }
+      }
+      #LogOutBtn {
+        color: $text;
+        &:hover {
+          color: $hover-color;
         }
       }
     }
@@ -540,7 +554,8 @@ textarea::-webkit-scrollbar-thumb {
     }
   }
   .AboutEdit,
-  .ProjectsEdit , .PasswordEdit {
+  .ProjectsEdit,
+  .PasswordEdit {
     h6 {
       color: $text;
     }

@@ -11,7 +11,7 @@ class CMS extends Component {
         return (
             <div className=' '>
                 <Helmet title='Ask Freelancer | CMS' />
-                <CmsNav />
+                {/* <CmsNav /> */}
                 <SideNav /> 
             </div>
         );

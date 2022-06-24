@@ -32,8 +32,8 @@ class ProjectsEdit extends Component {
                     this.showSuccess(res.data.message)
                     setTimeout(function () {
                         document.getElementById('cancelAdd').click();
-                        
-                    window.location.reload();
+
+                        window.location.reload();
                     }, 1000);
                 } else {
                     this.setState({ loading: false });
