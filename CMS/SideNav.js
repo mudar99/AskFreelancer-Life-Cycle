@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import { HomeIcon, ExclamationCircleIcon, CogIcon, TrendingUpIcon, PresentationChartBarIcon, ClipboardListIcon } from "@heroicons/react/outline"
+import { HomeIcon, ExclamationCircleIcon, CogIcon, HashtagIcon, ClipboardListIcon } from "@heroicons/react/outline"
 import { Link, Outlet } from 'react-router-dom';
 import Logout from '../Main Page/components/Logout';
-import { CmsLogoutAPI } from '../API'; 
+import { CmsLogoutAPI } from '../API';
 import Change_CMS_Pass from './Change_CMS_Pass.js';
 
 class SideNav extends Component {
@@ -31,7 +31,6 @@ class SideNav extends Component {
                         </li>
                         <li className='' href="#">
                             <Link className='Link d-flex justify-content-between' to="/CMS/Complaints" activeSyle={{ color: "red" }} style={{ textDecoration: 'none' }} >
-
                                 <ExclamationCircleIcon style={{ width: "15%" }} />
                                 الشكاوي
 
@@ -39,9 +38,15 @@ class SideNav extends Component {
                         </li>
                         <li className='' href="#">
                             <Link className='Link d-flex justify-content-between' to="/CMS/Category" style={{ textDecoration: 'none' }} >
-
                                 <ClipboardListIcon style={{ width: "15%" }} />
                                 أصناف
+                            </Link>
+                        </li>
+
+                        <li className='' href="#">
+                            <Link className='Link d-flex justify-content-between' to="/CMS/Services" style={{ textDecoration: 'none' }} >
+                                <HashtagIcon style={{ width: "15%" }} />
+                                الخدمات
                             </Link>
                         </li>
 

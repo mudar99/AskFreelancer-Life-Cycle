@@ -12,14 +12,11 @@ class Register extends Component {
     isThemeOn: false,
   }
 
-  handleCallback = (childData) => {
-    this.setState({ isThemeOn: childData })
-  }
   render() {
     return (
       <div className={this.state.isThemeOn ? "DarkMode" : "lightMode"}>
         <Helmet title='Ask Freelancer | Register'/>
-        <Nav parentCallback={this.handleCallback} />
+        <Nav  />
         <SignIn />
         <Footer />
       </div>

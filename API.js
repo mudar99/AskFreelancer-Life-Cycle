@@ -10,8 +10,25 @@ export const ChangePasswordAPI = `${local}/api/password/change`
 export const AddProjectAPI = `${local}/api/projects`
 export const GetPrtojectsAPI = `${local}/api/projects`
 export const DeletePrtojectAPI = `${local}/api/projects/`
+export const UpdatePrtojectAPI = `${local}/api/projects/`
+export const ChangeCMSPasswordAPI = `${local}/api/CMS/password/change`
+export const GetServices = `${local}/api/guest`
+
+
 export const CmsLoginAPI = `${local}/api/CMS/login`
 export const CmsLogoutAPI = `${local}/api/CMS/logout`
-export const ChangeCMSPasswordAPI = `${local}/api/CMS/password/change`
+export const CmsGetGategories = `${local}/api/CMS/category`
+export const CmsAddGategorie = `${local}/api/CMS/category`
+export const CmsDeleteGategorie = `${local}/api/CMS/category/`
+export const CmsUpdateGategorie = `${local}/api/CMS/category/`
+
+export const CmsGetServices = `${local}/api/CMS/service`
+export const CmsAddService = `${local}/api/CMS/service`
+export const CmsUpdateService = `${local}/api/CMS/service/`
+export const CmsDeleteService = `${local}/api/CMS/service/`
+
+
+
+
 
 

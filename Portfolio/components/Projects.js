@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { CodeIcon } from '@heroicons/react/solid' //npm install @heroicons/react
 import Gallery from './Gallery.js'
 import { PlusCircleIcon } from '@heroicons/react/outline'
-import ProjectsEdit from "../Editing/ProjectsEdit.js";
+import ProjectsAdd from "../Editing/ProjectsAdd.js";
 
 class Projects extends Component {
     render() {
@@ -30,9 +30,9 @@ class Projects extends Component {
                 <div className=" modal fade modal-editProjects" >
                     <div className="modal-dialog modal-dialog-centered modal-md ">
                         <div className="modal-content ">
-                            <div className="container ProjectsEdit ">
+                            <div className="container ProjectsEdit">
                                 <div id="card-body" className="card-body">
-                                <ProjectsEdit />
+                                <ProjectsAdd />
                                 </div>
                             </div>
                         </div>

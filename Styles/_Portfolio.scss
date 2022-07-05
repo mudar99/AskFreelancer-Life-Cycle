@@ -241,7 +241,7 @@
   img {
     opacity: 1;
     transition: 0.5s opacity;
-    height: 260px;
+    height: auto;
   }
 }
 .imagebox {
@@ -286,6 +286,18 @@
     color: red;
   }
 }
+.editProjectBTN {
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: #28a745;
+  cursor: pointer;
+  &:hover {
+    color: #85f49f;
+  }
+}
 
 /* **************** PopUp modal **************** */
 .modal-editInfo {
@@ -317,6 +329,7 @@
 .darkMode {
   .AboutEdit,
   .ProjectsEdit,
+  .editProject,
   .PasswordEdit,
   .VerifyID {
     h6 {
@@ -555,6 +568,7 @@ textarea::-webkit-scrollbar-thumb {
   }
   .AboutEdit,
   .ProjectsEdit,
+  .editProject,
   .PasswordEdit {
     h6 {
       color: $text;

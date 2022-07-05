@@ -571,7 +571,7 @@ footer span {
   opacity: 1;
   -webkit-transition: 0.5s opacity;
   transition: 0.5s opacity;
-  height: 260px;
+  height: auto;
 }
 
 .imagebox .imagebox-bar {
@@ -616,6 +616,21 @@ footer span {
   color: red;
 }
 
+.editProjectBTN {
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: #28a745;
+  cursor: pointer;
+}
+
+.editProjectBTN:hover {
+  color: #85f49f;
+}
+
 /* **************** PopUp modal **************** */
 .modal-editInfo {
   -webkit-transition: 0.4s ease-in-out;
@@ -649,6 +664,7 @@ footer span {
 
 .darkMode .AboutEdit,
 .darkMode .ProjectsEdit,
+.darkMode .editProject,
 .darkMode .PasswordEdit,
 .darkMode .VerifyID {
   background-color: #1f2937;
@@ -656,6 +672,7 @@ footer span {
 
 .darkMode .AboutEdit h6,
 .darkMode .ProjectsEdit h6,
+.darkMode .editProject h6,
 .darkMode .PasswordEdit h6,
 .darkMode .VerifyID h6 {
   color: #86898d;
@@ -889,12 +906,14 @@ textarea::-webkit-scrollbar-thumb {
 
 .AboutEdit,
 .ProjectsEdit,
+.editProject,
 .PasswordEdit {
   background-color: white;
 }
 
 .AboutEdit h6,
 .ProjectsEdit h6,
+.editProject h6,
 .PasswordEdit h6 {
   color: #414a4c;
 }
@@ -1223,7 +1242,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .sidenav li:last-child {
-  margin-top: 60vh;
+  margin-top: 55vh;
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
   transition: -webkit-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
@@ -1240,7 +1259,7 @@ textarea::-webkit-scrollbar-thumb {
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
   position: absolute;
-  bottom: 10%;
+  bottom: 15%;
   right: 5%;
   width: auto;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -1264,8 +1283,24 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .Category {
-  width: 75%;
+  width: 80%;
   margin-left: 3%;
+}
+
+.Category #PlusCircleIcon,
+.Category .TrashIcon,
+.Category #PencilAltIcon {
+  -webkit-transition: .1s ease-in-out;
+  transition: .1s ease-in-out;
+}
+
+.Category #PlusCircleIcon:hover,
+.Category .TrashIcon:hover,
+.Category #PencilAltIcon:hover {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+  -webkit-transition: .1s ease-in-out;
+  transition: .1s ease-in-out;
 }
 
 #cmsNav {
@@ -1562,6 +1597,49 @@ textarea::-webkit-scrollbar-thumb {
   .notfound .notfound-404 h1 {
     font-size: 112px;
   }
+}
+
+.GalleriaCaption .card {
+  cursor: pointer;
+}
+
+.GalleriaCaption .hd {
+  font-size: 25px;
+  font-weight: 550;
+}
+
+.GalleriaCaption .card.hover,
+.GalleriaCaption .card:hover {
+  -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.GalleriaCaption .img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 35px;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+          filter: drop-shadow(5px 5px 5px #222);
+}
+
+.GalleriaCaption .card-title {
+  font-weight: 600;
+}
+
+.GalleriaCaption button.focus,
+.GalleriaCaption button:focus {
+  outline: 0;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.GalleriaCaption .chk {
+  margin-bottom: 5px;
+}
+
+.GalleriaCaption .rck {
+  margin-top: 20px;
+  padding-bottom: 15px;
 }
 
 * {

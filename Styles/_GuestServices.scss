@@ -1,0 +1,35 @@
+.GalleriaCaption {
+  .card {
+    cursor: pointer;
+  }
+  .hd {
+    font-size: 25px;
+    font-weight: 550;
+  }
+  .card.hover,
+  .card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  .img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 35px;
+    
+    filter: drop-shadow(5px 5px 5px #222);
+  }
+  .card-title {
+    font-weight: 600;
+  }
+  button.focus,
+  button:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+  .chk {
+    margin-bottom: 5px;
+  }
+  .rck {
+    margin-top: 20px;
+    padding-bottom: 15px;
+  }
+}

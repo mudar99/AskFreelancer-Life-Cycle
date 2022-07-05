@@ -17,6 +17,8 @@ import CMS from './CMS/CMS';
 import Category from './CMS/Category';
 import CMS_Login from './CMS/CMS_Login';
 import NotFound from './NotFound/NotFound';
+import GalleriaCaption from './Guest - Services/GalleriaCaption';
+import Services from './CMS/Services';
 
 class App extends Component {
   
@@ -34,9 +36,11 @@ class App extends Component {
             <Route path="/MainPage" element={<MainPage />} />
             <Route path="/Chat" element={<Chat />} />
 
+            <Route path="/Guest_Services" element={<GalleriaCaption />} />
             <Route path="/CMS_Login" element={<CMS_Login />} />
             <Route path="CMS" element={<CMS />} >
               <Route path="Category" element={<Category />} />
+              <Route path="Services" element={<Services />} />
               <Route path="Complaints" element={<Complaints />} />
               <Route path="Dashboard" element={<Dashboard />} />
             </Route>

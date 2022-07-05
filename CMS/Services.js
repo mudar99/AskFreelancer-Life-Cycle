@@ -1,17 +1,18 @@
 import { Component } from 'react';
 import axios from "axios";
+import { local, CmsGetServices } from '../API';
 import { PencilAltIcon, PlusCircleIcon } from '@heroicons/react/outline'
-import { CmsGetGategories } from '../API';
-import AddCategory from './Categories/AddCategory';
-import DeleteCategory from './Categories/DeleteCategory';
-import UpdateCategory from './Categories/UpdateCategory';
+import DeleteService from './Services/DeleteService'
+import UpdateService from './Services/UpdateService'
+import AddService from './Services/AddService'
 
-class Category extends Component {
+
+class Services extends Component {
     state = {
-        url: CmsGetGategories,
+        url: CmsGetServices,
         token: localStorage.getItem('userTokenCMS'),
         loading: true,
-        categories: [],
+        services: [],
     }
     componentDidMount() {
         axios.defaults.headers = {
@@ -23,7 +24,7 @@ class Category extends Component {
                     console.log(res.data.data.data)
                     this.setState({ loading: false });
                     this.setState({
-                        categories: res.data.data.data
+                        services: res.data.data.data
                     });
                 } else {
                     this.setState({ loading: true });
@@ -36,32 +37,34 @@ class Category extends Component {
                 <table id="example" className=' w-100 table table-striped table-bordered'>
                     <thead>
                         <tr className='text-center'>
-                            <th>Name</th>
+                            <th>Title</th>
                             <th>ID</th>
-                            <th>Parent ID</th>
+                            <th>Desctiption</th>
                             <th>Created at</th>
                             <th>Updated at</th>
+                            <th>Image</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.state.categories.map(category =>
+                            this.state.services.map(service =>
                                 <tr className='text-center'>
-                                    <td>{category.name}</td>
-                                    <td>{category.id}</td>
-                                    <td>{!category.parent_id ? "No Parent" : category.parent_id}</td>
-                                    <td>{category.created_at}</td>
-                                    <td>{category.updated_at}</td>
-                                    <td>
-                                        <DeleteCategory id={category.id} />
-                                        <PencilAltIcon data-toggle="modal" data-target={`.modal-updateCategory${category.id}`} className='m-1' id='PencilAltIcon' cursor="pointer" color='green' height={22} />
-                                        <div className={`modal fade modal-updateCategory${category.id}`} >
+                                    <td>{service.title}</td>
+                                    <td>{service.id}</td>
+                                    <td className='wrapper'>{service.body}</td>
+                                    <td>{service.created_at}</td>
+                                    <td>{service.updated_at}</td>
+                                    <td><img className='container' style={{ width: "160px" }} src={local + service.image}></img></td>
+                                    <td className='col-sm-1'>
+                                        <DeleteService id={service.id} />
+                                        <PencilAltIcon data-toggle="modal" data-target={`.modal-updateService${service.id}`} className='m-1' id='PencilAltIcon' cursor="pointer" color='green' height={22} />
+                                        <div className={`modal fade modal-updateService${service.id}`} >
                                             <div className="modal-dialog modal-dialog-centered modal-lg ">
                                                 <div className="modal-content ">
-                                                    <div className="container updateCategory">
+                                                    <div className="container updateService">
                                                         <div id="card-body" className="card-body">
-                                                            <UpdateCategory Name={category.name} id={category.id} parentID={category.parent_id} />
+                                                            <UpdateService title={service.title} id={service.id} description={service.body} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -75,8 +78,9 @@ class Category extends Component {
                 </table>
 
                 <div className='text-center'>
-                    <PlusCircleIcon data-toggle="modal" data-target=".modal-addCategory" id='PlusCircleIcon' cursor="pointer" color='green' height={40} />
+                    <PlusCircleIcon data-toggle="modal" data-target=".modal-addService" id='PlusCircleIcon' cursor="pointer" color='green' height={40} />
                 </div>
+
                 <nav aria-label="Page navigation example ">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -87,23 +91,20 @@ class Category extends Component {
                     </ul>
                 </nav>
 
-
-                <div className=" modal fade modal-addCategory" >
+                <div className=" modal fade modal-addService" >
                     <div className="modal-dialog modal-dialog-centered modal-lg ">
                         <div className="modal-content ">
-                            <div className="container addCategory">
+                            <div className="container addService">
                                 <div id="card-body" className="card-body">
-                                    <AddCategory />
+                                    <AddService />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         );
     }
 }
 
-export default Category;
+export default Services;

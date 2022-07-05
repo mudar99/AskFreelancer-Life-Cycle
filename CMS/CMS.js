@@ -9,7 +9,7 @@ import SideNav from './SideNav';
 class CMS extends Component {
     render() {
         return (
-            <div className=' '>
+            <div className='lightMode'>
                 <Helmet title='Ask Freelancer | CMS' />
                 {/* <CmsNav /> */}
                 <SideNav /> 
