@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { PencilIcon } from '@heroicons/react/outline'
-import AboutEdit from "../Editing/AboutEdit";
 
 class About extends Component {
     render() {

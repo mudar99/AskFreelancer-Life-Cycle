@@ -1,5 +1,5 @@
 import React, { Component, lazy, useState } from 'react'
-import ReactDOM from 'react-dom'
+import { CreatePost } from '../../API'
 
 // Import React FilePond
 import { FilePond, registerPlugin, setOptions } from "react-filepond";
@@ -36,22 +36,12 @@ class UploadFiles extends Component {
         files: [],
     };
 
-
-    handleInit() {
-        // console.log(this.state.files)
-        // console.log("FilePond instance has initialised", this.pond);
-    }
-    ss = (e) => {
-        // e.preventDefault();
-        // let x = URL.createObjectURL(this.state.files[0]);
-        // console.log(this.state.files);
-    }
     filesCallback = fileItems => {
         // Set currently active file objects to this.state
         this.setState({
             files: fileItems.map(fileItem => fileItem.file),
         });
-        // console.log(this.state.files);
+        //console.log(this.state.files);
         this.props.FilesHandling(this.state.files);
     }
     render() {
@@ -62,20 +52,14 @@ class UploadFiles extends Component {
                     files={this.state.files}
                     allowMultiple={true}
                     allowReorder={true}
+                    onreorderfiles={this.filesCallback}
                     maxFiles={6}
-                    server="/api"
                     name="files"
-                    oninit={() => this.handleInit()}
                     allowFileTypeValidation={true}
                     acceptedFileTypes={['image/png', 'image/jpeg', 'application/pdf', 'video/mp4']}
-                    labelIdle={ `<div><p>إسحب و أفلت ملفاتك أو تصفح</p></div>`}
+                    labelIdle={`<div><p>إسحب و أفلت ملفاتك أو تصفح</p></div>`}
                     onupdatefiles={this.filesCallback}
                 />
-                {/* <div className="users">
-                    {this.state.files.map((user) => (
-                        <div className="user"><embed src={URL.createObjectURL(user)}></embed></div>
-                    ))}
-                </div> */}
             </div>
         );
     }

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { SearchCircleIcon, ChatIcon, BellIcon, UserIcon, BriefcaseIcon, HomeIcon } from "@heroicons/react/outline";
+import { ChatIcon,  HomeIcon } from "@heroicons/react/outline";
 import { UserCircleIcon, CogIcon, EyeIcon } from '@heroicons/react/outline'
-import AboutEdit from "../Editing/AboutEdit"
 import Logout from "../../Main Page/components/Logout";
 import ChangePassword from "./ChangePassword";
-import {LogoutAPI} from '../../API';
+import { LogoutAPI } from '../../API';
 import ID_Verification from "./ID_Verification";
+import Email_Verification from "./Email_Verification";
+import Balance from "./Balance";
 
 class Navbar extends Component {
     state = {
@@ -66,23 +67,25 @@ class Navbar extends Component {
                                 <a className="dropdown-item" href="#projects" >الأعمال السابقة</a>
                             </div>
                         </div>
-                        <li className="mr-3 ml-3 " ><Logout remember="RememberMe" startPage='/' parentUrl = {LogoutAPI} Token = 'userToken'/></li><hr />
+                        <li className="mr-3 ml-3 " ><Logout remember="RememberMe" startPage='/' parentUrl={LogoutAPI} Token='userToken' /></li><hr />
                         <li><a href="#" className="mr-3 ml-3">مراسلة <ChatIcon height={25} /></a></li><hr />
                         <li><a href="/MainPage" className="mr-3 ml-3">رئيسي <HomeIcon height={25} /></a></li><hr />
 
                         <div className="dropdown d-lg-flex d-none">
                             <a className="mr-3 ml-3" role="button"><CogIcon id="setting" height={25} /></a>
                             <div class="dropdown-content">
-                                <a className=" " data-toggle="modal" data-target=".modal-changePassword">تغيير كلمة المرور </a>
+                                <a className="" data-toggle="modal" data-target=".modal-changePassword">تغيير كلمة المرور </a>
                                 <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a>
-                                <a className="dropdown-item" href="#projects" >.....</a>
+                                <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني</a>
+                                <a className="dropdown-item" data-toggle="modal" data-target=".modal-Balance">المحفظة</a>
                             </div>
                         </div>
 
                         <div className="d-block d-lg-none">
                             <a href="#" data-toggle="modal" data-target=".modal-changePassword">تغيير كلمة المرور </a><hr />
-                            <a href="#">توثيق الهوية</a><hr />
-                            <a href="#" >.....</a>
+                            <a href="#" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a><hr />
+                            <a href="#" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني</a><hr />
+                            <a href="#" data-toggle="modal" data-target=".modal-Balance">المحفظة</a>
                         </div>
                         <li><a href="#about" className="pl-4 mt-1 d-none d-lg-flex font-weight-bold text-success border-left"><UserCircleIcon height={25} className="mr-2" />
                             <h6 className="m-1">{this.props.Fname}</h6>
@@ -113,6 +116,31 @@ class Navbar extends Component {
                         </div>
                     </div>
                 </div>
+
+                <div className=" modal fade modal-VerifyEmail" >
+                    <div className="modal-dialog modal-dialog-centered modal-lg ">
+                        <div className="modal-content ">
+                            <div className="container VerifyEmail">
+                                <div id="card-body" className="card-body">
+                                    <Email_Verification email={this.props.email} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=" modal fade modal-Balance" >
+                    <div className="modal-dialog modal-dialog-centered modal-md ">
+                        <div className="modal-content ">
+                            <div className="container Balance">
+                                <div id="card-body" className="card-body">
+                                    <Balance />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </nav>
         );
     }

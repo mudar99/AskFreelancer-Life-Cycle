@@ -5,80 +5,58 @@ import Filter from "./components/Filter";
 import Post from "./components/Post";
 import Footer from '../Register/Footer'
 import { Helmet } from 'react-helmet';
+import axios from "axios";
+import { GetUserPosts, local } from '../API'
 
 class MainPage extends Component {
   state = {
     Posts: [],
+    token: localStorage.getItem('userToken'),
   }
-  PostInfo = [
-    {
-      id: 1,
-      time: "2022-03-28 21:32:47 UTC",
-      text: "فريلانسر",
-      profileImg: "https://bootdey.com/img/Content/avatar/avatar1.png",
-      postDoc: "/Img/cover.jpg",
-      name: "Mudar AF",
-    },
-    {
-      id: 2,
-      time: "2022-03-28 21:32:47 UTC",
-      text: "فريلانسر",
-      profileImg: "https://bootdey.com/img/Content/avatar/avatar5.png",
-      postDoc: "/Img/cover.jpg",
-      name: "Ali khder",
-    },
-    {
-      id: 3,
-      time: "2022-03-28 21:32:47 UTC",
-      text: "فريلانسر",
-      profileImg: "https://bootdey.com/img/Content/avatar/avatar4.png",
-      postDoc: "/Img/cover.jpg",
-      name: "Hazem",
-    },
-    {
-      id: 4,
-      time: "2022-03-28 21:32:47 UTC",
-      text: "فريلانسر",
-      profileImg: "https://bootdey.com/img/Content/avatar/avatar3.png",
-      postDoc: "/Img/cover.jpg",
-      name: "Abeer",
-    },
-    {
-      id: 5,
-      time: "2022-03-28 21:32:47 UTC",
-      text: "فريلانسر",
-      profileImg: "https://bootdey.com/img/Content/avatar/avatar2.png",
-      postDoc: "/Img/cover.jpg",
-      name: "Hani SY",
-    },
-  ];
   _getMainPosts() {
     return this.state.Posts.map(post => {
+      let birthDate = new Date(post.updated_at)
+      const offset = birthDate.getTimezoneOffset()
+      birthDate = new Date(birthDate.getTime() - (offset * 60 * 1000))
+      birthDate = new Date(birthDate).toISOString().split('T')[0];
       return (
         <Post
           key={post.id}
-          text={post.text}
-          name={post.name}
-          time={post.time}
+          postTitle={post.title}
+          deliveryDate={post.deliveryDate}
+          price={post.price}
+          text={post.body}
+          name={post.user.first_name + " " + post.user.last_name}
+          time={birthDate}
+          skills = {post.postcategories}
           profileImg={post.profileImg}
-          postDoc={post.post_photo}
+          postDoc={post.medias_project}
+          //   post.medias_project.map(media => {
+          //     return media;
+          //   })
+          // }
         // post.post_photo.map(doc => { URL.createObjectURL(doc) })
         />
 
       );
     });
   }
-  PostsDataCallback = (Posts) => {
-    this.setState({
-      Posts: Posts,
-    })
-    console.log("Posts " + Posts)
-
-  }
   componentDidMount() {
     if (localStorage.getItem('userToken') == "") {
       window.location.href = "/"
     }
+    axios.defaults.headers = {
+      Authorization: `Bearer ${this.state.token}`,
+    }
+    axios.get(GetUserPosts + '2/posts', axios.defaults.headers).then(
+      res => {
+        if (res.data.status == true) {
+          console.log(res.data.data)
+          this.setState({ Posts: res.data.data, loading: false });
+        } else {
+          this.setState({ loading: true });
+        }
+      }).catch(err => console.error(err));
   }
   render() {
     const Posts = this._getMainPosts();

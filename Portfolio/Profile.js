@@ -11,8 +11,7 @@ import axios from "axios";
 import { GetProfileInfo } from '../API';
 
 class Profile extends Component {
-    state = {
-        url: GetProfileInfo,
+    state = { 
         loading: true,
         userInfo: [],
         skillsInfo: [],
@@ -26,7 +25,7 @@ class Profile extends Component {
         axios.defaults.headers = {
             Authorization: `Bearer ${this.state.token}`,
         }
-        axios.get(this.state.url, axios.defaults.headers).then(
+        axios.get(GetProfileInfo, axios.defaults.headers).then(
             res => {
                 if (res.data.status == true) {
                     console.log(res.data.data)
@@ -44,7 +43,7 @@ class Profile extends Component {
         return (
             <main className="Profile lightMode">
                 <Helmet title='Ask Freelancer | Profile' />
-                <Navbar Fname={this.state.userInfo.first_name}/>
+                <Navbar email={this.state.userInfo.email} Fname={this.state.userInfo.first_name}/>
                 <About
                     ProfissionName={this.state.userInfo.profissionName}
                     Fname={this.state.userInfo.first_name}

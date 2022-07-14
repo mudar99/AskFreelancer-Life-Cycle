@@ -60,6 +60,9 @@ class ChangePassword extends Component {
                         </h6>
                         <input className="form-control " onChange={e => this.setState({ confPassword: e.target.value })} placeholder="Confirm new password" required />
                     </div>
+                    <div className="text-center my-4"> 
+                        <small className="text-primary " style={{cursor : "pointer"}} >هل نسيت كلمة المرور ؟</small>
+                    </div>
                 </div>
                 <button className="float-left btn btn-outline-success mb-3" type="submit"><i className="fa fa-save mr-1"></i> حفظ</button>
                 <button className="float-right btn btn-outline-danger mb-3" data-dismiss="modal"><XIcon className="mt-1" height={20} /> إلغاء</button>

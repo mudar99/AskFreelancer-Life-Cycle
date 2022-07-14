@@ -1,5 +1,7 @@
-.MainPage{
-   
+.MainPage {
+  ::-webkit-input-placeholder {
+    text-align: right;
+  }
 }
 .Filter {
   z-index: 99;
@@ -83,7 +85,9 @@
       }
     }
   }
-
+  .p-chip-text {
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -174,5 +178,5 @@
     }
   }
 }
- 
+
 @include themable(lightMode, white, rgb(82, 82, 82), #ffffff, #000);

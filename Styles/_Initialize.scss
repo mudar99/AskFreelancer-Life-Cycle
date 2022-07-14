@@ -1,4 +1,7 @@
 .initialize {
+  ::-webkit-input-placeholder {
+    text-align: right;
+  }
   background-color: $navbar-body-color;
   color: $font-color;
   label {
@@ -19,6 +22,9 @@
 }
 
 .Multiselect {
+  .searchBox {
+    width: 90%;
+  }
   .chip {
     background-color: $font-color;
   }

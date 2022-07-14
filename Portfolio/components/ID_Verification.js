@@ -24,7 +24,7 @@ class ID_Verification extends Component {
     }
     render() {
         return (
-            <form onSubmit={this.ChangePassword}>
+            <form >
                 <Toast ref={(el) => this.toastSuccess = el} position="bottom-right" />
                 <Toast ref={(el) => this.toastFailure = el} position="bottom-right" />
                 <div className="form-group wrapper" >

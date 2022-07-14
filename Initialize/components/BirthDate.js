@@ -1,6 +1,7 @@
 import { Component } from "react";
 
 import { Calendar } from 'primereact/calendar';
+import { CalendarIcon } from "@heroicons/react/outline";
 
 class BirthDate extends Component {
     state = {
@@ -21,8 +22,11 @@ class BirthDate extends Component {
         return (
             <div className="container">
                 <h4 className="mb-4">: تاريخ الميلاد </h4>
-                <div className="field col-12 md:col-4 p-4 ">
-                    <Calendar id="basic" value={this.state.date} onChange={this.dateHandler} dateFormat="yy-mm-dd" />
+                <div className="field col-4 md:col-4 p-4 float-right">
+                    <div className="p-inputgroup ml-2 ">
+                        <span className="p-inputgroup-addon "><CalendarIcon height={20} /></span>
+                        <Calendar readOnlyInput  placeholder="تاريخ الميلاد" id="basic" value={this.state.date} onChange={this.dateHandler} dateFormat="yy-mm-dd" />
+                    </div>
                 </div>
                 <div>
                     <div className=" text-center ">

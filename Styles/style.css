@@ -923,6 +923,10 @@ textarea::-webkit-scrollbar-thumb {
   color: #86898d;
 }
 
+.initialize ::-webkit-input-placeholder {
+  text-align: right;
+}
+
 .initialize label {
   font-size: 22px;
 }
@@ -941,6 +945,10 @@ textarea::-webkit-scrollbar-thumb {
 .initialize h3,
 .initialize p {
   color: #eee;
+}
+
+.Multiselect .searchBox {
+  width: 90%;
 }
 
 .Multiselect .chip {
@@ -1001,6 +1009,10 @@ textarea::-webkit-scrollbar-thumb {
 .lightMode .Multiselect .notFound:hover {
   color: #eee;
   background-color: #28a745;
+}
+
+.MainPage ::-webkit-input-placeholder {
+  text-align: right;
 }
 
 .Filter {
@@ -1100,6 +1112,10 @@ textarea::-webkit-scrollbar-thumb {
 
 .Post .Offer .dues:hover {
   cursor: not-allowed;
+}
+
+.Post .p-chip-text {
+  font-size: 14px;
 }
 
 @media screen and (max-width: 992px) {
