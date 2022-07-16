@@ -87,7 +87,6 @@ class ProjectsAdd extends Component {
                         <LoadingIcon size="25px" loading={this.state.loading} />
                         {!this.state.loading && <><i className="fa fa-save mr-1"></i> إضافة</>}
                     </div>
-
                 </button>
                 <button id="cancelAdd" className="float-right btn btn-outline-danger mb-3" data-dismiss="modal"><div className="container"><XIcon className="mt-1" height={20} /> إلغاء</div></button>
             </form >

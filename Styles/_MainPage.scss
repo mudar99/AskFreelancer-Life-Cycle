@@ -1,6 +1,32 @@
+.p-datepicker,.p-confirm-popup{
+  z-index: 9999 !important;
+}
+.p-inputtext{
+  cursor: pointer;
+}
+.PostEdit{
+  .p-inputgroup{
+    height: calc(1.5em + .75rem + 2px);
+  }
+  .p-inputgroup-addon {
+    border-color: #ced4da;
+  }
+  .p-inputtext{ 
+    font-size: 1rem;  
+    cursor: pointer; 
+    border: 1px solid #ced4da; 
+  }
+
+}
 .MainPage {
   ::-webkit-input-placeholder {
     text-align: right;
+  } 
+  .p-galleria-item-container {
+    video {
+      width: 100%;
+      z-index: 1 !important;
+    }
   }
 }
 .Filter {
@@ -40,14 +66,14 @@
   label {
     color: $font-color;
   }
-  #delete {
+  .delete {
     color: $font-color;
     &:hover {
       cursor: pointer;
       color: #de1515;
     }
   }
-  #edit {
+  .edit {
     color: $font-color;
     &:hover {
       cursor: pointer;

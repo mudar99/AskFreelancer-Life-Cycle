@@ -9,7 +9,6 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import { ChildrenGategories, CreatePost } from '../../API'
 
-
 class Puplish extends Component {
     state = {
         title: "",
@@ -50,7 +49,7 @@ class Puplish extends Component {
         axios.post(CreatePost, projectFormData).then(
             res => {
                 if (res.data.status == true) {
-                    console.log(res.data)
+                    //console.log(res.data)
                     this.setState({ loading: false });
                     this.showSuccess(res.data.message)
                     setTimeout(function () {
@@ -125,11 +124,10 @@ class Puplish extends Component {
                                                 loadingMessage="... الرجاء الانتظار"
                                             />
                                         </div>
-                                        {/* <label className="form-label ">إرفاق ملف</label> <br /> */}
+
                                         <div className='container col-12 mt-1'>
                                             <UploadFiles FilesHandling={this.FilesCallback} />
                                         </div>
-                                        {/* <input id="pick-img" type="file" className="" onChange={this.ImgHandler} /> */}
 
                                         <div className="container">
                                             <div className="p-inputgroup">

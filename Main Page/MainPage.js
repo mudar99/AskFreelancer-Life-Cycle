@@ -22,22 +22,17 @@ class MainPage extends Component {
       return (
         <Post
           key={post.id}
+          id={post.id}
           postTitle={post.title}
           deliveryDate={post.deliveryDate}
           price={post.price}
           text={post.body}
           name={post.user.first_name + " " + post.user.last_name}
           time={birthDate}
-          skills = {post.postcategories}
+          skills={post.postcategories}
           profileImg={post.profileImg}
           postDoc={post.medias_project}
-          //   post.medias_project.map(media => {
-          //     return media;
-          //   })
-          // }
-        // post.post_photo.map(doc => { URL.createObjectURL(doc) })
         />
-
       );
     });
   }
@@ -51,7 +46,7 @@ class MainPage extends Component {
     axios.get(GetUserPosts + '2/posts', axios.defaults.headers).then(
       res => {
         if (res.data.status == true) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           this.setState({ Posts: res.data.data, loading: false });
         } else {
           this.setState({ loading: true });
