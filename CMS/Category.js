@@ -8,7 +8,6 @@ import UpdateCategory from './Categories/UpdateCategory';
 
 class Category extends Component {
     state = {
-        url: CmsGetGategories,
         token: localStorage.getItem('userTokenCMS'),
         loading: true,
         categories: [],
@@ -17,7 +16,7 @@ class Category extends Component {
         axios.defaults.headers = {
             Authorization: `Bearer ${this.state.token}`,
         }
-        axios.get(this.state.url, axios.defaults.headers).then(
+        axios.get(CmsGetGategories, axios.defaults.headers).then(
             res => {
                 if (res.data.status == true) {
                     console.log(res.data.data.data)
@@ -55,7 +54,7 @@ class Category extends Component {
                                     <td>{category.updated_at}</td>
                                     <td>
                                         <DeleteCategory id={category.id} />
-                                        <PencilAltIcon data-toggle="modal" data-target={`.modal-updateCategory${category.id}`} className='m-1' id='PencilAltIcon' cursor="pointer" color='green' height={22} />
+                                        <PencilAltIcon data-toggle="modal" data-target={`.modal-updateCategory${category.id}`} id='PencilAltIcon' cursor="pointer" color='green' height={22} />
                                         <div className={`modal fade modal-updateCategory${category.id}`} >
                                             <div className="modal-dialog modal-dialog-centered modal-lg ">
                                                 <div className="modal-content ">

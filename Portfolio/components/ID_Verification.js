@@ -2,9 +2,10 @@ import { Component } from "react";
 import { XIcon } from '@heroicons/react/outline'
 import axios from "axios";
 import { Toast } from 'primereact/toast';
-
+import { SendIdentity } from '../../API'
 import { FilePond, registerPlugin, setOptions } from "react-filepond";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import LoadingIcon from "../../LoadingIcon";
 
 registerPlugin(
     FilePondPluginImagePreview,
@@ -12,9 +13,37 @@ registerPlugin(
 
 class ID_Verification extends Component {
     state = {
+        files: [],
+        loading: false,
+    };
 
+    GetFiles = fileItems => {
+        this.setState({
+            files: fileItems.map(fileItem => fileItem.file),
+        });
     }
-
+    UploadFiles = (e) => {
+        e.preventDefault();
+        this.setState({ loading: true })
+        let projectFormData = new FormData();
+        for (let i = 0; i < this.state.files.length; i++) {
+            projectFormData.append(`media[${i}]`, this.state.files[i])
+        }
+        axios.post(SendIdentity, projectFormData).then(
+            res => {
+                if (res.data.status == true) {
+                    console.log(res.data)
+                    this.setState({ loading: false });
+                    this.showSuccess(res.data.message)
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    this.setState({ loading: false });
+                    this.showError(res.data.message)
+                }
+            }).catch(err => console.error(err));
+    }
     showSuccess = (msg) => {
         this.toastSuccess.show({ severity: 'success', summary: 'نجاح', detail: msg, life: 3000 });
     }
@@ -24,7 +53,7 @@ class ID_Verification extends Component {
     }
     render() {
         return (
-            <form >
+            <form onSubmit={this.UploadFiles}>
                 <Toast ref={(el) => this.toastSuccess = el} position="bottom-right" />
                 <Toast ref={(el) => this.toastFailure = el} position="bottom-right" />
                 <div className="form-group wrapper" >
@@ -40,15 +69,21 @@ class ID_Verification extends Component {
                             files={this.state.files}
                             allowMultiple={true}
                             allowReorder={true}
-                            maxFiles={6}
+                            onreorderfiles={this.GetFiles}
                             name="files"
                             allowFileTypeValidation={true}
-                            acceptedFileTypes={['image/png', 'image/jpeg']}
-                            labelIdle={ `<div><p>إسحب و أفلت ملفاتك أو تصفح</p></div>`}
+                            acceptedFileTypes={['image/png', 'image/jpeg', 'application/pdf', 'video/mp4']}
+                            labelIdle={`<div><p>إسحب و أفلت ملفاتك أو تصفح</p></div>`}
+                            onupdatefiles={this.GetFiles}
                         />
                     </div>
                 </div>
-                <button className="float-left btn btn-outline-success mb-3" type="submit"><i className="fa fa-save mr-1"></i> حفظ</button>
+                <button className="float-left btn btn-outline-success" type="submit">
+                    <div className="container">
+                        <LoadingIcon size="25px" loading={this.state.loading} />
+                        {!this.state.loading && <> رفع الملفات</>}
+                    </div>
+                </button>
                 <button className="float-right btn btn-outline-danger mb-3" data-dismiss="modal"><XIcon className="mt-1" height={20} /> إلغاء</button>
             </form >
 

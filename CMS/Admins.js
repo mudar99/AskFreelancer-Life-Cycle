@@ -1,29 +1,29 @@
 import { Component } from 'react';
 import axios from "axios";
-import { local, CmsGetServices } from '../API';
+import { local, CmsGetAdmins } from '../API';
 import { PencilAltIcon, PlusCircleIcon } from '@heroicons/react/outline'
-import DeleteService from './Services/DeleteService'
-import UpdateService from './Services/UpdateService'
-import AddService from './Services/AddService'
+import UpdateAdmin from './Admins/UpdateAdmin';
+import AddAdmin from './Admins/AddAdmin';
+import DeleteAdmin from './Admins/DeleteAdmin';
 
 
-class Services extends Component {
+class Admins extends Component {
     state = {
         token: localStorage.getItem('userTokenCMS'),
         loading: true,
-        services: [],
+        Admins: [],
     }
     componentDidMount() {
         axios.defaults.headers = {
             Authorization: `Bearer ${this.state.token}`,
         }
-        axios.get(CmsGetServices, axios.defaults.headers).then(
+        axios.get(CmsGetAdmins, axios.defaults.headers).then(
             res => {
                 if (res.data.status == true) {
                     console.log(res.data.data.data)
                     this.setState({ loading: false });
                     this.setState({
-                        services: res.data.data.data
+                        Admins: res.data.data.data
                     });
                 } else {
                     this.setState({ loading: true });
@@ -33,37 +33,35 @@ class Services extends Component {
     render() {
         return (
             <div className='Category container mt-5'>
-                <table id="example" className=' w-100 table table-striped table-bordered'>
+                <table id="example" className='w-100 table table-striped table-bordered'>
                     <thead>
                         <tr className='text-center'>
-                            <th>Title</th>
+                            <th>User Name</th>
                             <th>ID</th>
-                            <th>Desctiption</th>
+                            <th>Email</th>
                             <th>Created at</th>
                             <th>Updated at</th>
-                            <th>Image</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            this.state.services.map(service =>
+                            this.state.Admins.map(admin =>
                                 <tr className='text-center'>
-                                    <td>{service.title}</td>
-                                    <td>{service.id}</td>
-                                    <td className='wrapper'>{service.body}</td>
-                                    <td>{service.created_at}</td>
-                                    <td>{service.updated_at}</td>
-                                    <td><img className='container' style={{ width: "160px" }} src={local + service.image}></img></td>
+                                    <td>{admin.username}</td>
+                                    <td>{admin.id}</td>
+                                    <td >{admin.email}</td>
+                                    <td>{admin.created_at}</td>
+                                    <td>{admin.updated_at}</td>
                                     <td className='col-sm-1'>
-                                        <DeleteService id={service.id} />
-                                        <PencilAltIcon data-toggle="modal" data-target={`.modal-updateService${service.id}`} id='PencilAltIcon' cursor="pointer" color='green' height={22} />
-                                        <div className={`modal fade modal-updateService${service.id}`} >
+                                        <DeleteAdmin id={admin.id} />
+                                        <PencilAltIcon data-toggle="modal" data-target={`.modal-updateAdmin${admin.id}`} id='PencilAltIcon' cursor="pointer" color='green' height={22} />
+                                        <div className={`modal fade modal-updateAdmin${admin.id}`} >
                                             <div className="modal-dialog modal-dialog-centered modal-lg ">
                                                 <div className="modal-content ">
                                                     <div className="container updateService">
                                                         <div id="card-body" className="card-body">
-                                                            <UpdateService title={service.title} id={service.id} description={service.body} />
+                                                            <UpdateAdmin username={admin.username} email={admin.email} id={admin.id} role_id={admin.role_id} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -95,7 +93,7 @@ class Services extends Component {
                         <div className="modal-content ">
                             <div className="container addService">
                                 <div id="card-body" className="card-body">
-                                    <AddService />
+                                    <AddAdmin />
                                 </div>
                             </div>
                         </div>
@@ -106,4 +104,4 @@ class Services extends Component {
     }
 }
 
-export default Services;
+export default Admins;

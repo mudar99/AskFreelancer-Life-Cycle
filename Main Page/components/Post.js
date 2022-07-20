@@ -1,14 +1,16 @@
 import { Component } from "react"
 import React from 'react';
-import { PencilAltIcon, TrashIcon, ClockIcon, BriefcaseIcon } from "@heroicons/react/outline";
-import Offer from './Offer';
-import { local, DeletePost } from '../../API'
+import { PencilAltIcon, TrashIcon, ClockIcon, ChevronDoubleUpIcon,CurrencyDollarIcon,CalendarIcon } from "@heroicons/react/outline";
+import { local, DeletePost, GetPostOffers } from '../../API'
 import { Chip } from 'primereact/chip';
 import { ConfirmPopup } from 'primereact/confirmpopup';
 import { Toast } from 'primereact/toast';
 import { Galleria } from 'primereact/galleria';
 import PostEdit from "./PostEdit";
+import { Button } from 'primereact/button';
 import axios from "axios";
+import AddOffer from "./Offers/AddOffer";
+import Offer from "./Offers/Offer";
 
 
 class Post extends Component {
@@ -17,7 +19,11 @@ class Post extends Component {
         media: [],
         activeIndex: 0,
         visible: false,
-
+        loading: false,
+        token: localStorage.getItem('userToken'),
+        Offers: [],
+        offerOpen: false,
+        isHidden: (localStorage.getItem('myID') == this.props.user_id),
     };
     setVisible = (event) => {
         this.setState({ visible: true })
@@ -45,6 +51,23 @@ class Post extends Component {
                 <source src={local + item.path} type="video/mp4" />
             </video>
     }
+    GetOffers = () => {
+        this.setState({
+            loading: true,
+        })
+        axios.defaults.headers = {
+            Authorization: `Bearer ${this.state.token}`,
+        }
+        axios.get(GetPostOffers + this.props.id + '/offers', axios.defaults.headers).then(
+            res => {
+                if (res.data.status == true) {
+                    this.setState({ Offers: res.data.data, loading: false });
+                    this.setState({ offerOpen: true })
+                } else {
+                    this.setState({ loading: false, offerOpen: false });
+                }
+            }).catch(err => console.error(err));
+    }
     render() {
         return (
             <section className="Post mb-5 mt-5">
@@ -66,32 +89,61 @@ class Post extends Component {
                             </label>
                         </div>
                         <div className="btn-group  h-25 m-2 ">
-                            <a id="edit" className="edit m-2"><PencilAltIcon data-toggle="modal" data-target={`.modal-PostEdit${this.props.id}`} height={20} /> </a>
-                            <a id={`deletePostBTN${this.props.id}`} onClick={this.setVisible} className="delete m-2" ><TrashIcon height={20} /> </a>
+                            <a id="edit" className="edit m-2" hidden={!this.state.isHidden}><PencilAltIcon data-toggle="modal" data-target={`.modal-PostEdit${this.props.id}`} height={20} /> </a>
+                            <a id={`deletePostBTN${this.props.id}`} onClick={this.setVisible} className="delete m-2" ><TrashIcon height={20} hidden={!this.state.isHidden}/> </a>
                         </div>
                     </div>
                     <div className="container">
                         <p className={`${this.state.arabic.test(this.props.text) ? `text-right` : `text-left`} post-text pl-2 pt-2 mt-2 container text-wrap`}>{this.props.text}</p>
                     </div>
-                    <div className="m-4"><mark>Post Title: {this.props.postTitle}</mark></div>
-                    <div className="m-4"><mark>Delivery Date: {this.props.deliveryDate}</mark></div>
-                    <div className="m-4"><mark>Price: {this.props.price} $</mark></div>
+                    <div className="m-4">
+                        <p className="m-0" style={{ lineHeight: '1.5' }}>Post Title: {this.props.postTitle}</p>
+                        <p className="m-0" style={{ lineHeight: '1.5' }}><CalendarIcon height={22} /> {this.props.deliveryDate}</p>
+                        <p className="m-0" style={{ lineHeight: '1.5' }}><CurrencyDollarIcon height={22} /> {this.props.price}</p>
+                    </div>
                     <div className="mb-2 container">
                         {this.props.skills.map(skill => {
                             return <Chip label={skill.category.name} className="ml-2 m-1" />
                         })}
                         <div className="mt-2">
-                            <Galleria className="container" value={this.props.postDoc} numVisible={6} style={{ maxWidth: '640px' }}
+                            <Galleria className="container" value={this.props.postDoc} style={{ maxWidth: '640px' }}
                                 item={this.itemTemplate} showThumbnails={false} showIndicators />
                         </div>
                     </div>
                     <div className=" text-center p-2 pb-4">
-                        <button data-toggle="modal" data-target=".modal-offer" className="btn btn-outline-success btn-sm pb-2">
+                        {/* <button data-toggle="modal" data-target=".modal-offer" className="btn btn-outline-success btn-sm pb-2">
                             <BriefcaseIcon className="mt-1" height={20} /> إضافة عرض
-                        </button>
+                        </button> */}
+                        <hr />
+                        <Button hidden={this.state.isHidden} label="إضافة عرض" data-toggle="modal" data-target={`.modal-offer${this.props.id}`} className="p-button-text p-button-success mr-4" />
+                        <Button label="مشاهدة العروض" loading={this.state.loading} onClick={this.GetOffers} className="p-button-text p-button-plain ml-4" />
                     </div>
+
+
+                    {this.state.offerOpen &&
+                        this.state.Offers.map(e => {
+                            return <Offer
+                                id={e.id}
+                                description={e.discription}
+                                price={e.price}
+                                deliveryDate={e.deliveryDate}
+                                created_at={e.created_at}
+                                user_id={e.user_id}
+                                post_id={e.post_id}
+                                userInfo={e.user}
+                            />
+                        })
+                    }
+                    {this.state.offerOpen &&
+                        <div hidden={this.state.Offers.length == 0 ? true : false} className="text-center m-3 ">
+                            <div onClick={e => this.setState({ offerOpen: false })} className=" ">
+                                <ChevronDoubleUpIcon height={22} style={{ cursor: 'pointer' }} />
+                            </div>
+                        </div>
+                    }
                 </div>
-                <Offer />
+                <AddOffer id={this.props.id} />
+
                 <div className={`modal fade modal-PostEdit${this.props.id}`} >
                     <div className="modal-dialog modal-dialog-centered modal-lg ">
                         <div className="modal-content ">

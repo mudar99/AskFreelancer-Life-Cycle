@@ -53,7 +53,6 @@ class UploadFiles extends Component {
                     allowMultiple={true}
                     allowReorder={true}
                     onreorderfiles={this.filesCallback}
-                    maxFiles={6}
                     name="files"
                     allowFileTypeValidation={true}
                     acceptedFileTypes={['image/png', 'image/jpeg', 'application/pdf', 'video/mp4']}

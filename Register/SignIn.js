@@ -13,7 +13,6 @@ class SignIn extends Component {
     email: "",
     password: "",
     loading: false,
-    url: loginAPI,
     login: false,
     data: [],
     picture: "",
@@ -39,7 +38,7 @@ class SignIn extends Component {
       password: this.state.password,
     }
     this.setState({ loading: true });
-    axios.post(this.state.url, params).then(
+    axios.post(loginAPI, params).then(
       res => {
         this.setState({ respone: res.data });
         console.log(res.data);

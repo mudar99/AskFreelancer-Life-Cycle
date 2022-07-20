@@ -49,11 +49,13 @@ class Initialize extends Component {
     let type;
     if (this.state.isFreelancer === true) type = 0;
     if (this.state.isClient === true) type = 1;
+    // console.log('isFreelancer ' + this.state.isFreelancer)
+    // console.log('isClient ' + this.state.isClient)
+    // console.log('type ' + type)
     let skillsIDs = [];
     for (let i = 0; i < this.state.Skills.length; i++) {
       skillsIDs[i] = this.state.Skills[i].id
-    }
-    console.log("Skills: " + skillsIDs)
+    } 
     let params = {
       type: type,
       phone_number: this.state.PhoneNumber,
@@ -62,8 +64,7 @@ class Initialize extends Component {
       bio: this.state.Bio,
       skills: skillsIDs,
       birthday: this.state.BirthDate
-    }
-    console.log(params.type)
+    } 
     axios.post(this.state.url, params).then(
       res => {
         this.setState({ respone: res.data });
@@ -72,8 +73,6 @@ class Initialize extends Component {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
           setTimeout(function () {
-            localStorage.setItem('userToken', res.data.data.token)
-            console.log(localStorage.getItem('userToken'))
             window.location.href = "/mainPage"
           }, 1000);
         }

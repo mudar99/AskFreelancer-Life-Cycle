@@ -1,28 +1,30 @@
 import { Component } from 'react';
 import { XIcon } from '@heroicons/react/outline'
-import { CmsAddGategorie } from '../../API';
+import { CmsAddAdmin } from '../../API';
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import LoadingIcon from "../../LoadingIcon";
 
-class AddCategory extends Component {
+class AddAdmin extends Component {
     state = {
         loading: false,
-        url: CmsAddGategorie,
-        name: "",
-        parentID: undefined,
+        username: "",
+        email: "",
+        password: "",
+        role_id : ""
     }
-    addCategoty = (e) => {
+    addAdmin = (e) => {
         e.preventDefault();
         this.setState({ loading: true });
         let params = {
-            name: this.state.name,
-            parent_id: this.state.parentID,
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            role_id : this.state.role_id
         }
-        axios.post(this.state.url, params).then(
+        axios.post(CmsAddAdmin, params).then(
             res => {
                 if (res.data.status == true) {
-                    console.log(res.data)
                     this.setState({ loading: false });
                     this.showSuccess(res.data.message)
                     setTimeout(function () {
@@ -43,24 +45,36 @@ class AddCategory extends Component {
     }
     render() {
         return (
-            <form className='container' onSubmit={this.addCategoty}>
+            <form className='container' onSubmit={this.addAdmin}>
                 <Toast ref={(el) => this.toastSuccess = el} position="bottom-right" />
                 <Toast ref={(el) => this.toastFailure = el} position="bottom-right" />
                 <div className="form-group wrapper">
                     <h6 className="p-2 rounded text-center font-weight-bolder">
-                        إضافة صنف جديد
+                        إضافة مدير جديد
                     </h6>
                     <div className="container mt-3">
                         <h6 className="mt-2 text-right">
-                            :إضافة اسم الصنف
+                            :إضافة اسم مستخدم
                         </h6>
-                        <input className="form-control " onChange={e => this.setState({ name: e.target.value })} placeholder="EX: CSS" />
+                        <input className="form-control " onChange={e => this.setState({ username: e.target.value })} placeholder="User Name" />
                     </div>
                     <div className="container mt-3">
                         <h6 className="mt-2 text-right">
-                            :Parent ID إضافة معرف الأب
+                            :إضافة البريد الالكتروني
                         </h6>
-                        <input className="form-control " onChange={e => this.setState({ parentID: e.target.value })} placeholder="Parent ID" />
+                        <input className="form-control " onChange={e => this.setState({ email: e.target.value })} placeholder="name@example.com" />
+                    </div>
+                    <div className="container mt-3">
+                        <h6 className="mt-2 text-right">
+                            :إضافة كلمة مرور
+                        </h6>
+                        <input className="form-control " type='password' onChange={e => this.setState({ password: e.target.value })} placeholder="Password" />
+                    </div>
+                    <div className="container mt-3">
+                        <h6 className="mt-2 text-right">
+                            :Role ID إضافة 
+                        </h6>
+                        <input className="form-control " type='number' onChange={e => this.setState({ role_id: e.target.value })} placeholder="ID" />
                     </div>
 
                 </div>
@@ -76,4 +90,4 @@ class AddCategory extends Component {
     }
 }
 
-export default AddCategory;
+export default AddAdmin;

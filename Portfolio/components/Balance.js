@@ -8,9 +8,8 @@ class Balance extends Component {
     state = {
         token: localStorage.getItem('userToken'),
         loading: false,
-        hasWallet: false,
+        hasWallet: true,
         balance: "",
-        getAmount: ""
     }
     CreateWallet = (e) => {
         e.preventDefault();
@@ -21,13 +20,12 @@ class Balance extends Component {
         axios.post(CreateWallet, axios.defaults.headers).then(
             res => {
                 if (res.data.status == true) {
-                    localStorage.setItem('hasWallet', true)
                     this.showSuccess(res.data.message);
-                    this.setState({ loading: false });
+                    this.setState({ loading: false, hasWallet: true });
                 }
                 else {
                     this.showError(res.data.message);
-                    this.setState({ loading: false });
+                    this.setState({ loading: false, hasWallet: true });
                 }
             }).catch(err => console.error(err));
     }
@@ -58,19 +56,6 @@ class Balance extends Component {
     showError = (msg) => {
         this.toastFailure.show({ severity: 'error', summary: 'فشل', detail: msg, life: 3000 });
     }
-    componentDidMount() {
-        axios.defaults.headers = {
-            Authorization: `Bearer ${this.state.token}`,
-        }
-        axios.get(GetAmount, axios.defaults.headers).then(
-            res => {
-                if (res.data.status == true) {
-                    this.setState({
-                        getAmount: res.data.data,
-                    });
-                }
-            }).catch(err => console.error(err));
-    }
     render() {
         return (
             <>
@@ -83,7 +68,7 @@ class Balance extends Component {
                             المحفظة البنكية
                         </h6>
                     </div>
-                    {!localStorage.getItem('hasWallet') &&
+                    {!this.state.hasWallet &&
                         <div className=" mt-3">
                             <h6 className="mt-2 text-right">
                                 هل تريد إنشاء محفظة بنكية؟
@@ -97,16 +82,22 @@ class Balance extends Component {
                             <button className="float-right btn btn-outline-danger m-4 w-25" data-dismiss="modal"> لا</button>
                         </div>
                     }
-                    {localStorage.getItem('hasWallet') &&
+                    {this.state.hasWallet &&
                         <form onSubmit={this.ChargeHandler}>
                             <h6 className="mt-2 text-right">
-                                {this.state.getAmount} رصيدك الحالي هو
+                                {this.props.Balance == "" ? '0.0' : this.props.Balance} رصيدك الحالي هو
                             </h6>
 
                             <h6 className="mt-2 text-right">
                                 أدخل مقدار الرصيد المراد شحنه
                             </h6>
                             <input className="form-control " onChange={e => this.setState({ balance: e.target.value })} placeholder="$" required />
+                            <div className="text-center mt-3">
+                                <small className="text-primary " style={{ cursor: "pointer" }} onClick={e => this.setState({ hasWallet: false })}>
+                                    لا أملك محفظة بنكية إنشاء واحدة؟
+                                </small>
+                            </div>
+
 
                             <div className=" mt-3">
                                 <button className="float-left btn btn-outline-success mt-3" type="submit">

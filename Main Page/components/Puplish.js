@@ -24,22 +24,23 @@ class Puplish extends Component {
     };
 
     dateHandler = (e) => {
-        let birthDate = e.value;
-        const offset = birthDate.getTimezoneOffset()
-        birthDate = new Date(birthDate.getTime() - (offset * 60 * 1000))
-        birthDate = new Date(birthDate).toISOString().split('T')[0];
-        this.setState({
-            deliveryDate: birthDate,
-        })
+        let birthDate = e;
+        if (e != "") {
+            const offset = birthDate.getTimezoneOffset();
+            birthDate = new Date(birthDate.getTime() - (offset * 60 * 1000));
+            birthDate = new Date(birthDate).toISOString().split('T')[0];
+        }
+        return birthDate;
     }
     _handleSubmit = (e) => {
         e.preventDefault();
         let projectFormData = new FormData();
+        let deliveryDate = this.dateHandler(this.state.deliveryDate)
 
         projectFormData.append('title', this.state.title)
         projectFormData.append('body', this.state.body)
         projectFormData.append('price', this.state.price)
-        projectFormData.append('deliveryDate', this.state.deliveryDate)
+        projectFormData.append('deliveryDate', deliveryDate)
         for (let i = 0; i < this.state.selectedItems.length; i++) {
             projectFormData.append(`category[${i}]`, this.state.selectedItems[i].id)
         }
@@ -60,14 +61,6 @@ class Puplish extends Component {
                     this.showError(res.data.message)
                 }
             }).catch(err => console.error(err));
-
-        let params = {
-            title: this.state.title,
-            body: this.state.body,
-            price: this.state.state,
-            deliveryDate: this.state.deliveryDate,
-        };
-
     }
 
     showSuccess = (msg) => {
@@ -137,7 +130,7 @@ class Puplish extends Component {
                                                 </div>
                                                 <div className="p-inputgroup ml-2 ">
                                                     <span className="p-inputgroup-addon "><CalendarIcon height={22} /></span>
-                                                    <Calendar readOnlyInput placeholder='تاريخ التسليم ' id="basic" value={this.state.deliveryDate} onChange={this.dateHandler} dateFormat="yy-mm-dd" />
+                                                    <Calendar readOnlyInput placeholder='تاريخ التسليم ' id="basic" value={this.state.deliveryDate} onChange={e => this.setState({ deliveryDate: e.value })} dateFormat="yy-mm-dd" />
                                                 </div>
                                             </div>
                                         </div>

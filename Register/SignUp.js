@@ -2,8 +2,7 @@ import { Component } from 'react';
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import LoadingIcon from "../LoadingIcon";
-import { Button } from 'primereact/button';
-import { RegisterAPI } from '../API';
+ import { RegisterAPI } from '../API';
 
 class SignUp extends Component {
   state = {
@@ -12,7 +11,6 @@ class SignUp extends Component {
     email: "",
     password: "",
     confPassword: "",
-    url: RegisterAPI,
     loading: false,
   }
   registerHandler = (e) => {
@@ -25,14 +23,14 @@ class SignUp extends Component {
       confirm_password: this.state.confPassword,
     }
     this.setState({ loading: true });
-    axios.post(this.state.url, params).then(
+    axios.post(RegisterAPI, params).then(
       res => {
         this.setState({ respone: res.data });
         console.log(res.data);
-        localStorage.setItem('userToken', res.data.data.token)
         if (res.data.status == true) {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
+          localStorage.setItem('userToken', res.data.data.token)
           setTimeout(function () {
             window.location.href = "/Initialize"
           }, 1000);
@@ -80,10 +78,8 @@ class SignUp extends Component {
                 {this.state.loading ? null : "التسجيل"}
                 <div className='text-center'>
                 <LoadingIcon size="25px" loading={this.state.loading} />
-
                 </div>
                </button>
-              {/* <button className="btn btn-lg btn-outline-success w-50" type="submit">التسجيل</button> */}
             </div>
             <a className="d-block text-center mt-3" href="#" data-dismiss="modal">هل تملك حساب ؟ قم بتسجيل الدخول</a>
             <hr className="my-3" />

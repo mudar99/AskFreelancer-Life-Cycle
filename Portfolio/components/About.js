@@ -14,7 +14,9 @@ class About extends Component {
                                     <span className="bg-secondary p-1 px-4 rounded text-white ">Pro</span>
                                     <h5 className="mt-3 mb-0">{this.props.Fname} {this.props.Lname}</h5>
                                     <span><big className="text-success">Specalization: </big>{this.props.Specalization}</span><br />
-                                    <span><big className="text-success">ProfissionName: </big>{this.props.ProfissionName}</span>
+                                    <span><big className="text-success">ProfissionName: </big>{this.props.ProfissionName}</span><br />
+                                    <span><big className="text-success">Balance: </big>{this.props.Balance == "" ? '0.0' : this.props.Balance}</span>
+
                                     <div className="px-4 mt-2">
                                         <p className="fonts">{this.props.Bio}</p>
                                     </div>

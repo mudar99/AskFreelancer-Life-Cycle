@@ -40,7 +40,7 @@ class Nav extends Component {
                                 <a className="nav-link " data-toggle="modal" data-target=".bd-notifications">الإشعارات <BellIcon height={25} /></a>
                             </li>
                             <li className="nav-item">
-                                <a href="/Profile" className="nav-link font-weight-bold text-success">الملف الشخصي <UserIcon height={25} />
+                                <a href="/Profile" className="nav-link font-weight-bold text-success">{this.props.Fname} <UserIcon height={25} />
                                 </a>
                             </li>
                         </ul>

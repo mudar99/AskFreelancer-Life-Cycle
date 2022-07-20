@@ -13,8 +13,6 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                {/* <CmsNav parentCallback = {this.handleCallback} />
-                <SideNav /> */}
                 <h1 className={this.state.name ? "text-light" : "text-danger"}>Dashboard</h1>
             </div>
         );

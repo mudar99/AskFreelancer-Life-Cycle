@@ -9,11 +9,8 @@ import LoadingIcon from "../../LoadingIcon";
 
 class Email_Verification extends Component {
     state = {
-        email: "",
-        password: "",
+        correctCode: "", 
         code: "",
-        sendUrl: SendAccountConfirmation,
-        confUrl: AccountConfirmation,
         loading: false,
         isDone: false,
         token: localStorage.getItem('userToken'),
@@ -32,12 +29,12 @@ class Email_Verification extends Component {
             Authorization: `Bearer ${this.state.token}`,
         }
         this.setState({ loading: true });
-        axios.post(this.state.sendUrl, axios.defaults.headers).then(
+        axios.post(SendAccountConfirmation, axios.defaults.headers).then(
             res => {
                 if (res.data.status == true) {
+                    this.setState({correctCode : res.data.data.code})
                     this.showSuccess(res.data.message);
                     this.setState({ loading: false, isDone: true });
-
                 }
                 else {
                     this.showError(res.data.message);
@@ -50,9 +47,9 @@ class Email_Verification extends Component {
         this.setState({ loading: true });
         let params = {
             code: this.state.code,
-            password: this.state.password,
+            correctCode: this.state.correctCode,
         }
-        axios.post(this.state.confUrl, params).then(
+        axios.post(AccountConfirmation, params).then(
             res => {
                 if (res.data.status == true) {
                     this.showSuccess(res.data.message);

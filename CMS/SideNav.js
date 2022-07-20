@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { HomeIcon, ExclamationCircleIcon, CogIcon, HashtagIcon, ClipboardListIcon } from "@heroicons/react/outline"
+import { HomeIcon, ExclamationCircleIcon, CogIcon, HashtagIcon, ClipboardListIcon, UserIcon, IdentificationIcon } from "@heroicons/react/outline"
 import { Link, Outlet } from 'react-router-dom';
 import Logout from '../Main Page/components/Logout';
 import { CmsLogoutAPI } from '../API';
@@ -30,12 +30,26 @@ class SideNav extends Component {
                             </Link>
                         </li>
                         <li className='' href="#">
+                            <Link className='Link d-flex justify-content-between' to="/CMS/Admins" style={{ textDecoration: 'none' }} >
+                                <UserIcon style={{ width: "15%" }} />
+                                المدراء
+                            </Link>
+                        </li>
+
+                        <li className='' href="#">
+                            <Link className='Link d-flex justify-content-between' to="/CMS/IDs" activeSyle={{ color: "red" }} style={{ textDecoration: 'none' }} >
+                                <IdentificationIcon style={{ width: "15%" }} />
+                                توثيق الهوية
+                            </Link>
+                        </li>
+
+                        <li className='' href="#">
                             <Link className='Link d-flex justify-content-between' to="/CMS/Complaints" activeSyle={{ color: "red" }} style={{ textDecoration: 'none' }} >
                                 <ExclamationCircleIcon style={{ width: "15%" }} />
                                 الشكاوي
-
                             </Link>
                         </li>
+
                         <li className='' href="#">
                             <Link className='Link d-flex justify-content-between' to="/CMS/Category" style={{ textDecoration: 'none' }} >
                                 <ClipboardListIcon style={{ width: "15%" }} />

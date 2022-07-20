@@ -6,12 +6,13 @@ import Post from "./components/Post";
 import Footer from '../Register/Footer'
 import { Helmet } from 'react-helmet';
 import axios from "axios";
-import { GetUserPosts, local } from '../API'
+import { GetUserPosts, GetProfileInfo } from '../API'
 
 class MainPage extends Component {
   state = {
     Posts: [],
     token: localStorage.getItem('userToken'),
+    Fname : "",
   }
   _getMainPosts() {
     return this.state.Posts.map(post => {
@@ -23,6 +24,7 @@ class MainPage extends Component {
         <Post
           key={post.id}
           id={post.id}
+          user_id={post.user_id}
           postTitle={post.title}
           deliveryDate={post.deliveryDate}
           price={post.price}
@@ -43,13 +45,22 @@ class MainPage extends Component {
     axios.defaults.headers = {
       Authorization: `Bearer ${this.state.token}`,
     }
-    axios.get(GetUserPosts + '2/posts', axios.defaults.headers).then(
+    axios.get(GetUserPosts + '2' + '/posts', axios.defaults.headers).then(
       res => {
         if (res.data.status == true) {
-          //console.log(res.data.data)
           this.setState({ Posts: res.data.data, loading: false });
         } else {
           this.setState({ loading: true });
+        }
+      }).catch(err => console.error(err));
+
+    axios.get(GetProfileInfo, axios.defaults.headers).then(
+      res => {
+        if (res.data.status == true) {
+          localStorage.setItem('myID', res.data.data.user.id)
+          this.setState({
+            Fname : res.data.data.user.first_name
+          })
         }
       }).catch(err => console.error(err));
   }
@@ -58,7 +69,7 @@ class MainPage extends Component {
     return (
       <div className='MainPage lightMode'>
         <Helmet title='Ask Freelancer | Main Page' />
-        <Nav />
+        <Nav Fname = {this.state.Fname}/>
         <div className='container '>
           <Puplish PostsDataHandling={this.PostsDataCallback} />
           <Filter />

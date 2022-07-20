@@ -24,7 +24,8 @@ class PostEdit extends Component {
         loading: false,
         docs: this.props.postDoc,
         activeIndex: 0,
-        uploadedFiles: []
+        uploadedFiles: [],
+        deletedItems: [],
     }
     showSuccess = (msg) => {
         this.toastSuccess.show({ severity: 'success', summary: 'نجاح', detail: msg, life: 3000 });
@@ -71,6 +72,7 @@ class PostEdit extends Component {
         }
         this.setState({
             docs: filtered,
+            deletedItems: this.state.deletedItems.concat(this.state.docs[this.state.activeIndex].id)
         })
     }
     itemTemplate = (item) => {
@@ -106,7 +108,6 @@ class PostEdit extends Component {
         e.preventDefault();
         this.setState({ loading: true });
         let projectFormData = new FormData();
-
         projectFormData.append('title', this.state.title)
         projectFormData.append('body', this.state.description)
         projectFormData.append('price', this.state.price)
@@ -116,6 +117,9 @@ class PostEdit extends Component {
         }
         for (let i = 0; i < this.state.uploadedFiles.length; i++) {
             projectFormData.append(`media[${i}]`, this.state.uploadedFiles[i])
+        }
+        for (let i = 0; i < this.state.deletedItems.length; i++) {
+            projectFormData.append(`delete_media[${i}]`, this.state.deletedItems[i])
         }
 
         axios.post(EditPost + this.props.postID, projectFormData).then(
@@ -208,7 +212,7 @@ class PostEdit extends Component {
                         <button className="float-left btn btn-outline-success mb-3" type="submit">
                             <div className="container">
                                 <LoadingIcon size="25px" loading={this.state.loading} />
-                                {!this.state.loading && <><i className="fa fa-save mr-1"></i> إضافة</>}
+                                {!this.state.loading && <><i className="fa fa-save mr-1"></i> تعديل</>}
                             </div>
                         </button>
                         <button className="float-right btn btn-outline-danger mb-3" data-dismiss="modal">إلغاء</button>
