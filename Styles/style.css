@@ -947,6 +947,14 @@ textarea::-webkit-scrollbar-thumb {
   color: #eee;
 }
 
+.Multiselect .optionListContainer {
+  z-index: 99;
+}
+
+.Multiselect .searchBox:hover {
+  cursor: pointer;
+}
+
 .Multiselect .searchBox {
   width: 90%;
 }
@@ -1302,7 +1310,8 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .sidenav li:last-child {
-  margin-top: 40vh;
+  position: fixed;
+  bottom: 18px;
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
   transition: -webkit-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
@@ -1319,7 +1328,8 @@ textarea::-webkit-scrollbar-thumb {
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
   position: absolute;
-  bottom: 13%;
+  bottom: 14%;
+  background-color: #eee;
   right: 5%;
   width: auto;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -1342,6 +1352,26 @@ textarea::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 
+.sidenav .sub-menu .Link {
+  font-size: 14px;
+  text-align: right;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: #2b2a2a;
+  padding: 10%;
+  margin-right: 2%;
+  display: block;
+}
+
+.sidenav .sub-menu .Link:hover {
+  color: #2b2a2a;
+  text-decoration: none;
+  background-color: rgba(3, 1, 0, 0.11);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
 .Category {
   width: 80%;
   margin-left: 3%;
@@ -1350,8 +1380,8 @@ textarea::-webkit-scrollbar-thumb {
 .Category #PlusCircleIcon,
 .Category .TrashIcon,
 .Category #PencilAltIcon {
-  -webkit-transition: .1s ease-in-out;
-  transition: .1s ease-in-out;
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .Category #PlusCircleIcon:hover,
@@ -1359,8 +1389,8 @@ textarea::-webkit-scrollbar-thumb {
 .Category #PencilAltIcon:hover {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-  -webkit-transition: .1s ease-in-out;
-  transition: .1s ease-in-out;
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 #cmsNav {

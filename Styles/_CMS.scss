@@ -15,6 +15,10 @@
   li {
     list-style: none;
     .Link {
+      // &:focus{
+      //   background-color: #28a745;
+      //   color: #eee;
+      // }
       font-size: 15px;
       text-align: right;
       transition: 0.2s;
@@ -31,7 +35,9 @@
       cursor: pointer;
     }
     &:last-child {
-      margin-top: 40vh;
+      // margin-top: 30vh;
+      position: fixed;
+      bottom: 18px;
       transition: transform 0.2s ease-in-out;
     }
     &:last-child:hover {
@@ -42,7 +48,8 @@
   .dropdown-content {
     transition: 1s ease-in-out;
     position: absolute;
-    bottom: 13%;
+    bottom: 14%;
+    background-color: #eee;
     right: 5%;
     width: auto;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -60,20 +67,36 @@
       cursor: pointer;
     }
   }
+  .sub-menu .Link {
+    font-size: 14px;
+    text-align: right;
+    transition: 0.2s;
+    color: rgb(43, 42, 42);
+    padding: 10%;
+    margin-right: 2%;
+    display: block; 
+    &:hover{
+      color: rgb(43, 42, 42) ;
+      text-decoration: none;
+      background-color: rgba(3, 1, 0, 0.11);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+  }
 }
 .Category {
   width: 80%;
   margin-left: 3%;
   #PlusCircleIcon,
   .TrashIcon,
-  #PencilAltIcon { 
-    transition: .1s ease-in-out;
+  #PencilAltIcon {
+    transition: 0.1s ease-in-out;
   }
   #PlusCircleIcon:hover,
   .TrashIcon:hover,
   #PencilAltIcon:hover {
     transform: scale(1.5);
-    transition: .1s ease-in-out;
+    transition: 0.1s ease-in-out;
   }
 }
 #cmsNav {

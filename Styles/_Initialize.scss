@@ -22,6 +22,12 @@
 }
 
 .Multiselect {
+  .optionListContainer {
+    z-index: 99;
+  }
+  .searchBox:hover {
+    cursor: pointer;
+  }
   .searchBox {
     width: 90%;
   }
@@ -46,13 +52,7 @@
 
 // }
 
-@mixin themable(
-  $theme-name,
-  $container-bg,
-  $text,
-  $input-bg,
-  $info-color
-) {
+@mixin themable($theme-name, $container-bg, $text, $input-bg, $info-color) {
   .#{$theme-name} {
     .initialize {
       background-color: $container-bg;

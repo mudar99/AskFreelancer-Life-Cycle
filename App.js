@@ -21,9 +21,11 @@ import GalleriaCaption from './Guest - Services/GalleriaCaption';
 import Services from './CMS/Services';
 import Admins from './CMS/Admins';
 import IDs from './CMS/IDs';
+import Roles from './CMS/Roles';
+import Permissions from './CMS/Permissions';
 
 class App extends Component {
-  
+
   render() {
     return (
 
@@ -31,7 +33,7 @@ class App extends Component {
         <BrowserRouter >
           <Routes>
             <Route exact path="/" element={<Register />} />
-            
+
             <Route path="*" element={<NotFound />} />
             <Route exact path="/Initialize" element={<Initialize />} />
             <Route path="/Profile" element={<Profile />} />
@@ -41,12 +43,14 @@ class App extends Component {
             <Route path="/Guest_Services" element={<GalleriaCaption />} />
             <Route path="/CMS_Login" element={<CMS_Login />} />
             <Route path="CMS" element={<CMS />} >
-              <Route path="Category" element={<Category />} />
-              <Route path="Services" element={<Services />} />
-              <Route path="Complaints" element={<Complaints />} />
               <Route path="Dashboard" element={<Dashboard />} />
               <Route path="Admins" element={<Admins />} />
               <Route path="IDs" element={<IDs />} />
+              <Route path="Roles" element={<Roles />} />
+              <Route path="Permissions" element={<Permissions />} />
+              <Route path="Category" element={<Category />} />
+              <Route path="Services" element={<Services />} />
+              <Route path="Complaints" element={<Complaints />} />
             </Route>
           </Routes>
         </BrowserRouter>

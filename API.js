@@ -62,6 +62,20 @@ export const CmsDeleteAdmin = `${local}/api/CMS/admins/`
 export const CmsGetAdmins = `${local}/api/CMS/admins`
 export const CmsResetPasswordAPI = `${local}/api/CMS/password/reset`
 
+export const CmsGetRoles = `${local}/api/CMS/roles`
+export const CmsAddRole = `${local}/api/CMS/roles`
+export const CmsDeleteRole = `${local}/api/CMS/roles/`
+export const CmsUpdateRole = `${local}/api/CMS/roles/`
+export const CmsShowRole = `${local}/api/CMS/roles/`
+
+export const CmsGetPermissions = `${local}/api/CMS/permissions`
+export const CmsGetAllPermissions = `${local}/api/CMS/permissions/all`
+export const CmsGetPermissionsExcept = `${local}/api/CMS/permissions/except`
+
+
+
+
+
 
 
 

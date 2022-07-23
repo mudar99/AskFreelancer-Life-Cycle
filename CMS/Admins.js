@@ -12,6 +12,8 @@ class Admins extends Component {
         token: localStorage.getItem('userTokenCMS'),
         loading: true,
         Admins: [],
+        pageNumber: 1,
+        lastPage: '',
     }
     componentDidMount() {
         axios.defaults.headers = {
@@ -23,7 +25,48 @@ class Admins extends Component {
                     console.log(res.data.data.data)
                     this.setState({ loading: false });
                     this.setState({
-                        Admins: res.data.data.data
+                        Admins: res.data.data.data,
+                        lastPage: res.data.data.last_page
+                    });
+                } else {
+                    this.setState({ loading: true });
+                }
+            }).catch(err => console.error(err));
+    }
+    getAdmins = (e) => {
+        let pageNum;
+        if (e.target.innerHTML == 'Previous') {
+            if (this.state.pageNumber - 1 >= 1) {
+                pageNum = this.state.pageNumber - 1
+            }
+            else pageNum = this.state.pageNumber
+            this.setState({
+                pageNumber: pageNum
+            })
+        }
+        else if (e.target.innerHTML == 'Next') {
+            if (this.state.pageNumber + 1 <= this.state.lastPage) {
+                pageNum = this.state.pageNumber + 1
+            }
+            else pageNum = this.state.pageNumber
+            this.setState({
+                pageNumber: pageNum
+            })
+        }
+        else {
+            pageNum = parseInt(e.target.innerHTML)
+            this.setState({
+                pageNumber: pageNum
+            })
+        }
+        axios.get(CmsGetAdmins + '?page=' + pageNum).then(
+            res => {
+                if (res.data.status == true) {
+                    // console.log(res.data.data)
+                    this.setState({ loading: false });
+                    this.setState({
+                        Admins: res.data.data.data,
+                        pageNum: this.state.pageNum + 1
                     });
                 } else {
                     this.setState({ loading: true });
@@ -38,6 +81,7 @@ class Admins extends Component {
                         <tr className='text-center'>
                             <th>User Name</th>
                             <th>ID</th>
+                            <th>Role ID</th>
                             <th>Email</th>
                             <th>Created at</th>
                             <th>Updated at</th>
@@ -50,6 +94,7 @@ class Admins extends Component {
                                 <tr className='text-center'>
                                     <td>{admin.username}</td>
                                     <td>{admin.id}</td>
+                                    <td>{admin.role_id}</td>
                                     <td >{admin.email}</td>
                                     <td>{admin.created_at}</td>
                                     <td>{admin.updated_at}</td>
@@ -78,13 +123,18 @@ class Admins extends Component {
                     <PlusCircleIcon data-toggle="modal" data-target=".modal-addService" id='PlusCircleIcon' cursor="pointer" color='green' height={40} />
                 </div>
 
-                <nav aria-label="Page navigation example ">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                <nav aria-label="Page navigation example" hidden={this.state.lastPage == 1}>
+                    <ul className="pagination ">
+                        <li className="page-item" hidden={this.state.pageNumber == 1}><a className="page-link text-info" onClick={this.getAdmins} style={{ cursor: 'pointer' }}>Previous</a></li>
+                        {
+                            Array.from({ length: this.state.lastPage }, (_, i) =>
+                                <li className="page-item">
+                                    <a className="page-link text-info" onClick={this.getAdmins} style={{ cursor: 'pointer' }}>
+                                        {i + 1}
+                                    </a>
+                                </li>)
+                        }
+                        <li className="page-item" hidden={this.state.pageNumber == this.state.lastPage}><a className="page-link text-info" onClick={this.getAdmins} style={{ cursor: 'pointer' }}>Next</a></li>
                     </ul>
                 </nav>
 
