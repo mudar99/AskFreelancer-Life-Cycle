@@ -16,7 +16,7 @@ import { Toast } from "primereact/toast";
 class Initialize extends Component {
 
   state = {
-    BirthDate : "",
+    BirthDate: "",
     isFreelancer: false,
     isClient: false,
     Bio: "",
@@ -24,8 +24,8 @@ class Initialize extends Component {
     Job: "",
     Spe: "",
     Skills: [],
-    url: PrepareAccountAPI,
-    token: localStorage.getItem('userToken')
+    token: localStorage.getItem('userToken'),
+    cover_image: ''
   }
   FreelancerCallback = (childData) => { this.setState({ isFreelancer: childData }) }
   ClientCallback = (childData) => { this.setState({ isClient: childData }) }
@@ -46,26 +46,29 @@ class Initialize extends Component {
 
   saveHandler = e => {
     e.preventDefault();
+    let formData = new FormData();
+
     let type;
     if (this.state.isFreelancer === true) type = 0;
     if (this.state.isClient === true) type = 1;
-    // console.log('isFreelancer ' + this.state.isFreelancer)
-    // console.log('isClient ' + this.state.isClient)
-    // console.log('type ' + type)
-    let skillsIDs = [];
+    console.log('isFreelancer ' + this.state.isFreelancer)
+    console.log('isClient ' + this.state.isClient)
+    console.log('type ' + type)
+
+
+    formData.append('bio', this.state.Bio)
+    formData.append('birthday', this.state.BirthDate)
+    formData.append('cover', this.state.cover_image)
+    formData.append('phone_number', this.state.PhoneNumber)
+    formData.append('profissionName', this.state.Job)
+    formData.append('speciality', this.state.Spe.name)
+    formData.append('type', type)
+
     for (let i = 0; i < this.state.Skills.length; i++) {
-      skillsIDs[i] = this.state.Skills[i].id
-    } 
-    let params = {
-      type: type,
-      phone_number: this.state.PhoneNumber,
-      profissionName: this.state.Job,
-      speciality: this.state.Spe.name,
-      bio: this.state.Bio,
-      skills: skillsIDs,
-      birthday: this.state.BirthDate
-    } 
-    axios.post(this.state.url, params).then(
+      formData.append(`skills[${i}]`, this.state.Skills[i].id)
+    }
+
+    axios.post(PrepareAccountAPI, formData).then(
       res => {
         this.setState({ respone: res.data });
         console.log(res.data);
@@ -89,12 +92,6 @@ class Initialize extends Component {
     axios.defaults.headers = {
       Authorization: `Bearer ${this.state.token}`,
     }
-    console.log(this.state.token);
-    axios.post(this.state.url, axios.defaults.headers).then(
-      res => {
-        this.setState({ respone: res.data });
-        console.log(res.data);
-      }).catch(err => console.error(err));
   }
 
   render() {
@@ -114,8 +111,14 @@ class Initialize extends Component {
               <SkillsInit selectedSpe={this.state.Spe.id} selectHandling={this.SkillsCallback} />
             </>
           }
+          <div className="container mb-4 d-flex">
+            <div className="container w-50 text-center">
+              <input type='file' onChange={e => { this.setState({ cover_image: e.target.files[0] }) }} />
+            </div>
+            <h4 className="mb-5 ">: الصورة الشخصية</h4>
+          </div>
           <Bio BioHandling={this.BioCallback} />
-          <BirthDate dateHandling = {this.DateCallback} />
+          <BirthDate dateHandling={this.DateCallback} />
           <PhoneNumber PhoneNumberHandling={this.PhoneNumberCallback} />
           <button onClick={this.saveHandler} className="btn btn-success w-25 mt-5 mb-5 ml-5">حفظ</button>
         </form>

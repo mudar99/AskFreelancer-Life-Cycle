@@ -9,11 +9,11 @@ import Multiselect from 'multiselect-react-dropdown';
 class UpdateRole extends Component {
     state = {
         loading: false,
-        name: this.props.name,
         multiselectRef: React.createRef(),
         selectedItems: this.props.selectedPermissions,
         AvaliableSelect: [],
         deletedPermissions: [],
+        roleName: this.props.roleName
     }
     componentDidMount() {
         console.log(this.props.selectedPermissions)
@@ -25,8 +25,6 @@ class UpdateRole extends Component {
         let delete_permission = [];
         let params;
 
-
-
         let difference = this.state.selectedItems.filter(x => this.props.selectedPermissions.indexOf(x) === -1);
         // console.log(difference);
 
@@ -36,21 +34,12 @@ class UpdateRole extends Component {
         for (let i = 0; i < this.state.deletedPermissions.length; i++) {
             delete_permission[i] = this.state.deletedPermissions[i].id
         }
-        // if (JSON.stringify(this.state.selectedItems) == JSON.stringify(this.props.selectedPermissions)) {
-        //     console.log(JSON.stringify(this.state.selectedItems) == JSON.stringify(this.props.selectedPermissions))
-        //     params = {
-        //         name: this.state.name,
-        //         delete_permission: delete_permission,
-        //     }
-        // }
-        // else {
-            console.log(permissions)
-            params = {
-                name: this.state.name,
-                permission: permissions,
-                delete_permission: delete_permission,
-            }
-        // }
+        console.log(permissions)
+        params = {
+            name: this.state.roleName,
+            permission: permissions,
+            delete_permission: delete_permission,
+        }
 
         axios.post(CmsUpdateRole + this.props.id, params).then(
             res => {
@@ -106,7 +95,7 @@ class UpdateRole extends Component {
     }
     render() {
         return (
-            <form className='container' onSubmit={this.updateRole}>
+            <form className='container ' onSubmit={this.updateRole}>
                 <Toast ref={(el) => this.toastSuccess = el} position="bottom-right" />
                 <Toast ref={(el) => this.toastFailure = el} position="bottom-right" />
                 <div className="form-group wrapper" >
@@ -114,7 +103,7 @@ class UpdateRole extends Component {
                         <h6 className="mt-2 text-right">
                             :تعديل اسم الدور
                         </h6>
-                        <input className="form-control " defaultValue={this.state.name} onChange={e => this.setState({ name: e.target.value })} placeholder="Role Name" />
+                        <input className="form-control bg-light" defaultValue={this.state.roleName} onChange={e => this.setState({ name: e.target.value })} placeholder="Role Name" />
                     </div>
                     <div className="container mt-3">
                         <h6 className="mt-2 text-right">
@@ -125,7 +114,7 @@ class UpdateRole extends Component {
                                 selectedValues={this.state.selectedItems}
                                 onRemove={this.removePermission}
                                 onSelect={this.selectHandler}
-                                className="Multiselect"
+                                className="bg-light"
                                 options={this.state.AvaliableSelect}
                                 displayValue="name"
                                 ref={this.state.multiselectRef}
@@ -135,10 +124,10 @@ class UpdateRole extends Component {
                         </div>
                     </div>
                 </div>
-                <button className="float-left btn btn-outline-success mb-4 m-3" type="submit">
+                <button className="float-right btn btn-outline-primary m-5" type="submit">
                     <div className="container">
                         <LoadingIcon size="25px" loading={this.state.loading} />
-                        {!this.state.loading && <><i className="fa fa-save mr-1"></i> تعديل</>}
+                        {!this.state.loading && <><i className="fa fa-save mr-1 "></i> تعديل</>}
                     </div>
                 </button>
             </form >

@@ -1,6 +1,6 @@
 import { Component } from "react"
 import React from 'react';
-import { PencilAltIcon, TrashIcon, ClockIcon, ChevronDoubleUpIcon,CurrencyDollarIcon,CalendarIcon } from "@heroicons/react/outline";
+import { PencilAltIcon, TrashIcon, ClockIcon, ChevronDoubleUpIcon, CurrencyDollarIcon, CalendarIcon } from "@heroicons/react/outline";
 import { local, DeletePost, GetPostOffers } from '../../API'
 import { Chip } from 'primereact/chip';
 import { ConfirmPopup } from 'primereact/confirmpopup';
@@ -11,7 +11,7 @@ import { Button } from 'primereact/button';
 import axios from "axios";
 import AddOffer from "./Offers/AddOffer";
 import Offer from "./Offers/Offer";
-
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
     state = {
@@ -34,6 +34,10 @@ class Post extends Component {
                 this.toast.show({ severity: 'success', summary: 'نجاح', detail: res.data.message, life: 3000 });
                 window.location.reload();
             }).catch(err => console.error(err));
+    }
+    visitProfile = () => {
+        localStorage.setItem('UserID',this.props.user_id)
+        window.location.href = 'Profile'
     }
     componentDidMount() {
         this.setState({
@@ -60,6 +64,7 @@ class Post extends Component {
         }
         axios.get(GetPostOffers + this.props.id + '/offers', axios.defaults.headers).then(
             res => {
+                // console.log(res.data)
                 if (res.data.status == true) {
                     this.setState({ Offers: res.data.data, loading: false });
                     this.setState({ offerOpen: true })
@@ -70,7 +75,7 @@ class Post extends Component {
     }
     render() {
         return (
-            <section className="Post mb-5 mt-5">
+            <section className={this.props.profile ? "Post container mb-5 mt-5" : "Post mb-5 mt-5"}>
 
                 <Toast ref={(el) => this.toast = el} position="bottom-right" />
                 <ConfirmPopup target={document.getElementById(`deletePostBTN${this.props.id}`)} visible={this.state.visible} onHide={() => this.setState({ visible: false })} message="هل تريد حذف المشروع؟"
@@ -82,7 +87,7 @@ class Post extends Component {
                             <img src={this.props.profileImg} />
                         </div>
                         <div className="w-100 pl-3 pt-2 mt-2">
-                            <h5 className="text-success pl-1">{this.props.name}</h5>
+                            <h5 className="text-success pl-1" onClick={this.visitProfile} style={{ cursor: 'pointer' }}>{this.props.name}</h5>
                             <label className="row col-sm">
                                 <ClockIcon height={16} className="mr-2" />
                                 <small>{this.props.time}</small>
@@ -90,7 +95,7 @@ class Post extends Component {
                         </div>
                         <div className="btn-group  h-25 m-2 ">
                             <a id="edit" className="edit m-2" hidden={!this.state.isHidden}><PencilAltIcon data-toggle="modal" data-target={`.modal-PostEdit${this.props.id}`} height={20} /> </a>
-                            <a id={`deletePostBTN${this.props.id}`} onClick={this.setVisible} className="delete m-2" ><TrashIcon height={20} hidden={!this.state.isHidden}/> </a>
+                            <a id={`deletePostBTN${this.props.id}`} onClick={this.setVisible} className="delete m-2" ><TrashIcon height={20} hidden={!this.state.isHidden} /> </a>
                         </div>
                     </div>
                     <div className="container">
@@ -130,6 +135,7 @@ class Post extends Component {
                                 created_at={e.created_at}
                                 user_id={e.user_id}
                                 post_id={e.post_id}
+                                user_post_id = {this.props.user_id}
                                 userInfo={e.user}
                             />
                         })

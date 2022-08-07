@@ -86,7 +86,7 @@ class AddRole extends Component {
                         <h6 className="mt-2 text-right">
                             :Role إضافة اسم الدور
                         </h6>
-                        <input className="form-control " onChange={e => this.setState({ roleName: e.target.value })} placeholder="Role Name" />
+                        <input className="form-control bg-light"  onChange={e => this.setState({ roleName: e.target.value })} placeholder="Role Name" />
                     </div>
                     <div className="container mt-3">
                         <h6 className="mt-2 text-right">
@@ -94,7 +94,7 @@ class AddRole extends Component {
                         </h6>
                         <div onClick={this.getPermissions}>
                             <Multiselect
-                                className="Multiselect"
+                            className='bg-light'
                                 options={this.state.permissions}
                                 displayValue="name"
                                 onSelect={this.selectHandler}

@@ -11,19 +11,13 @@ class Projects extends Component {
                 <div className="container text-center">
                     <div className="">
                         <CodeIcon className="CodeIcon" style={{ width: "15%" }} />
+
                         <h1 className="mb-4">
                             <a href="#" data-toggle="modal" data-target=".modal-editProjects" >
-                                <PlusCircleIcon className="mt-2 mr-3 text-success"height={22} />
+                                {!this.props.isVisible && <PlusCircleIcon className="mt-2 mr-3 text-success" height={22} />}
                             </a>المشاريع السابقة
                         </h1>
-                        <p className="">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo
-                            facilis repellat ab cupiditate alias vero aliquid obcaecati quisquam
-                            fuga dolore.Lorem ipsum, dolor sit amet consecteturq adipisicing elit. Explicabo
-                            facilis repellat ab cupiditate alias vero aliquid obcaecati quisquam
-                            fuga dolore.
-                        </p>
-                        <Gallery />
+                        <Gallery isVisible={this.props.isVisible} projects={this.props.projects} />
                     </div>
 
                 </div>
@@ -32,7 +26,7 @@ class Projects extends Component {
                         <div className="modal-content ">
                             <div className="container ProjectsEdit">
                                 <div id="card-body" className="card-body">
-                                <ProjectsAdd />
+                                    <ProjectsAdd />
                                 </div>
                             </div>
                         </div>

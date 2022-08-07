@@ -20,7 +20,7 @@ class Navbar extends Component {
             <div id="starNav" className="navbar d-flex justify-content-between">
                 <li><a className="" href="#"><img id="Logo" src="/Img/AF.png" alt="Ask Freelancer" /></a></li>
                 <li><h1>إعداد المعلومات الأساسية</h1></li>
-                <li><a href="#" className="btn text-success">تخطي</a></li>
+                <li><a href="Profile" className="btn text-success">تخطي</a></li>
             </div>
 
         );

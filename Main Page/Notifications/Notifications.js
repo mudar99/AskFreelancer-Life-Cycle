@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Sub_noti from "./Sub_noti";
 import LoadingIcon from "../../LoadingIcon";
+import { XIcon ,XCircleIcon} from '@heroicons/react/outline';
 
 
 class Notifications extends Component {
@@ -56,9 +57,9 @@ class Notifications extends Component {
         const notifications = this._getNotifications();
 
         return (
-            <div id="s" className="container-xl p-2" >
-                <h3 className="p-4 bg-success rounded">Notifications
-                    <button className=" float-right btn btn-outline-dark" data-dismiss="modal">X</button>
+            <div className="container-xl p-1" >
+                <h3 className="p-3 bg-success rounded text-right">الإشعارات
+                    <div className=" float-left"><XIcon height={22}  data-dismiss="modal"/></div>
                 </h3>
                 {notifications}
                 <button className="btn btn-outline-primary float-right mb-2" hidden={this.state.checkload == true ? false : true} onClick={this.GetCount}>Load more</button>

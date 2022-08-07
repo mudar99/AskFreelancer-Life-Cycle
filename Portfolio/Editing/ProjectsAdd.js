@@ -79,7 +79,7 @@ class ProjectsAdd extends Component {
                         <h6 className="mt-2 text-right">
                             :إضافة وصف للمشروع
                         </h6>
-                        <textarea className="form-control text-left" placeholder="Description" rows={3} onChange={e => this.setState({ description: e.target.value })}/>
+                        <textarea className="form-control text-left text-wrap" placeholder="Description" rows={3} onChange={e => this.setState({ description: e.target.value })}/>
                     </div>
                 </div>
                 <button className="float-left btn btn-outline-success mb-3" type="submit">

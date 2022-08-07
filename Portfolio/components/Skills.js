@@ -10,13 +10,8 @@ class Skills extends Component {
             <h1 className="mb-4 ">
               المهارات و التقنيات
             </h1>
-            <p className="">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi sit
-              ipsa delectus eum quo voluptas aspernatur accusantium distinctio
-              possimus est.
-            </p>
           </div>
-          <div className="row"> 
+          <div className="row">
             {this.props.Skills.map((skill) => (
               <div key={skill.id} className="p-2 col-md-6">
                 <div className="skills rounded p-4 ">

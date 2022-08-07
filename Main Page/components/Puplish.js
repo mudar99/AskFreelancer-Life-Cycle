@@ -7,6 +7,7 @@ import { Toast } from 'primereact/toast';
 import { CalendarIcon } from "@heroicons/react/outline";
 import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
+import { Button } from 'primereact/button';
 import { ChildrenGategories, CreatePost } from '../../API'
 
 class Puplish extends Component {
@@ -138,7 +139,8 @@ class Puplish extends Component {
                                 </div>
                             </div>
 
-                            <button id="share-btn" type="submit" className="btn-share btn btn-success w-25 m-3 float-right " >نشر</button>
+                            {/* <button id="share-btn" type="submit" className="btn-share btn btn-success w-25 m-3 float-right " >نشر</button> */}
+                            <Button label='نشر' type="submit" className="float-right p-button-success  w-25 m-3" />
                         </div>
                     </div>
                 </form>

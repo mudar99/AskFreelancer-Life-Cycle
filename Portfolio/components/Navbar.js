@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ChatIcon, HomeIcon } from "@heroicons/react/outline";
+import { HomeIcon, BriefcaseIcon } from "@heroicons/react/outline";
 import { UserCircleIcon, CogIcon, EyeIcon } from '@heroicons/react/outline'
 import Logout from "../../Main Page/components/Logout";
 import ChangePassword from "./ChangePassword";
@@ -7,6 +7,7 @@ import { LogoutAPI } from '../../API';
 import ID_Verification from "./ID_Verification";
 import Email_Verification from "./Email_Verification";
 import Balance from "./Balance";
+import Orders from "./Orders";
 
 class Navbar extends Component {
     state = {
@@ -45,6 +46,7 @@ class Navbar extends Component {
             });
         }
     }
+
     render() {
         return (
             <nav id="navbar" className="navbar navbar-expand-lg navbar-light">
@@ -64,22 +66,25 @@ class Navbar extends Component {
                                 <a className="dropdown-item" href="#testimonials">تقييم العملاء</a>
                                 <a className="dropdown-item" href="#skills">المهارات</a>
                                 <a className="dropdown-item" href="#projects" >الأعمال السابقة</a>
+                                <a className="dropdown-item" href="#Posts" >المنشورات</a>
+
                             </div>
                         </div>
                         <li className="mr-3 ml-3 " ><Logout remember="RememberMe" startPage='/' parentUrl={LogoutAPI} Token='userToken' /></li><hr />
-                        <li><a href="#" className="mr-3 ml-3">مراسلة <ChatIcon height={25} /></a></li><hr />
-                        <li><a href="/MainPage" className="mr-3 ml-3">رئيسي <HomeIcon height={25} /></a></li><hr />
+                        <li><a className="mr-3" style={{ cursor: 'pointer' }} data-toggle="modal" data-target=".bd-orders">الطلبات <BriefcaseIcon height={25} /></a></li><hr />
+                        <li><a href="/MainPage" className="mr-3">رئيسي <HomeIcon height={25} /></a></li><hr />
 
-                        <div className="dropdown d-lg-flex d-none">
-                            <a className="mr-3 ml-3" role="button"><CogIcon id="setting" height={25} /></a>
-                            <div class="dropdown-content">
-                                <a className="" data-toggle="modal" data-target=".modal-changePassword" style={{ cursor: "pointer" }}>تغيير كلمة المرور </a>
-                                <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a>
-                                <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني</a>
-                                <a className="dropdown-item" data-toggle="modal" data-target=".modal-Balance">المحفظة</a>
+                        {!this.props.isVisible &&
+                            <div className="dropdown d-lg-flex d-none">
+                                <a className="mr-3 ml-3" role="button"><CogIcon id="setting" height={25} /></a>
+                                <div class="dropdown-content">
+                                    <a className="" data-toggle="modal" data-target=".modal-changePassword" style={{ cursor: "pointer" }}>تغيير كلمة المرور </a>
+                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a>
+                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني</a>
+                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-Balance">المحفظة</a>
+                                </div>
                             </div>
-                        </div>
-
+                        }
                         <div className="d-block d-lg-none">
                             <a href="#" data-toggle="modal" data-target=".modal-changePassword" style={{ cursor: "pointer" }}>تغيير كلمة المرور </a><hr />
                             <a href="#" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a><hr />
@@ -135,9 +140,17 @@ class Navbar extends Component {
                         <div className="modal-content ">
                             <div className="container Balance">
                                 <div id="card-body" className="card-body">
-                                    <Balance Balance = {this.props.Balance}/>
+                                    <Balance Balance={this.props.Balance} />
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="p-0 modal fade bd-orders" >
+                    <div className="modal-dialog modal-md ">
+                        <div className="modal-content ">
+                            <Orders Orders={this.props.Orders} />
                         </div>
                     </div>
                 </div>

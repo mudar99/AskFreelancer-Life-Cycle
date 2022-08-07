@@ -7,7 +7,7 @@ import { Chip } from 'primereact/chip';
 import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import { Toast } from 'primereact/toast';
-import { EditOffer, DeleteOffer } from '../../../API'
+import { EditOffer, DeleteOffer, AcceptOffer, RefuseOffer } from '../../../API'
 import { ConfirmPopup } from 'primereact/confirmpopup';
 import axios from "axios";
 
@@ -26,8 +26,8 @@ class Offer extends Component {
         loading: false,
         visible: false,
         arabic: /[\u0600-\u06FF]/,
-        isHidden: (localStorage.getItem('myID') != this.props.user_id)
-
+        isHidden: (localStorage.getItem('myID') != this.props.user_post_id),
+        isEditable: (localStorage.getItem('myID') != this.props.user_id)
     }
     componentDidMount() {
         this.setState({
@@ -78,6 +78,33 @@ class Offer extends Component {
                 }
             }).catch(err => console.error(err));
     }
+    acceptOffer = (e) => {
+        e.preventDefault();
+        axios.post(AcceptOffer + this.props.id).then(
+            res => {
+                if (res.data.status == true) {
+                    this.showSuccess(res.data.message);
+                    // window.location.reload();
+                }
+                else {
+                    this.showError(res.data.message);
+                }
+            }).catch(err => console.error(err));
+    }
+    rejectOffer = (e) => {
+        e.preventDefault();
+        // console.log(this.props.id)
+        axios.delete(RefuseOffer + this.props.id).then(
+            res => {
+                if (res.data.status == true) {
+                    this.showSuccess(res.data.message);
+                    // window.location.reload();
+                }
+                else {
+                    this.showError(res.data.message);
+                }
+            }).catch(err => console.error(err));
+    }
     setVisible = (event) => {
         this.setState({ visible: true })
     }
@@ -102,15 +129,15 @@ class Offer extends Component {
                 </label>
             </div>
             <div className="btn-group  h-25 m-2 ">
-                <a id="edit" className="edit m-2" onClick={e => this.setState(prevstate => ({ isEditOn: !prevstate.isEditOn }))} hidden={this.state.isHidden}><PencilAltIcon height={20} /> </a>
-                <a id={`deleteOfferBTN${this.props.id}`} onClick={this.setVisible} className="delete m-2" hidden={this.state.isHidden} ><TrashIcon height={20} /> </a>
+                <a id="edit" className="edit m-2" onClick={e => this.setState(prevstate => ({ isEditOn: !prevstate.isEditOn }))} hidden={this.state.isEditable}><PencilAltIcon height={20} /> </a>
+                <a id={`deleteOfferBTN${this.props.id}`} onClick={this.setVisible} className="delete m-2" hidden={this.state.isEditable} ><TrashIcon height={20} /> </a>
             </div>
         </div>;
 
         this.footer = <div className='text-right'>
-            <span className=''>{console.log(localStorage.getItem('myID') == this.props.user_id)}
-                <Button hidden={!this.state.isHidden} icon="pi pi-times" className="p-button-rounded p-button-text p-button-lg p-button-danger mr-2" aria-label="Cancel" />
-                <Button hidden={!this.state.isHidden} icon="pi pi-check" className="p-button-rounded p-button-text p-button-lg p-button-info ml-2" aria-label="Filter" />
+            <span className=''>
+                <Button hidden={this.state.isHidden} icon="pi pi-times" onClick={this.rejectOffer} className="p-button-rounded p-button-text p-button-lg p-button-danger mr-2" aria-label="Cancel" />
+                <Button hidden={this.state.isHidden} icon="pi pi-check" onClick={this.acceptOffer} className="p-button-rounded p-button-text p-button-lg p-button-info ml-2" aria-label="Filter" />
             </span>
         </div>;
         return (

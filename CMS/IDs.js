@@ -16,7 +16,7 @@ class IDs extends Component {
         axios.defaults.headers = {
             Authorization: `Bearer ${this.state.token}`,
         }
-        axios.get(GetIdentity, axios.defaults.headers).then(
+        axios.get(GetIdentity).then(
             res => {
                 if (res.data.status == true) {
                     console.log(res.data.data)

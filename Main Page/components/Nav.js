@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import Notifications from "../Notifications/Notifications";
-import { UserIcon, BellIcon, LogoutIcon } from '@heroicons/react/outline'; 
+import { UserIcon, BellIcon, LogoutIcon } from '@heroicons/react/outline';
 import Logout from "./Logout";
-import {LogoutAPI} from '../../API';
+import { LogoutAPI } from '../../API';
 
 
 class Nav extends Component {
-    state = { 
+    state = {
     }
-    FilterHandler = () => {
+    profileHandler = () => {
+        localStorage.setItem('UserID', this.props.myID)
+        window.location.href = 'Profile'
+    }
 
-    }
     render() {
         return (
             <div>
-                
+
                 <nav id="navbar" className="navbar navbar-expand-lg navbar-light">
                     <div>
                         <a className="  d-lg-flex " href="#"><img id="Logo" src="/Img/AF.png" alt="Ask Freelancer" /></a>
@@ -34,13 +36,13 @@ class Nav extends Component {
                     <div className="collapse navbar-collapse flex-row-reverse text-right" id="navbarNav">
                         <ul className="navbar-nav ">
                             <li className="nav-item active ">
-                            <a className="nav-link " ><Logout remember="RememberMe" startPage='/' parentUrl = {LogoutAPI} Token = 'userToken'/></a>
+                                <a className="nav-link " ><Logout remember="RememberMe" startPage='/' parentUrl={LogoutAPI} Token='userToken' /></a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link " data-toggle="modal" data-target=".bd-notifications">الإشعارات <BellIcon height={25} /></a>
                             </li>
                             <li className="nav-item">
-                                <a href="/Profile" className="nav-link font-weight-bold text-success">{this.props.Fname} <UserIcon height={25} />
+                                <a className="nav-link font-weight-bold text-success" onClick={this.profileHandler}>{this.props.Fname} <UserIcon height={25} />
                                 </a>
                             </li>
                         </ul>

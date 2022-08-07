@@ -5,15 +5,15 @@ import SideNav from './SideNav';
 class Dashboard extends Component {
     state = {
         name: false,
-       }
-  
-    handleCallback = (childData) =>{
-        this.setState({name: childData})
+    }
+
+    handleCallback = (childData) => {
+        this.setState({ name: childData })
     }
     render() {
         return (
-            <div>
-                <h1 className={this.state.name ? "text-light" : "text-danger"}>Dashboard</h1>
+            <div className='Category container mt-5 '>
+                <h1>Dashboard</h1>
             </div>
         );
     }

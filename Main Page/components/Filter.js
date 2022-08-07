@@ -1,8 +1,17 @@
 
 import { Component } from 'react';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
 
 
 class Filter extends Component {
+    state = {
+        searchValue: '',
+    }
+
+    SearchPost = () => {
+        this.props.SearchValueHandling(this.state.searchValue);
+    }
     render() {
         return (
             <section className="Filter sticky-top">
@@ -17,12 +26,21 @@ class Filter extends Component {
                             </header> */}
                             <div className="filter-content collapse show" id="collapse_2">
                                 <div className="card-body">
-                                    <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="بحث" />
+                                    {/* <div className="input-group mb-3">
+                                        <input type="text" className="form-control" onChange={e => this.setState({ searchValue: e.target.value })} placeholder="بحث" />
                                         <div className="input-group-append">
-                                            <button className="btn btn-light" type="button"><i className="fa fa-search"></i></button>
+                                            <button className="btn btn-light" type="button" onClick={this.SearchPost}><i className="fa fa-search"></i></button>
+                                        </div>
+                                    </div> */}
+
+                                    <div className="w-100">
+                                        <div className="p-inputgroup">
+                                            <Button icon="pi pi-search" onClick={this.SearchPost} className="p-button-success" />
+                                            <InputText placeholder="بحث" onChange={e => this.setState({ searchValue: e.target.value })} />
                                         </div>
                                     </div>
+
+
                                     <hr />
 
                                     <label className="custom-control custom-checkbox row">
@@ -56,7 +74,8 @@ class Filter extends Component {
                                     </label>
                                     <hr />
                                     <input type="range" className="custom-range mb-2 mt-4 " min="0" max="100" name="" />
-                                    <button className="btn btn-block btn-success mt-3 mb-3">Apply</button>
+                                    <Button label='Apply' className="w-100 p-button-success  mt-3 mb-3" />
+
                                 </div>
                             </div>
                         </article>

@@ -9,7 +9,8 @@ import {
     ClipboardListIcon,
     UserIcon,
     IdentificationIcon,
-    LockClosedIcon
+    LockClosedIcon,
+    CheckIcon
 } from "@heroicons/react/outline"
 import { ChevronLeftIcon } from "@heroicons/react/solid"
 import { Link, Outlet } from 'react-router-dom';
@@ -74,7 +75,12 @@ class SideNav extends Component {
                             </Link>
                         </li>
 
-
+                        <li>
+                            <Link className='Link d-flex justify-content-between' to="/CMS/Tests" style={{ textDecoration: 'none' }} >
+                                <CheckIcon style={{ width: "15%" }} />
+                                اختبارات
+                            </Link>
+                        </li>
 
                         <li data-toggle="collapse" data-target="#service" className="collapsed">
                             <div className='Link d-flex justify-content-between' style={{ textDecoration: 'none' }} >

@@ -76,25 +76,6 @@
   .social-list li:nth-child(5) {
     color: #ff3e30;
   }
-  .buttons button:nth-child(1) {
-    border: 1px solid #28a745 !important;
-    color: #28a745;
-    height: 40px;
-  }
-
-  .buttons button:nth-child(1):hover {
-    border: 1px solid #28a745 !important;
-    color: #fff;
-    height: 40px;
-    background-color: #28a745;
-  }
-
-  .buttons button:nth-child(2) {
-    border: 1px solid #28a745 !important;
-    background-color: #28a745;
-    color: #fff;
-    height: 40px;
-  }
 }
 #navbar {
   .dropdown {
@@ -167,7 +148,7 @@
     color: #eee;
   }
 }
-#skills {
+#skills,#Posts{
   .skills {
     span {
       color: $font-color;
@@ -184,6 +165,7 @@
     color: #eee;
   }
 }
+
 #testimonials {
   .TerminalIcon {
     color: $font-color;
@@ -272,7 +254,9 @@
 .info {
   color: $font-color;
   background-color: $navbar-body-color;
-  min-height: 202px;
+  min-height: 190px;
+  word-wrap: break-word;
+  margin-top: 10px;
 }
 .deleteProjectBTN {
   position: absolute;
@@ -470,7 +454,7 @@ textarea::-webkit-scrollbar-thumb {
         color: $title;
       }
     }
-    #skills {
+    #skills,#Posts {
       .skills {
         background-color: $container-bg;
       }

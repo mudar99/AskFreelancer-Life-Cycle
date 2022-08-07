@@ -6,13 +6,24 @@ import Post from "./components/Post";
 import Footer from '../Register/Footer'
 import { Helmet } from 'react-helmet';
 import axios from "axios";
-import { GetUserPosts, GetProfileInfo } from '../API'
+import { GetSmallServices,GetNonSmallServices, SearchPost, local, GetProfileInfo } from '../API'
 
 class MainPage extends Component {
   state = {
     Posts: [],
     token: localStorage.getItem('userToken'),
-    Fname : "",
+    Fname: "",
+    myID: '',
+    searchValue: '',
+  }
+  SearchedValueCallback = (childData) => {
+    axios.get(SearchPost + childData).then(
+      res => {
+        console.log(res.data.data)
+        if (res.data.status == true) {
+          this.setState({ Posts: res.data.data, loading: false });
+        }
+      }).catch(err => console.error(err));
   }
   _getMainPosts() {
     return this.state.Posts.map(post => {
@@ -32,8 +43,8 @@ class MainPage extends Component {
           name={post.user.first_name + " " + post.user.last_name}
           time={birthDate}
           skills={post.postcategories}
-          profileImg={post.profileImg}
-          postDoc={post.medias_project}
+          profileImg={local + post.user.cover_image}
+          postDoc={post.mediaposts}
         />
       );
     });
@@ -45,8 +56,9 @@ class MainPage extends Component {
     axios.defaults.headers = {
       Authorization: `Bearer ${this.state.token}`,
     }
-    axios.get(GetUserPosts + '2' + '/posts', axios.defaults.headers).then(
+    axios.get(GetSmallServices).then(
       res => {
+        // console.log(res.data.data)
         if (res.data.status == true) {
           this.setState({ Posts: res.data.data, loading: false });
         } else {
@@ -54,12 +66,13 @@ class MainPage extends Component {
         }
       }).catch(err => console.error(err));
 
-    axios.get(GetProfileInfo, axios.defaults.headers).then(
+    axios.get(GetProfileInfo).then(
       res => {
         if (res.data.status == true) {
           localStorage.setItem('myID', res.data.data.user.id)
           this.setState({
-            Fname : res.data.data.user.first_name
+            Fname: res.data.data.user.first_name,
+            myID: res.data.data.user.id,
           })
         }
       }).catch(err => console.error(err));
@@ -69,10 +82,10 @@ class MainPage extends Component {
     return (
       <div className='MainPage lightMode'>
         <Helmet title='Ask Freelancer | Main Page' />
-        <Nav Fname = {this.state.Fname}/>
+        <Nav myID={this.state.myID} Fname={this.state.Fname} />
         <div className='container '>
           <Puplish PostsDataHandling={this.PostsDataCallback} />
-          <Filter />
+          <Filter SearchValueHandling={this.SearchedValueCallback} />
           {Posts}
         </div>
         <Footer />

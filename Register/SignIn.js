@@ -114,20 +114,9 @@ class SignIn extends Component {
                       <label className="p-3">
                         حفظ كلمة المرور
                       </label>
-                      <input type="checkbox" onChange={e => { this.setState({ RememberMe: e.target.checked });}} />
+                      <input type="checkbox" onChange={e => { this.setState({ RememberMe: e.target.checked }); }} />
                     </div>
-                    <Button className="p-button-success w-100" type="submit"  >
-                      <div className="container">
-                        {this.state.loading ? null : "تسجيل الدخول"}
-                        <LoadingIcon size="25px" loading={this.state.loading} />
-                      </div>
-                    </Button>
-                    {/* <button className="btn btn-block text-uppercase  bg-success text-light" type="submit">
-                      {this.state.loading ? null : "تسجيل الدخول"}
-                      <LoadingIcon size="25px" loading={this.state.loading} />
-                    </button> */}
-
-
+                    <Button className="p-button-success w-100" label="تسجيل الدخول" type="submit" loading={this.state.loading} onClick={this.onLoadingClick1} />
                     <hr className="my-4 " />
                     <button className="btn btn-danger btn-block text-uppercase" type="submit">
                       <i className="fa fa-google mr-2"></i>Google التسجيل عبر</button>

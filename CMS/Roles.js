@@ -21,7 +21,7 @@ class Roles extends Component {
         rolePermission: [],
         showPermission: [],
         editID: '',
-        name: '',
+        roleName: ''
 
     }
     componentDidMount() {
@@ -99,6 +99,8 @@ class Roles extends Component {
     }
     getRolePermissions = e => {
         let roleID = e.currentTarget.getAttribute('name');
+        let roleName = e.currentTarget.getAttribute('roleName');
+        console.log(roleName)
         axios.get(CmsShowRole + roleID).then(
             res => {
                 if (res.data.status == true) {
@@ -106,13 +108,13 @@ class Roles extends Component {
                     this.setState({
                         rolePermission: res.data.data.permission
                     })
-                    this.setState({ displayEdit: true, editID: roleID })
+                    this.setState({ displayEdit: true, editID: roleID, roleName: roleName })
                 }
             }).catch(err => console.error(err));
     }
     render() {
         return (
-            <div className='Category container mt-5'>
+            <div className='Category container mt-5 '>
                 <table id="example" className='w-100 table table-striped table-bordered'>
                     <thead>
                         <tr className='text-center'>
@@ -132,8 +134,12 @@ class Roles extends Component {
                                     <td>{role.created_at}</td>
                                     <td>{role.updated_at}</td>
                                     <td className='col-sm-1'>
-                                        <DeleteRole id={role.id} />
-                                        <PencilAltIcon onClick={this.getRolePermissions} name={role.id} id='PencilAltIcon' cursor="pointer" color='green' height={22} />
+                                        {
+                                            role.id != 1 && <>
+                                                <DeleteRole id={role.id} />
+                                                <PencilAltIcon onClick={this.getRolePermissions} roleName={role.name} name={role.id} id='PencilAltIcon' cursor="pointer" color='green' height={22} />
+                                            </>
+                                        }
                                     </td>
                                 </tr>
                             )
@@ -142,8 +148,8 @@ class Roles extends Component {
                 </table>
 
 
-                <Dialog className='text-center' header="تعديل الدور" dismissableMask visible={this.state.displayEdit} style={{ width: '70vw' }}  onHide={() => this.setState({ displayEdit: false })}>
-                    <UpdateRole selectedPermissions={this.state.rolePermission} id={this.state.editID} />
+                <Dialog className='text-center' header="تعديل الدور" dismissableMask visible={this.state.displayEdit} style={{ width: '70vw', height: '40vw' }} onHide={() => this.setState({ displayEdit: false })}>
+                    <UpdateRole selectedPermissions={this.state.rolePermission} id={this.state.editID} roleName={this.state.roleName} />
                 </Dialog>
 
 
