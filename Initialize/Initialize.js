@@ -9,7 +9,7 @@ import Footer from '../Register/Footer'
 import Navbar from "./components/Navbar";
 import { Helmet } from "react-helmet";
 import axios from "axios";
-import { PrepareAccountAPI } from '../API';
+import { PrepareAccountAPI, GetProfileInfo, GetCategoriesExcept } from '../API';
 import { Toast } from "primereact/toast";
 
 
@@ -25,13 +25,16 @@ class Initialize extends Component {
     Spe: "",
     Skills: [],
     token: localStorage.getItem('userToken'),
-    cover_image: ''
+    cover_image: '',
+    userInfo: [],
+    skillsInfo: [],
+    mySkills: []
   }
   FreelancerCallback = (childData) => { this.setState({ isFreelancer: childData }) }
   ClientCallback = (childData) => { this.setState({ isClient: childData }) }
   BioCallback = (childData) => { this.setState({ Bio: childData }) }
   PhoneNumberCallback = (childData) => { this.setState({ PhoneNumber: childData }) }
-  JobCallback = (childData) => { this.setState({ Job: childData }) }
+  JobCallback = (childData) => { this.setState({ Job: childData }); }
   SpeCallback = (childData) => { this.setState({ Spe: childData }) }
   SkillsCallback = (childData) => { this.setState({ Skills: childData }) }
   DateCallback = (childData) => { this.setState({ BirthDate: childData }) }
@@ -48,17 +51,18 @@ class Initialize extends Component {
     e.preventDefault();
     let formData = new FormData();
 
-    let type;
+    let type = this.state.userInfo.type;
     if (this.state.isFreelancer === true) type = 0;
     if (this.state.isClient === true) type = 1;
-    console.log('isFreelancer ' + this.state.isFreelancer)
-    console.log('isClient ' + this.state.isClient)
-    console.log('type ' + type)
+    // console.log('isFreelancer ' + this.state.isFreelancer)
+    // console.log('isClient ' + this.state.isClient)
+    // console.log('type ' + type)
 
 
     formData.append('bio', this.state.Bio)
     formData.append('birthday', this.state.BirthDate)
-    formData.append('cover', this.state.cover_image)
+
+    if (this.state.cover_image != '') formData.append('cover', this.state.cover_image)
     formData.append('phone_number', this.state.PhoneNumber)
     formData.append('profissionName', this.state.Job)
     formData.append('speciality', this.state.Spe.name)
@@ -85,6 +89,7 @@ class Initialize extends Component {
         }
       }).catch(err => console.error(err));
   }
+
   componentDidMount() {
     if (localStorage.getItem('userToken') == "") {
       window.location.href = "/"
@@ -92,6 +97,41 @@ class Initialize extends Component {
     axios.defaults.headers = {
       Authorization: `Bearer ${this.state.token}`,
     }
+
+    axios.get(GetProfileInfo).then(
+      res => {
+        if (res.data.status == true) {
+          console.log(res.data.data)
+          this.setState({
+            userInfo: res.data.data.user,
+            skillsInfo: res.data.data.skills,
+          }), this._getCategoriesExcept();
+        }
+      }).catch(err => console.error(err));
+  }
+
+  _getCategoriesExcept() {
+    let catIDs = [];
+    this.state.skillsInfo.map(e => {
+      catIDs.push(e.id)
+    })
+    this.setState({
+      Job: this.state.userInfo.profissionName,
+      Spe: this.state.userInfo.speciality,
+      Bio: this.state.userInfo.bio,
+      BirthDate: this.state.userInfo.birthday,
+      PhoneNumber: this.state.userInfo.phone_number
+    })
+    let params = {
+      except: catIDs
+    }
+    axios.post(GetCategoriesExcept, params).then(
+      res => {
+        console.log(res.data)
+        if (res.data.status == true) {
+          this.setState({ mySkills: res.data.data });
+        }
+      }).catch(err => console.error(err));
   }
 
   render() {
@@ -103,12 +143,12 @@ class Initialize extends Component {
         <Navbar />
         <form className="card initialize container mt-5 text-right mb-5">
           <img style={{ height: "auto" }} src="/Img/Untitled Design.png"></img>
-          <AccountType Freelancer={this.FreelancerCallback} Client={this.ClientCallback} />
+          <AccountType type={this.state.userInfo.type} Freelancer={this.FreelancerCallback} Client={this.ClientCallback} />
           {
-            this.state.isFreelancer &&
+            (this.state.isFreelancer) &&
             <>
-              <Job_Spe SpeHandling={this.SpeCallback} JobHandling={this.JobCallback} />
-              <SkillsInit selectedSpe={this.state.Spe.id} selectHandling={this.SkillsCallback} />
+              <Job_Spe Job={this.state.userInfo.profissionName} SpeHandling={this.SpeCallback} JobHandling={this.JobCallback} />
+              <SkillsInit mySkills={this.state.skillsInfo} selectedSpe={this.state.Spe.id} selectHandling={this.SkillsCallback} />
             </>
           }
           <div className="container mb-4 d-flex">
@@ -117,9 +157,9 @@ class Initialize extends Component {
             </div>
             <h4 className="mb-5 ">: الصورة الشخصية</h4>
           </div>
-          <Bio BioHandling={this.BioCallback} />
-          <BirthDate dateHandling={this.DateCallback} />
-          <PhoneNumber PhoneNumberHandling={this.PhoneNumberCallback} />
+          <Bio Bio={this.state.userInfo.bio} BioHandling={this.BioCallback} />
+          <BirthDate BirthDate={this.state.userInfo.birthday} dateHandling={this.DateCallback} />
+          <PhoneNumber phone_number={this.state.userInfo.phone_number} PhoneNumberHandling={this.PhoneNumberCallback} />
           <button onClick={this.saveHandler} className="btn btn-success w-25 mt-5 mb-5 ml-5">حفظ</button>
         </form>
         <Footer />

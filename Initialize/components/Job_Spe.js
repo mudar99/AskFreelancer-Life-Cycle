@@ -14,7 +14,11 @@ class Job_Spe extends Component {
     loading: true,
     selectedValue: null,
   }
-
+  componentDidMount() {
+    // this.setState({
+    //   selectedValue : this.props.Spe
+    // })
+  }
   JobHandler = e => {
     this.props.JobHandling(e.target.value);
   }
@@ -33,7 +37,6 @@ class Job_Spe extends Component {
   }
   SpeHandler = (e) => {
     this.setState({ selectedValue: e.value });
-    // console.log(e.target.value.name)
     this.props.SpeHandling(e.value);
   }
 
@@ -49,7 +52,7 @@ class Job_Spe extends Component {
         <div className=" col-md-6 mt-3" >
           <h4 className="mb-5  container ">: المسمى الوظيفي</h4>
           <div className="container">
-            <input style={{ height: "50px" }} onChange={this.JobHandler} className="form-control " placeholder="مثال : مهندس برمجيات">
+            <input style={{ height: "50px" }} onChange={this.JobHandler} defaultValue={this.props.Job} className="form-control " placeholder="مثال : مهندس برمجيات">
             </input>
           </div>
         </div>

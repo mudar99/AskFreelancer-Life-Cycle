@@ -1,14 +1,14 @@
 import { Component } from 'react';
 import axios from "axios";
-import { local, GetIdentity } from '../API';
-import { PencilAltIcon, PlusCircleIcon } from '@heroicons/react/outline'
+import { local, GetIdentity, ResponseIdentity } from '../API';
 import { Button } from 'primereact/button';
 
 
 class IDs extends Component {
     state = {
         token: localStorage.getItem('userTokenCMS'),
-        loading: true,
+        Aloading: false,
+        Rloading:false,
         IDs: [],
         user_id: ""
     }
@@ -20,25 +20,43 @@ class IDs extends Component {
             res => {
                 if (res.data.status == true) {
                     console.log(res.data.data)
-                    this.setState({ loading: false });
                     this.setState({
                         IDs: res.data.data,
                     });
-                } else {
-                    this.setState({ loading: true });
                 }
             }).catch(err => console.error(err));
     }
     acceptID = e => {
-        this.setState({
-            is_documented: 1
-        })
-        console.log(this.state.user_id)
+        this.setState({ Aloading: true });
+        let params = {
+            user_id: e,
+            is_documented: 1,
+        }
+        axios.post(ResponseIdentity, params).then(
+            res => {
+                if (res.data.status == true) {
+                    console.log(res.data)
+                    this.setState({ Aloading: false });
+                } else {
+                    this.setState({ Aloading: false });
+                }
+            }).catch(err => console.error(err));
     }
     rejectID = e => {
-        this.setState({
-            is_documented: 0
-        })
+        this.setState({ Rloading: true });
+        let params = {
+            user_id: e,
+            is_documented: 0,
+        }
+        axios.post(ResponseIdentity, params).then(
+            res => {
+                if (res.data.status == true) {
+                    console.log(res.data)
+                    this.setState({ Rloading: false });
+                } else {
+                    this.setState({ Rloading: false });
+                }
+            }).catch(err => console.error(err));
     }
     render() {
         return (
@@ -47,7 +65,6 @@ class IDs extends Component {
                     <thead>
                         <tr className='text-center'>
                             <th>User ID</th>
-                            <th>File ID</th>
                             <th>Created at</th>
                             <th>Updated at</th>
                             <th>Image</th>
@@ -59,16 +76,19 @@ class IDs extends Component {
                         {
                             this.state.IDs.map(identity =>
                                 <tr className='text-center'>
-                                    <td>{identity.user_id}</td>
                                     <td>{identity.id}</td>
                                     <td className='wrapper'>{identity.created_at}</td>
                                     <td>{identity.updated_at}</td>
-                                    <td><img className='container' style={{ width: "160px" }} src={local + identity.path}></img></td>
+                                    <td className=''>
+                                        {identity.mediaidentitys.map(e => {
+                                            return <img className='w-100' src={local + e.path}></img>
+                                        })}
+                                    </td>
                                     <td>{identity.is_documented}</td>
                                     <td className='col-sm-1'>
                                         <div className='d-flex'>
-                                            <Button icon="pi pi-check" className="p-button-rounded p-button-text p-button-sm p-button-success " onClick={this.acceptID} aria-label="Filter" />
-                                            <Button icon="pi pi-times" className="p-button-rounded p-button-text p-button-sm p-button-danger " onClick={this.rejectID} aria-label="Cancel" />
+                                            <Button icon="pi pi-check" className="p-button-rounded p-button-text p-button-sm p-button-success " loading={this.state.Aloading} onClick={() => this.acceptID(identity.id)} aria-label="Filter" />
+                                            <Button icon="pi pi-times" className="p-button-rounded p-button-text p-button-sm p-button-danger " loading={this.state.Rloading} onClick={() => this.rejectID(identity.id)} aria-label="Cancel" />
                                         </div>
                                     </td>
                                 </tr>

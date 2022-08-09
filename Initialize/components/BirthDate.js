@@ -25,12 +25,7 @@ class BirthDate extends Component {
                 <div className="field col-4 md:col-4 p-4 float-right">
                     <div className="p-inputgroup ml-2 ">
                         <span className="p-inputgroup-addon "><CalendarIcon height={20} /></span>
-                        <Calendar readOnlyInput  placeholder="تاريخ الميلاد" id="basic" value={this.state.date} onChange={this.dateHandler} dateFormat="yy-mm-dd" />
-                    </div>
-                </div>
-                <div>
-                    <div className=" text-center ">
-                        <p className="text-danger" id="warning"></p>
+                        <Calendar readOnlyInput  placeholder={this.props.BirthDate} id="basic"  value={this.state.date} onChange={this.dateHandler} dateFormat="yy-mm-dd" />
                     </div>
                 </div>
             </div>

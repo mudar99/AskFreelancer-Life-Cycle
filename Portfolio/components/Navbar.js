@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HomeIcon, BriefcaseIcon } from "@heroicons/react/outline";
-import { UserCircleIcon, CogIcon, EyeIcon } from '@heroicons/react/outline'
+import { UserCircleIcon, CogIcon, EyeIcon, LockClosedIcon, FingerPrintIcon, AtSymbolIcon,CreditCardIcon ,UserIcon} from '@heroicons/react/outline'
 import Logout from "../../Main Page/components/Logout";
 import ChangePassword from "./ChangePassword";
 import { LogoutAPI } from '../../API';
@@ -77,11 +77,12 @@ class Navbar extends Component {
                         {!this.props.isVisible &&
                             <div className="dropdown d-lg-flex d-none">
                                 <a className="mr-3 ml-3" role="button"><CogIcon id="setting" height={25} /></a>
-                                <div class="dropdown-content">
-                                    <a className="" data-toggle="modal" data-target=".modal-changePassword" style={{ cursor: "pointer" }}>تغيير كلمة المرور </a>
-                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a>
-                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني</a>
-                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-Balance">المحفظة</a>
+                                <div class="dropdown-content text-right">
+                                    <a className="" data-toggle="modal" data-target=".modal-changePassword" style={{ cursor: "pointer" }}>تغيير كلمة المرور <LockClosedIcon height={22} /></a>
+                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية <FingerPrintIcon height={22} /></a>
+                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني <AtSymbolIcon height={22} /></a>
+                                    <a className="dropdown-item" data-toggle="modal" data-target=".modal-Balance">المحفظة <CreditCardIcon height={22} /></a>
+                                    <a className="dropdown-item" href="/initialize">تعديل الملف الشخصي <UserIcon height={22} /></a>
                                 </div>
                             </div>
                         }
@@ -89,7 +90,9 @@ class Navbar extends Component {
                             <a href="#" data-toggle="modal" data-target=".modal-changePassword" style={{ cursor: "pointer" }}>تغيير كلمة المرور </a><hr />
                             <a href="#" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية</a><hr />
                             <a href="#" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني</a><hr />
-                            <a href="#" data-toggle="modal" data-target=".modal-Balance">المحفظة</a>
+                            <a href="#" data-toggle="modal" data-target=".modal-Balance">المحفظة</a><hr />
+                            <a className="dropdown-item" href="/initialize">تعديل الملف الشخصي</a>
+
                         </div>
                         <li>
                             <a href="#about" className="pl-4 d-none d-lg-flex font-weight-bold text-success border-left"><UserCircleIcon height={25} className="mr-2" />

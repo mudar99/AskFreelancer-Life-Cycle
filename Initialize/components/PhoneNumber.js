@@ -10,7 +10,7 @@ class PhoneNumber extends Component {
             <div className="container mb-4">
                 <h4 className="mb-5 ">: رقم الجوال</h4>
                 <div className="container">
-                    <input onChange={this.PhoneNumberHandler} className="form-control " placeholder="مثال : 0935150221">
+                    <input onChange={this.PhoneNumberHandler} defaultValue={this.props.phone_number} className="form-control " placeholder="مثال : 0935150221">
                     </input>
                 </div>
             </div>

@@ -1,18 +1,25 @@
 import React, { Component } from "react";
 import Notifications from "../Notifications/Notifications";
-import { UserIcon, BellIcon, LogoutIcon } from '@heroicons/react/outline';
+import { UserIcon, BellIcon } from '@heroicons/react/outline';
 import Logout from "./Logout";
 import { LogoutAPI } from '../../API';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+
 
 
 class Nav extends Component {
     state = {
+        searchValue: '',
+    }
+
+    SearchPost = () => {
+        this.props.SearchValueHandling(this.state.searchValue);
     }
     profileHandler = () => {
         localStorage.setItem('UserID', this.props.myID)
         window.location.href = 'Profile'
     }
-
     render() {
         return (
             <div>
@@ -21,14 +28,12 @@ class Nav extends Component {
                     <div>
                         <a className="  d-lg-flex " href="#"><img id="Logo" src="/Img/AF.png" alt="Ask Freelancer" /></a>
                     </div>
-                    <a className="navbar-brand" href="#">
-                        <div id="searchIcon" className="input-group mb-3 mt-3">
-                            <input type="text" className="form-control" placeholder="البحث" />
-                            <div className="input-group-append">
-                                <button className="btn btn-light" type="button"><i className="fa fa-search"></i></button>
-                            </div>
+                    <div className="d-lg-none d-block">
+                        <div className="p-inputgroup">
+                            <Button icon="pi pi-search" onClick={this.SearchPost} className="p-button-success" />
+                            <InputText placeholder="بحث" onChange={e => this.setState({ searchValue: e.target.value })} />
                         </div>
-                    </a>
+                    </div>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon "></span>

@@ -10,6 +10,8 @@ export const LogoutAPI = `${local}/api/logout`
 export const ChangePasswordAPI = `${local}/api/password/change`
 export const ResetPasswordAPI = `${local}/api/password/reset`
 
+export const GetCategoriesExcept = `${local}/api/category/except`
+
 export const AddProjectAPI = `${local}/api/projects`
 export const GetPrtojectsAPI = `${local}/api/projects`
 export const DeletePrtojectAPI = `${local}/api/projects/`
@@ -25,8 +27,8 @@ export const GetAmount = `${local}/api/wallet`
 export const ChargeWallet = `${local}/api/charge`
 
 export const SendIdentity = `${local}/api/ID documention/send`
-export const GetIdentity = `${local}/api/ID documention/get`
-export const ResponseIdentity = `${local}/api/ID documention/respone`
+export const GetIdentity = `${local}/api/CMS/ID documention/get`
+export const ResponseIdentity = `${local}/api/CMS/ID documention/respone`
 
 
 export const CreatePost = `${local}/api/post/create`
@@ -59,6 +61,8 @@ export const CmsDeleteTest = `${local}/api/CMS/category/`
 export const CmsGetTest = `${local}/api/CMS/category/`
 export const CmsEditQuestion = `${local}/api/CMS/test/question/`
 export const CmsEditAnswer = `${local}/api/CMS/test/answer/`
+export const GetQuestions = `${local}/api/skill/`
+export const CheckAnswers = `${local}/api/skill/`
 
 
 export const CmsLoginAPI = `${local}/api/CMS/login`

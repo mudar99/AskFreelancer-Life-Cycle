@@ -6,7 +6,7 @@ import Post from "./components/Post";
 import Footer from '../Register/Footer'
 import { Helmet } from 'react-helmet';
 import axios from "axios";
-import { GetSmallServices,GetNonSmallServices, SearchPost, local, GetProfileInfo } from '../API'
+import { GetSmallServices, GetNonSmallServices, SearchPost, local, GetProfileInfo } from '../API'
 
 class MainPage extends Component {
   state = {
@@ -82,9 +82,9 @@ class MainPage extends Component {
     return (
       <div className='MainPage lightMode'>
         <Helmet title='Ask Freelancer | Main Page' />
-        <Nav myID={this.state.myID} Fname={this.state.Fname} />
+        <Nav SearchValueHandling={this.SearchedValueCallback} myID={this.state.myID} Fname={this.state.Fname} />
         <div className='container '>
-          <Puplish PostsDataHandling={this.PostsDataCallback} />
+          <Puplish />
           <Filter SearchValueHandling={this.SearchedValueCallback} />
           {Posts}
         </div>

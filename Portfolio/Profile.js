@@ -51,7 +51,7 @@ class Profile extends Component {
                     name={post.user.first_name + " " + post.user.last_name}
                     time={birthDate}
                     skills={post.postcategories}
-                    profileImg={post.profileImg}
+                    profileImg={local + post.user.cover_image}
                     postDoc={post.mediaposts}
                 />
             );
@@ -115,7 +115,7 @@ class Profile extends Component {
             axios.get(GetProfileInfo).then(
                 res => {
                     if (res.data.status == true) {
-                        // console.log(res.data.data)
+                        console.log(res.data.data)
                         this.setState({
                             userInfo: res.data.data.user,
                             skillsInfo: res.data.data.skills,
@@ -155,9 +155,6 @@ class Profile extends Component {
                         this.setState({ Posts: res.data.data });
                     }
                 }).catch(err => console.error(err));
-
-
-
         }
     }
     render() {
@@ -181,7 +178,8 @@ class Profile extends Component {
                     Specalization={this.state.userInfo.speciality}
                     Bio={this.state.userInfo.bio}
                     Balance={this.state.Balance}
-                    profileImg={local + this.state.userInfo.cover_image} />
+                    profileImg={local + this.state.userInfo.cover_image}
+                    is_documented={this.state.userInfo.is_documented} />
                 {this.state.getDone &&
                     <Projects projects={this.state.projects} isVisible={this.state.isVisible} />
                 }

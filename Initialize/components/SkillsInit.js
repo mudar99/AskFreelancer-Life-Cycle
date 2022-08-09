@@ -10,19 +10,19 @@ class SkillsInit extends Component {
     loading: true,
     multiselectRef: React.createRef(),
     selectedItems: [],
-    skills : [],
+    skills: [],
     selectedParent: this.props.selectedSpe,
-    url : ChildCategoriesOfParentAPI,
+    url: ChildCategoriesOfParentAPI,
   }
   selectHandler = (e) => {
     let selecting = this.state.multiselectRef.current.getSelectedItems();
-    this.setState({selectedItems : selecting})
+    this.setState({ selectedItems: selecting })
     console.log('Selected Items')
     console.log(this.state.selectedItems)
     this.props.selectHandling(selecting);
   }
   getItems = e => {
-    axios.get(this.state.url+this.props.selectedSpe).then(
+    axios.get(this.state.url + this.props.selectedSpe).then(
       res => {
         if (res.data.status == true) {
           //console.log(res.data.data)
@@ -39,6 +39,7 @@ class SkillsInit extends Component {
         <h4 className="mb-5 container ">: اختيار المهارات</h4>
         <div onClick={this.getItems}>
           <Multiselect
+            selectedValues={this.props.mySkills}
             className="Multiselect container mb-5"
             options={this.state.skills}
             displayValue="name"
