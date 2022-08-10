@@ -162,6 +162,10 @@ footer span {
   color: #eee;
 }
 
+#p-button-label {
+  color: #eee;
+}
+
 .lightMode .card-signin {
   -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
@@ -275,6 +279,15 @@ footer span {
 .lightMode footer h6,
 .lightMode footer span {
   color: #000;
+}
+
+.lightMode footer .p-button-label {
+  color: #eee;
+}
+
+.lightMode footer .p-toast-summary,
+.lightMode footer .p-toast-icon-close-icon {
+  color: inherit;
 }
 
 #about .card {

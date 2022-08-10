@@ -48,13 +48,13 @@ export const EditOffer = `${local}/api/offer/edit/`
 export const DeleteOffer = `${local}/api/offer/delete/`
 export const GetPostOffers = `${local}/api/post/`
 
-export const AcceptOffer =`${local}/api/offer/accept/`
-export const RefuseOffer =`${local}/api/offer/refuse/`
-export const AcceptOrder =`${local}/api/order/accept/`
-export const RefuseOrder =`${local}/api/order/cancel/`
+export const AcceptOffer = `${local}/api/offer/accept/`
+export const RefuseOffer = `${local}/api/offer/refuse/`
+export const AcceptOrder = `${local}/api/order/accept/`
+export const RefuseOrder = `${local}/api/order/cancel/`
 
-export const Accept_Accept_Offer =`${local}/api/order/accept/`
-export const GetOrders =`${local}/api/order/get`
+export const Accept_Accept_Offer = `${local}/api/order/accept/`
+export const GetOrders = `${local}/api/order/get`
 
 export const CmsCreateTest = `${local}/api/CMS/category/`
 export const CmsDeleteTest = `${local}/api/CMS/category/`
@@ -95,6 +95,11 @@ export const CmsGetPermissions = `${local}/api/CMS/permissions`
 export const CmsGetAllPermissions = `${local}/api/CMS/permissions/all`
 export const CmsGetPermissionsExcept = `${local}/api/CMS/permissions/except`
 
+export const CmsGetFeedback = `${local}/api/CMS/feedbacks`
+export const CmsEnableFeedback = `${local}/api/CMS/feedbacks/enable/`
+export const CmsDisableFeedback = `${local}/api/CMS/feedbacks/disable/`
+export const SendFeedback = `${local}/api/feedbacks`
+export const GetFeedback = `${local}/api/feedbacks`
 
 
 

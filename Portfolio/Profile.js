@@ -60,7 +60,7 @@ class Profile extends Component {
     componentDidMount() {
         // console.log('userID: ' + this.state.userID)
         // console.log('myID: ' + this.state.myID);
-        if (localStorage.getItem('userToken') == "") {
+        if (localStorage.getItem('userToken') == "" || localStorage.getItem('userToken') == null) {
             window.location.href = "/"
         }
         axios.defaults.headers = {
@@ -177,13 +177,16 @@ class Profile extends Component {
                     Lname={this.state.userInfo.last_name}
                     Specalization={this.state.userInfo.speciality}
                     Bio={this.state.userInfo.bio}
+                    type={this.state.userInfo.type}
                     Balance={this.state.Balance}
                     profileImg={local + this.state.userInfo.cover_image}
                     is_documented={this.state.userInfo.is_documented} />
                 {this.state.getDone &&
-                    <Projects projects={this.state.projects} isVisible={this.state.isVisible} />
+                    this.state.userInfo.type === 0 && <Projects
+                        projects={this.state.projects}
+                        isVisible={this.state.isVisible} />
                 }
-                <Skills Skills={this.state.skillsInfo} />
+                {this.state.userInfo.type === 0 && <Skills Skills={this.state.skillsInfo} />}
 
                 <div className="text-center mt-5" id="Posts">
                     <ClipboardListIcon style={{ width: "15%" }} className="ChipIcon mb-4" />
@@ -198,8 +201,8 @@ class Profile extends Component {
 
                 {/* <Testimonials />
                 <Contact /> */}
-                <Chat isChatOn={this.state.isChatOn} />
-                {/* <Footer /> */}
+                <Chat userID={this.state.userInfo.id} isChatOn={this.state.isChatOn} />
+                <Footer />
             </main>
         );
     }

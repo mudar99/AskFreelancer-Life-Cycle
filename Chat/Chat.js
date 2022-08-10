@@ -12,7 +12,6 @@ import { local } from '../API'
 class Chat extends Component {
     state = {
         RoomID: 0,
-        profileID: window.location.href.slice(-1),
         message: '',
         messages: [],
     }
@@ -48,7 +47,7 @@ class Chat extends Component {
                     console.log('You are subscribed');
                 })
                 .listen("MessageEvent", (data) => {
-                    alert('data')
+                    alert(data)
                 });
             console.log(echo.connector)
 
@@ -57,7 +56,7 @@ class Chat extends Component {
         axios.get('/message/' + this.state.profileID).then(
             res => {
                 if (res.data.data != null) {
-                    //console.log(res.data.data)
+                    console.log(res.data.data)
                     this.setState({
                         messages: res.data.data
                     })
@@ -67,10 +66,11 @@ class Chat extends Component {
 
     handleSendMessage = (e) => {
         e.preventDefault();
+        console.log(this.props.userID)
         let params = {
             body: this.state.message,
         }
-        axios.post('/message/' + this.state.profileID, params).catch(err => console.error(err));
+        axios.post('/message/' + this.props.userID, params).catch(err => console.error(err));
     }
     render() {
         return (
@@ -78,7 +78,7 @@ class Chat extends Component {
             <div className="Chat container lightMode " >
                 {
                     this.props.isChatOn &&
-                    <form onSubmit={this.handleSendMessage} className="row chat-window col-xl-4 col-lg-5 col-md-6 col-sm-7" id="chat_window_1">
+                    <form className="row chat-window col-xl-4 col-lg-5 col-md-6 col-sm-7" id="chat_window_1">
                         <div className="container">
                             <div className="panel panel-default">
                                 <div className="panel-heading">
@@ -106,7 +106,7 @@ class Chat extends Component {
                                         <span className="input-group-btn w-100">
                                             <div className="p-inputgroup">
                                                 <InputText placeholder="Vote" onChange={e => this.setState({ message: e.target.value })} />
-                                                <Button icon="pi pi-send" className="p-button-sm" type='submit' />
+                                                <Button icon="pi pi-send" className="p-button-sm" onClick={this.handleSendMessage} type='submit' />
                                             </div>
                                         </span>
                                     </div>

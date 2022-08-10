@@ -34,11 +34,11 @@ class About extends Component {
                                         </label>
                                     }
                                 </span>
-                                <h5 className="mt-3 mb-0 ">{this.props.Fname} {this.props.Lname}</h5>
+                                <h5 className="mt-3 mb-2 ">{this.props.Fname} {this.props.Lname}</h5>
 
                                 <div className="text-center ">
-                                    <span><big className="text-success ">Specalization: </big>{this.props.Specalization}</span><br />
-                                    <span><big className="text-success">Profission Name: </big>{this.props.ProfissionName}</span><br />
+                                    {this.props.type == 0 && <><span><big className="text-success ">Specalization: </big>{this.props.Specalization}</span><br /></>}
+                                    {this.props.type == 0 && <><span><big className="text-success">Profission Name: </big>{this.props.ProfissionName}</span><br /></>}
                                     <span hidden={this.props.isVisible}><big className="text-success">Balance: </big>{this.props.Balance == "" ? '0.0' : this.props.Balance}</span>
                                 </div>
 

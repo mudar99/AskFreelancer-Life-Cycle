@@ -6,9 +6,6 @@ import Register from './Register/Register';
 import Profile from './Portfolio/Profile';
 import Initialize from './Initialize/Initialize';
 import MainPage from './Main Page/MainPage';
-import Complaints from './CMS/Complaints';
-import Dashboard from './CMS/Dashboard';
-import Chat from './Chat/Chat';
 import CMS from './CMS/CMS';
 import Category from './CMS/Category';
 import CMS_Login from './CMS/CMS_Login';
@@ -19,8 +16,8 @@ import Admins from './CMS/Admins';
 import IDs from './CMS/IDs';
 import Roles from './CMS/Roles';
 import Permissions from './CMS/Permissions';
-import PublicMessagesPage from './Chat/Chat';
 import Tests from './CMS/Tests';
+import Feedback from './CMS/Feedback';
 
 class App extends Component {
 
@@ -41,7 +38,7 @@ class App extends Component {
             <Route path="/Guest_Services" element={<GalleriaCaption />} />
             <Route path="/CMS_Login" element={<CMS_Login />} />
             <Route path="CMS" element={<CMS />} >
-              <Route path="Dashboard" element={<Dashboard />} />
+              <Route path="Feedback" element={<Feedback />} />
               <Route path="Admins" element={<Admins />} />
               <Route path="IDs" element={<IDs />} />
               <Route path="Tests" element={<Tests />} />
@@ -49,7 +46,6 @@ class App extends Component {
               <Route path="Permissions" element={<Permissions />} />
               <Route path="Category" element={<Category />} />
               <Route path="Services" element={<Services />} />
-              <Route path="Complaints" element={<Complaints />} />
             </Route>
           </Routes>
         </BrowserRouter>

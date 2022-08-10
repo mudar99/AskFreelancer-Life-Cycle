@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { LightBulbIcon } from "@heroicons/react/outline"
-import Dashboard from './Dashboard';
 import { Link } from 'react-router-dom';
 import { Dropdown } from 'primereact/dropdown';
 import "primereact/resources/themes/mdc-light-indigo/theme.css";

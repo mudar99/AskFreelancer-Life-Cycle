@@ -28,10 +28,12 @@ class Initialize extends Component {
     cover_image: '',
     userInfo: [],
     skillsInfo: [],
-    mySkills: []
+    mySkills: [],
+    type: '',
+
   }
-  FreelancerCallback = (childData) => { this.setState({ isFreelancer: childData }) }
-  ClientCallback = (childData) => { this.setState({ isClient: childData }) }
+  FreelancerCallback = (childData) => { this.setState({ type: childData }) }
+  ClientCallback = (childData) => { this.setState({ type: childData }) }
   BioCallback = (childData) => { this.setState({ Bio: childData }) }
   PhoneNumberCallback = (childData) => { this.setState({ PhoneNumber: childData }) }
   JobCallback = (childData) => { this.setState({ Job: childData }); }
@@ -51,27 +53,43 @@ class Initialize extends Component {
     e.preventDefault();
     let formData = new FormData();
 
-    let type = this.state.userInfo.type;
+    let type = this.state.type;
+    console.log(type)
     if (this.state.isFreelancer === true) type = 0;
     if (this.state.isClient === true) type = 1;
     // console.log('isFreelancer ' + this.state.isFreelancer)
     // console.log('isClient ' + this.state.isClient)
-    // console.log('type ' + type)
+    console.log('type ' + type)
 
+    //Freelancer
+    if (type == 0) {
+      formData.append('bio', this.state.Bio)
+      formData.append('birthday', this.state.BirthDate)
 
-    formData.append('bio', this.state.Bio)
-    formData.append('birthday', this.state.BirthDate)
+      if (this.state.cover_image != '') formData.append('cover', this.state.cover_image)
+      formData.append('phone_number', this.state.PhoneNumber)
+      formData.append('profissionName', this.state.Job)
+      if (this.state.Spe.name == undefined) {
+        formData.append('speciality', this.state.userInfo.speciality)
+      } else formData.append('speciality', this.state.Spe.name)
+      formData.append('type', type)
 
-    if (this.state.cover_image != '') formData.append('cover', this.state.cover_image)
-    formData.append('phone_number', this.state.PhoneNumber)
-    formData.append('profissionName', this.state.Job)
-    formData.append('speciality', this.state.Spe.name)
-    formData.append('type', type)
-
-    for (let i = 0; i < this.state.Skills.length; i++) {
-      formData.append(`skills[${i}]`, this.state.Skills[i].id)
+      for (let i = 0; i < this.state.Skills.length; i++) {
+        formData.append(`skills[${i}]`, this.state.Skills[i].id)
+      }
     }
+    //Client
+    if (type == 1) {
+      formData.append('bio', this.state.Bio)
+      formData.append('birthday', this.state.BirthDate)
+      if (this.state.cover_image != '') formData.append('cover', this.state.cover_image)
+      formData.append('phone_number', this.state.PhoneNumber)
+      formData.append('type', type)
 
+    }
+    for (const value of formData.values()) {
+      console.log(value);
+    }
     axios.post(PrepareAccountAPI, formData).then(
       res => {
         this.setState({ respone: res.data });
@@ -91,7 +109,8 @@ class Initialize extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem('userToken') == "") {
+
+    if (localStorage.getItem('userToken') == "" || localStorage.getItem('userToken') == null) {
       window.location.href = "/"
     }
     axios.defaults.headers = {
@@ -105,6 +124,7 @@ class Initialize extends Component {
           this.setState({
             userInfo: res.data.data.user,
             skillsInfo: res.data.data.skills,
+            type: res.data.data.user.type
           }), this._getCategoriesExcept();
         }
       }).catch(err => console.error(err));
@@ -127,7 +147,7 @@ class Initialize extends Component {
     }
     axios.post(GetCategoriesExcept, params).then(
       res => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.status == true) {
           this.setState({ mySkills: res.data.data });
         }
@@ -143,12 +163,14 @@ class Initialize extends Component {
         <Navbar />
         <form className="card initialize container mt-5 text-right mb-5">
           <img style={{ height: "auto" }} src="/Img/Untitled Design.png"></img>
-          <AccountType type={this.state.userInfo.type} Freelancer={this.FreelancerCallback} Client={this.ClientCallback} />
+          {this.state.type != null &&
+            <AccountType type={this.state.type} Freelancer={this.FreelancerCallback} Client={this.ClientCallback} />
+          }
           {
-            (this.state.isFreelancer) &&
+            (this.state.type == 0) &&
             <>
               <Job_Spe Job={this.state.userInfo.profissionName} SpeHandling={this.SpeCallback} JobHandling={this.JobCallback} />
-              <SkillsInit mySkills={this.state.skillsInfo} selectedSpe={this.state.Spe.id} selectHandling={this.SkillsCallback} />
+              <SkillsInit mySkills={this.state.skillsInfo} selectedSpe={this.state.Spe} selectHandling={this.SkillsCallback} />
             </>
           }
           <div className="container mb-4 d-flex">

@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import {
-    HomeIcon,
-    ExclamationCircleIcon,
+    UsersIcon,
     KeyIcon,
     UserGroupIcon,
     CogIcon,
@@ -38,9 +37,9 @@ class SideNav extends Component {
                         </li>
 
                         <li>
-                            <Link className='Link d-flex justify-content-between' to="/CMS/Dashboard" style={{ textDecoration: 'none' }} >
-                                <HomeIcon style={{ width: "15%" }} />
-                                لوحة التحكم
+                            <Link className='Link d-flex justify-content-between' to="/CMS/Feedback" style={{ textDecoration: 'none' }} >
+                                <UsersIcon style={{ width: "15%" }} />
+                                التغذية الراجعة
                             </Link>
                         </li>
 
@@ -51,14 +50,6 @@ class SideNav extends Component {
                                 توثيق الهوية
                             </Link>
                         </li>
-
-                        {/* <li className='' href="#">
-                            <Link className='Link d-flex justify-content-between' to="/CMS/Complaints" activeSyle={{ color: "red" }} style={{ textDecoration: 'none' }} >
-                                <ExclamationCircleIcon style={{ width: "15%" }} />
-                                الشكاوي
-                            </Link>
-                        </li> */}
-
 
 
                         <li className='' href="#">

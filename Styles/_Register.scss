@@ -1,4 +1,4 @@
-#Logo{
+#Logo {
   max-width: 100%;
   max-height: 60px;
 }
@@ -15,7 +15,7 @@
     font-weight: 500;
     padding: 1rem;
   }
-  
+
   input {
     border-radius: 10px;
     margin: 15px auto;
@@ -25,7 +25,7 @@
     background-color: $navbar-body-color;
     padding: 10px;
     height: auto;
-    &:focus  {
+    &:focus {
       color: $font-color;
       background-color: $navbar-body-color;
       box-shadow: 0 0 5px 1px rgba(38, 131, 218, 0.747);
@@ -237,10 +237,19 @@ footer {
       span {
         color: #000;
       }
+      .p-button-label {
+        color: #eee;
+      }
+      .p-toast-summary,
+      .p-toast-icon-close-icon {
+        color: inherit;
+      }
     }
   }
 }
-
+#p-button-label {
+  color: #eee;
+}
 @include themable(
   lightMode,
   rgba(132, 13, 13, 0),

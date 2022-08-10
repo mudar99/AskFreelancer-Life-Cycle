@@ -50,7 +50,7 @@ class MainPage extends Component {
     });
   }
   componentDidMount() {
-    if (localStorage.getItem('userToken') == "") {
+    if (localStorage.getItem('userToken') == "" || localStorage.getItem('userToken') == null) {
       window.location.href = "/"
     }
     axios.defaults.headers = {

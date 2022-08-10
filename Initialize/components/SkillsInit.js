@@ -11,8 +11,6 @@ class SkillsInit extends Component {
     multiselectRef: React.createRef(),
     selectedItems: [],
     skills: [],
-    selectedParent: this.props.selectedSpe,
-    url: ChildCategoriesOfParentAPI,
   }
   selectHandler = (e) => {
     let selecting = this.state.multiselectRef.current.getSelectedItems();
@@ -22,7 +20,7 @@ class SkillsInit extends Component {
     this.props.selectHandling(selecting);
   }
   getItems = e => {
-    axios.get(this.state.url + this.props.selectedSpe).then(
+    axios.get(ChildCategoriesOfParentAPI + this.props.selectedSpe.id).then(
       res => {
         if (res.data.status == true) {
           //console.log(res.data.data)

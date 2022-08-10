@@ -123,8 +123,7 @@ class Post extends Component {
                         <Button hidden={this.state.isHidden} label="إضافة عرض" data-toggle="modal" data-target={`.modal-offer${this.props.id}`} className="p-button-text p-button-success mr-4" />
                         <Button label="مشاهدة العروض" loading={this.state.loading} onClick={this.GetOffers} className="p-button-text p-button-plain ml-4" />
                     </div>
-
-
+ 
                     {this.state.offerOpen &&
                         this.state.Offers.map(e => {
                             return <Offer
@@ -137,6 +136,7 @@ class Post extends Component {
                                 post_id={e.post_id}
                                 user_post_id = {this.props.user_id}
                                 userInfo={e.user}
+                                profileImg={local + e.user.cover_image}
                             />
                         })
                     }

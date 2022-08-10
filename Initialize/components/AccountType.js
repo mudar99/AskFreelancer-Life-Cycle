@@ -9,17 +9,21 @@ class AccountType extends Component {
     }
     FreelancerHandler = () => {
         this.setState({
-            checked : 'F'
+            checked: 'F'
         })
-        this.props.Freelancer(true);
-        this.props.Client(false);
+        this.props.Freelancer(0);
+
     }
     ClientHandler = () => {
         this.setState({
-            checked : 'C'
+            checked: 'C'
         })
-        this.props.Client(true);
-        this.props.Freelancer(false);
+        this.props.Client(1);
+    }
+    componentDidMount() {
+        this.setState({
+            checked: this.props.type == 1 ? 'C' : 'F'
+        })
     }
     render() {
         return (
