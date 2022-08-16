@@ -11,6 +11,7 @@ class Footer extends Component {
     visible: false,
     FeedBack: [],
     feedbackValue: '',
+    disable: (window.location.href.endsWith('3000/') || window.location.href.endsWith('3000'))
   }
   getFeedback = () => {
     axios.get(GetFeedback).then(
@@ -52,8 +53,7 @@ class Footer extends Component {
     return (
       <footer className="text-center text-lg-start text-muted" id="footer">
         <section
-          className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom "
-        >
+          className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom ">
           <Toast ref={(el) => this.toastSuccess = el} position="bottom-right" />
           <Toast ref={(el) => this.toastFailure = el} position="bottom-right" />
 
@@ -95,11 +95,11 @@ class Footer extends Component {
                   نقوم بتقديم جميع الخدمات البرمجية والمنتجات التكنولوجية في سوريا
                 </p>
 
-                <Button id='feedBTN' label="Feedback تغذية راجعة" className="p-button-rounded p-button-sm p-button-success mt-4" onClick={() => this.setState({ visible: true })} aria-label="Filter" />
+                <Button disabled={this.state.disable} id='feedBTN' label="Feedback تغذية راجعة" className="p-button-rounded p-button-sm p-button-success mt-4" onClick={() => this.setState({ visible: true })} aria-label="Filter" />
               </div>
 
               <Dialog className='text-center' header="Feedback التغذية الراجعة " onShow={this.getFeedback} dismissableMask visible={this.state.visible} style={{ width: '70vw', height: '40vw' }} onHide={() => this.setState({ visible: false })} >
-                {this.state.FeedBack.map(e => {
+                {this.state.FeedBack.map((e,index) => {
                   return <div className="card w-100 mb-2" style={{ width: "18rem" }}>
                     <div className="card-body">
                       <h5 className="card-title text-success pb-3">{e.username}</h5>

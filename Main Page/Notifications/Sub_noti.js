@@ -5,16 +5,13 @@ class Sub_noti extends Component {
         return (
 
             <ul>
-                <li className="list-group-item ">
-                    <div className="row">
-                        <div className="col-md-2">
-                            <img src={this.props.img} alt="user" className="notification-photo mr-2 " />
-                        </div>
-                        <div className="col-md-10">
-                            <p>{this.props.name + " "}
-                                {this.props.action}
-                            </p>
-                        </div>
+                <li className="list-group-item text-left">
+                    <div className="">
+                        <h6 className="text-success">{this.props.title}</h6>
+                        <small className="text-secondary">{this.props.created_at}</small>
+                        <p>
+                            {this.props.body}
+                        </p>
                     </div>
                 </li>
             </ul>

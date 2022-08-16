@@ -2,7 +2,8 @@ import { Component } from 'react';
 import { Toast } from 'primereact/toast';
 import axios from "axios";
 import LoadingIcon from "../LoadingIcon";
- import { RegisterAPI } from '../API';
+import { RegisterAPI } from '../API';
+import { fetchToken } from '../firebase';
 
 class SignUp extends Component {
   state = {
@@ -12,6 +13,7 @@ class SignUp extends Component {
     password: "",
     confPassword: "",
     loading: false,
+    FcmToken: '',
   }
   registerHandler = (e) => {
     e.preventDefault();
@@ -21,7 +23,9 @@ class SignUp extends Component {
       email: this.state.email,
       password: this.state.password,
       confirm_password: this.state.confPassword,
+      fcm_token: this.state.FcmToken,
     }
+
     this.setState({ loading: true });
     axios.post(RegisterAPI, params).then(
       res => {
@@ -30,6 +34,7 @@ class SignUp extends Component {
         if (res.data.status == true) {
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
+          localStorage.setItem('myID', res.data.data.user.id)
           localStorage.setItem('userToken', res.data.data.token)
           setTimeout(function () {
             window.location.href = "/Initialize"
@@ -40,7 +45,14 @@ class SignUp extends Component {
           this.showError(res.data.message);
         }
       }).catch(err => console.error(err));
-
+  }
+  componentDidMount() {
+    const x = '';
+    fetchToken(x).then(e => {
+      this.setState({
+        FcmToken: e
+      })
+    })
   }
   showSuccess = (msg) => {
     this.toastSuccess.show({ severity: 'success', summary: 'نجاح', detail: msg, life: 3000 });
@@ -74,12 +86,12 @@ class SignUp extends Component {
               <input onChange={e => { this.setState({ confPassword: e.target.value }) }} type="password" className="form-control text-right" placeholder="تأكيد كلمة المرور" required />
             </div>
             <div className="text-center">
-              <button className="btn btn-lg btn-outline-success w-50" type="submit"> 
+              <button className="btn btn-lg btn-outline-success w-50" type="submit">
                 {this.state.loading ? null : "التسجيل"}
                 <div className='text-center'>
-                <LoadingIcon size="25px" loading={this.state.loading} />
+                  <LoadingIcon size="25px" loading={this.state.loading} />
                 </div>
-               </button>
+              </button>
             </div>
             <a className="d-block text-center mt-3" href="#" data-dismiss="modal">هل تملك حساب ؟ قم بتسجيل الدخول</a>
             <hr className="my-3" />

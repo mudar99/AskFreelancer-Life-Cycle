@@ -17,7 +17,7 @@ class Skills extends Component {
           <div className="row">
             {this.props.Skills.map((skill) => (
               <div key={skill.id} className="p-2 col-md-6">
-                <div className="skills rounded p-4 ">
+                <div className="skills p-4 ">
                   <PencilIcon className="float-right" data-toggle="modal" data-target={`.modal-MakeTest${skill.id}`} cursor="pointer" color='gray' height={22} />
                   <div className={`modal fade modal-MakeTest${skill.id}`} >
                     <div className="modal-dialog modal-dialog-centered modal-lg ">
@@ -35,7 +35,7 @@ class Skills extends Component {
                     {skill.name}
                   </span>
                 </div>
-                <ProgressBar value={50} color='#28a745' style={{ backgroundColor: 'lightgreen', height: '6px' }}></ProgressBar>
+                <ProgressBar className="rounded-0" value={20} color='#28a745' style={{ backgroundColor: 'lightgreen', height: '20px' }}></ProgressBar>
 
               </div>
             ))}

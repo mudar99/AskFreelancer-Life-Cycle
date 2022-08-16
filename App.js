@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import "../src/Styles/style.css";
-
 import { Routes, BrowserRouter, Route } from 'react-router-dom';
 import Register from './Register/Register';
 import Profile from './Portfolio/Profile';

@@ -6,6 +6,7 @@ import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import FacebookLogin from "react-facebook-login";
 import { loginAPI } from '../API';
+import { fetchToken } from '../firebase';
 
 class SignIn extends Component {
 
@@ -17,7 +18,9 @@ class SignIn extends Component {
     data: [],
     picture: "",
     RememberMe: false,
+    FcmToken: '',
   }
+
   passHandler = (e) => {
     let pass = e.target.value;
     this.setState({
@@ -36,18 +39,21 @@ class SignIn extends Component {
     let params = {
       email: this.state.email,
       password: this.state.password,
+      fcm_token: this.state.FcmToken,
     }
     this.setState({ loading: true });
+
     axios.post(loginAPI, params).then(
       res => {
         this.setState({ respone: res.data });
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.status == true) {
+          localStorage.setItem('myID', res.data.data.user.id)
           this.setState({ loading: false });
           this.showSuccess(res.data.message);
           setTimeout(function () {
             localStorage.setItem('userToken', res.data.data.token)
-            window.location.href = "/Initialize"
+            window.location.href = "/MainPage"
           }, 1000);
         }
         else {
@@ -89,15 +95,21 @@ class SignIn extends Component {
       picture: "",
     });
   };
+
   componentDidMount() {
     if (localStorage.getItem('RememberMe') === 'true' && localStorage.getItem('userToken') !== null) {
       window.location.href = "/Initialize"
     }
+    const x = '';
+    fetchToken(x).then(e => {
+      this.setState({
+        FcmToken: e
+      })
+    })
   }
   render() {
     return (
       <div className="Cover_Photo" id="#login">
-
         <Toast ref={(el) => this.toastSuccess = el} position="bottom-right" />
         <Toast ref={(el) => this.toastFailure = el} position="bottom-right" />
 

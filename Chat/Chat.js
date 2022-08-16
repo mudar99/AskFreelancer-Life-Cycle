@@ -11,7 +11,7 @@ import { local } from '../API'
 // 2
 class Chat extends Component {
     state = {
-        RoomID: 0,
+        RoomID: 1,
         message: '',
         messages: [],
     }
@@ -26,12 +26,9 @@ class Chat extends Component {
             key: 'cf1398e74504d96c4495',
             cluster: 'eu',
             forceTLS: true,
-            auth: {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('userToken')}`,
-                }
-            }
+            encrypted: true
         });
+
 
         axios.get('/room/' + window.location.href.slice(-1)).then(
             res => {
@@ -46,31 +43,33 @@ class Chat extends Component {
                 .subscribed(() => {
                     console.log('You are subscribed');
                 })
-                .listen("MessageEvent", (data) => {
-                    alert(data)
-                });
+                .listen("ChatMessageCreated", (data) => {
+                    alert('asd')
+                    console.log(data)
+                    axios.get('message/' + this.props.userID).then(
+                        res => {
+                            if (res.data.data != null) {
+                                console.log(res.data.data)
+                                this.setState({
+                                    messages: res.data.data
+                                })
+                            }
+                        }).catch(err => console.error(err));
+                }
+                );
             console.log(echo.connector)
 
-        }).catch(err => console.error(err));
-
-        axios.get('/message/' + this.state.profileID).then(
-            res => {
-                if (res.data.data != null) {
-                    console.log(res.data.data)
-                    this.setState({
-                        messages: res.data.data
-                    })
-                }
-            }).catch(err => console.error(err));
+        }).catch(err => console.error(err))
     };
 
     handleSendMessage = (e) => {
         e.preventDefault();
-        console.log(this.props.userID)
         let params = {
             body: this.state.message,
         }
-        axios.post('/message/' + this.props.userID, params).catch(err => console.error(err));
+        axios.post('/message/' + this.props.userID, params).then(res => {
+            console.log(res.data)
+        }).catch(err => console.error(err));
     }
     render() {
         return (
@@ -87,7 +86,7 @@ class Chat extends Component {
                                     </div>
                                 </div>
                                 <div className="panel-body msg_container_base ">
-                                    {this.state.messages.map((message) => (
+                                    {this.state.messages.reverse().map((message) => (
                                         <Messagebox body={message.body} img="/Img/3.png" status={message.user_id == localStorage.getItem('myID') ? 'sender' : 'reciver'} />
                                     ))}
 

@@ -347,6 +347,9 @@ footer span {
 
 #about img {
   width: 50%;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #about .social-list {
@@ -1126,6 +1129,8 @@ textarea::-webkit-scrollbar-thumb {
   height: 60px;
   width: 60px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .Post .Offer input[type="number"]::-webkit-inner-spin-button,

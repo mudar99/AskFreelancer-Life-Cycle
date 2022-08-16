@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HomeIcon, BriefcaseIcon } from "@heroicons/react/outline";
-import { UserCircleIcon, CogIcon, EyeIcon, LockClosedIcon, FingerPrintIcon, AtSymbolIcon,CreditCardIcon ,UserIcon} from '@heroicons/react/outline'
+import { UserCircleIcon, CogIcon, EyeIcon, LockClosedIcon, FingerPrintIcon, AtSymbolIcon, CreditCardIcon, UserIcon, BellIcon } from '@heroicons/react/outline'
 import Logout from "../../Main Page/components/Logout";
 import ChangePassword from "./ChangePassword";
 import { LogoutAPI } from '../../API';
@@ -8,12 +8,22 @@ import ID_Verification from "./ID_Verification";
 import Email_Verification from "./Email_Verification";
 import Balance from "./Balance";
 import Orders from "./Orders";
+import Notifications from "../../Main Page/Notifications/Notifications";
+import { Dialog } from 'primereact/dialog';
+import { GetNotifications } from '../../API'
+import axios from "axios";
+import { Button } from 'primereact/button';
 
 class Navbar extends Component {
     state = {
         chkAbout: false,
         chkPastWork: false,
         chkSkills: false,
+        visible: false,
+        token: localStorage.getItem('userToken'),
+        Notifications: [],
+        lastPage: 0,
+        pageNumber: 1,
     }
     editHandler = (e) => {
         let val = e.target.value;
@@ -46,10 +56,59 @@ class Navbar extends Component {
             });
         }
     }
+    getNotifications = () => {
+        axios.get(GetNotifications + '?page=' + this.state.pageNum).then(
+            res => {
+                if (res.data.status == true) {
+                    console.log(res.data.data)
+                    this.setState({
+                        Notifications: res.data.data.data,
+                        lastPage: res.data.data.last_page
+                    })
+                }
+            }).catch(err => console.error(err));
+    }
+    getPermissions = (e) => {
+        let pageNum;
+        if (e.target.innerHTML == 'Previous') {
+            if (this.state.pageNumber - 1 >= 1) {
+                pageNum = this.state.pageNumber - 1
+            }
+            else pageNum = this.state.pageNumber
+            this.setState({
+                pageNumber: pageNum
+            })
+        }
+        else if (e.target.innerHTML == 'Next') {
+            if (this.state.pageNumber + 1 <= this.state.lastPage) {
+                pageNum = this.state.pageNumber + 1
+            }
+            else pageNum = this.state.pageNumber
+            this.setState({
+                pageNumber: pageNum
+            })
+        }
+        else {
+            pageNum = parseInt(e.target.innerHTML)
+            this.setState({
+                pageNumber: pageNum
+            })
+        }
 
+        axios.get(GetNotifications + '?page=' + pageNum).then(
+            res => {
+                if (res.data.status == true) {
+                    console.log(res.data.data)
+                    this.setState({
+                        Notifications: res.data.data.data,
+                        lastPage: res.data.data.last_page
+                    })
+                }
+            }).catch(err => console.error(err));
+    }
     render() {
         return (
-            <nav id="navbar" className="navbar navbar-expand-lg navbar-light">
+            <><nav id="navbar" className="navbar navbar-expand-lg navbar-light">
                 <div>
                     <a href="#contact" className=""><img id="Logo" src="/Img/AF.png" alt="Ask Freelancer" /></a>
                 </div>
@@ -62,8 +121,7 @@ class Navbar extends Component {
                     <ul className=" text-right navbar-nav text-center">
                         <div className="dropdown d-lg-flex d-none">
                             <a className="m-1" role="button"><EyeIcon height={25} /></a>
-                            <div class="dropdown-content">
-                                <a className="dropdown-item" href="#testimonials">تقييم العملاء</a>
+                            <div className="dropdown-content">
                                 <a className="dropdown-item" href="#skills">المهارات</a>
                                 <a className="dropdown-item" href="#projects" >الأعمال السابقة</a>
                                 <a className="dropdown-item" href="#Posts" >المنشورات</a>
@@ -73,11 +131,14 @@ class Navbar extends Component {
                         <li className="mr-3 ml-3 " ><Logout remember="RememberMe" startPage='/' parentUrl={LogoutAPI} Token='userToken' /></li><hr />
                         <li><a className="mr-3" style={{ cursor: 'pointer' }} data-toggle="modal" data-target=".bd-orders">الطلبات <BriefcaseIcon height={25} /></a></li><hr />
                         <li><a href="/MainPage" className="mr-3">رئيسي <HomeIcon height={25} /></a></li><hr />
+                        <li><a onClick={() => this.setState({ visible: true })} className="mr-3">الإشعارات <BellIcon height={25} /></a></li><hr />
+
+
 
                         {!this.props.isVisible &&
                             <div className="dropdown d-lg-flex d-none">
                                 <a className="mr-3 ml-3" role="button"><CogIcon id="setting" height={25} /></a>
-                                <div class="dropdown-content text-right">
+                                <div className="dropdown-content text-right">
                                     <a className="" data-toggle="modal" data-target=".modal-changePassword" style={{ cursor: "pointer" }}>تغيير كلمة المرور <LockClosedIcon height={22} /></a>
                                     <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyID">توثيق الهوية <FingerPrintIcon height={22} /></a>
                                     <a className="dropdown-item" data-toggle="modal" data-target=".modal-VerifyEmail">تأكيد البريد الإلكتروني <AtSymbolIcon height={22} /></a>
@@ -157,8 +218,27 @@ class Navbar extends Component {
                         </div>
                     </div>
                 </div>
-
             </nav>
+                <Dialog className='text-center' header="Notifications الإشعارات" onShow={this.getNotifications} dismissableMask visible={this.state.visible} style={{ width: '50vw', height: '40vw' }} onHide={() => this.setState({ visible: false })} >
+                    <Notifications Notifications={this.state.Notifications} />
+                    <nav aria-label="Page navigation example" hidden={this.state.lastPage == 1}>
+                        <ul className="pagination ">
+                            <li className="page-item" hidden={this.state.pageNumber == 1}><a className="page-link text-info" onClick={this.getPermissions} style={{ cursor: 'pointer' }}>Previous</a></li>
+                            {
+                                Array.from({ length: this.state.lastPage }, (_, i) =>
+                                    <li className="page-item">
+                                        <a className="page-link text-info" onClick={this.getPermissions} style={{ cursor: 'pointer' }}>
+                                            {i + 1}
+                                        </a>
+                                    </li>)
+                            }
+                            <li className="page-item" hidden={this.state.pageNumber == this.state.lastPage}><a className="page-link text-info" onClick={this.getPermissions} style={{ cursor: 'pointer' }}>Next</a></li>
+                        </ul>
+                    </nav>
+                </Dialog>
+
+            </>
+
         );
     }
 }

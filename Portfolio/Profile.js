@@ -12,6 +12,7 @@ import axios from "axios";
 import { ClipboardListIcon } from "@heroicons/react/solid";
 import { GetProfileInfo, GetAmount, ShowProfileInfo, GetUserPosts, GetPrtojectsAPI, local, GetOrders } from '../API';
 import Post from "../Main Page/components/Post";
+import PushNotification from "../Main Page/PushNotification";
 
 class Profile extends Component {
     state = {
@@ -70,7 +71,7 @@ class Profile extends Component {
             isVisible: this.state.myID == this.state.userID ? false : true
         })
         //Get information for visitor
-        if (this.state.userID != this.state.myID && this.state.userID.length != 0) {
+        if (this.state.userID != null && (this.state.userID != this.state.myID && this.state.userID.length != 0)) {
             this.setState({
                 visibleOption: false,
             })
@@ -86,8 +87,6 @@ class Profile extends Component {
                         });
                     }
                 }).catch(err => console.error(err));
-
-
             axios.get(GetUserPosts + this.state.userID + '/posts').then(
                 res => {
                     if (res.data.status == true) {
@@ -121,6 +120,7 @@ class Profile extends Component {
                             skillsInfo: res.data.data.skills,
                             loading: false
                         });
+                        localStorage.setItem('type', res.data.data.user.type)
                     } else {
                         this.setState({ loading: true });
                     }
@@ -148,7 +148,7 @@ class Profile extends Component {
                     }
                 }
             ).catch(err => console.error(err));
-
+            console.log(this.state.myID)
             axios.get(GetUserPosts + this.state.myID + '/posts').then(
                 res => {
                     if (res.data.status == true) {
@@ -180,7 +180,8 @@ class Profile extends Component {
                     type={this.state.userInfo.type}
                     Balance={this.state.Balance}
                     profileImg={local + this.state.userInfo.cover_image}
-                    is_documented={this.state.userInfo.is_documented} />
+                    is_documented={this.state.userInfo.is_documented} 
+                    userID={this.state.userInfo.id}/>
                 {this.state.getDone &&
                     this.state.userInfo.type === 0 && <Projects
                         projects={this.state.projects}
@@ -198,6 +199,8 @@ class Profile extends Component {
                 <div className="container-fluid ">
                     {Posts}
                 </div>
+
+                <PushNotification />
 
                 {/* <Testimonials />
                 <Contact /> */}

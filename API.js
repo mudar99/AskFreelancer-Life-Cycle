@@ -56,6 +56,11 @@ export const RefuseOrder = `${local}/api/order/cancel/`
 export const Accept_Accept_Offer = `${local}/api/order/accept/`
 export const GetOrders = `${local}/api/order/get`
 
+export const SendProduct = `${local}/api/order/final/`
+export const GetProduct = `${local}/api/order/final/`
+
+export const GetNotifications = `${local}/api/notifications`
+
 export const CmsCreateTest = `${local}/api/CMS/category/`
 export const CmsDeleteTest = `${local}/api/CMS/category/`
 export const CmsGetTest = `${local}/api/CMS/category/`
@@ -100,6 +105,7 @@ export const CmsEnableFeedback = `${local}/api/CMS/feedbacks/enable/`
 export const CmsDisableFeedback = `${local}/api/CMS/feedbacks/disable/`
 export const SendFeedback = `${local}/api/feedbacks`
 export const GetFeedback = `${local}/api/feedbacks`
+
 
 
 

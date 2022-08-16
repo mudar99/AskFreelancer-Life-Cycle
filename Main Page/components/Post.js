@@ -23,7 +23,7 @@ class Post extends Component {
         token: localStorage.getItem('userToken'),
         Offers: [],
         offerOpen: false,
-        isHidden: (localStorage.getItem('myID') == this.props.user_id),
+        isHidden: (localStorage.getItem('myID') == this.props.user_id) || localStorage.getItem('type') == 1,
     };
     setVisible = (event) => {
         this.setState({ visible: true })
@@ -36,7 +36,7 @@ class Post extends Component {
             }).catch(err => console.error(err));
     }
     visitProfile = () => {
-        localStorage.setItem('UserID',this.props.user_id)
+        localStorage.setItem('UserID', this.props.user_id)
         window.location.href = 'Profile'
     }
     componentDidMount() {
@@ -123,7 +123,7 @@ class Post extends Component {
                         <Button hidden={this.state.isHidden} label="إضافة عرض" data-toggle="modal" data-target={`.modal-offer${this.props.id}`} className="p-button-text p-button-success mr-4" />
                         <Button label="مشاهدة العروض" loading={this.state.loading} onClick={this.GetOffers} className="p-button-text p-button-plain ml-4" />
                     </div>
- 
+
                     {this.state.offerOpen &&
                         this.state.Offers.map(e => {
                             return <Offer
@@ -134,7 +134,7 @@ class Post extends Component {
                                 created_at={e.created_at}
                                 user_id={e.user_id}
                                 post_id={e.post_id}
-                                user_post_id = {this.props.user_id}
+                                user_post_id={this.props.user_id}
                                 userInfo={e.user}
                                 profileImg={local + e.user.cover_image}
                             />

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Button } from 'primereact/button';
 import { BadgeCheckIcon, BanIcon } from "@heroicons/react/outline";
+import { Dialog } from 'primereact/dialog';
+import ProductSend from "../Editing/ProductSend";
 
 class About extends Component {
     state = {
         isChatOn: false,
+        showDialog: false,
     }
     ChatHandler = e => {
         this.setState(prevState => ({
@@ -12,7 +15,9 @@ class About extends Component {
         }
         ), () => this.props.isChatOn(this.state.isChatOn))
     }
+
     render() {
+        this.header=<h5 className="text-center">تسليم الملف النهائي</h5>
         return (
             <div id="about" className="container mt-5">
                 <div className="row d-flex justify-content-center">
@@ -54,11 +59,15 @@ class About extends Component {
                                 </ul>
                                 <div className=" ">
                                     <Button label="مراسلة" icon='pi pi-send' onClick={this.ChatHandler} className="p-button-raised p-button-plain p-button-text" />
+                                    <Button label="تسليم المنتج" icon='pi pi-file' className="ml-4 p-button-raised p-button-plain p-button-text p-button-success" onClick={() => this.setState({ showDialog: true })} />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Dialog header={this.header} dismissableMask visible={this.state.showDialog} style={{ width: '50vw' }} onHide={() => this.setState({ showDialog: false })}>
+                    <ProductSend userID={this.props.userID}/>
+                </Dialog>
             </div>
         );
     }

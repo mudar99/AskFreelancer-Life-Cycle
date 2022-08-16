@@ -7,6 +7,7 @@ import Footer from '../Register/Footer'
 import { Helmet } from 'react-helmet';
 import axios from "axios";
 import { GetSmallServices, GetNonSmallServices, SearchPost, local, GetProfileInfo } from '../API'
+import PushNotification from './PushNotification';
 
 class MainPage extends Component {
   state = {
@@ -69,11 +70,11 @@ class MainPage extends Component {
     axios.get(GetProfileInfo).then(
       res => {
         if (res.data.status == true) {
-          localStorage.setItem('myID', res.data.data.user.id)
           this.setState({
             Fname: res.data.data.user.first_name,
-            myID: res.data.data.user.id,
+            myID: localStorage.getItem('myID'),
           })
+          localStorage.setItem('type', res.data.data.user.type)
         }
       }).catch(err => console.error(err));
   }
@@ -82,6 +83,7 @@ class MainPage extends Component {
     return (
       <div className='MainPage lightMode'>
         <Helmet title='Ask Freelancer | Main Page' />
+        <PushNotification />
         <Nav SearchValueHandling={this.SearchedValueCallback} myID={this.state.myID} Fname={this.state.Fname} />
         <div className='container '>
           <Puplish />
